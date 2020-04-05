@@ -82,7 +82,7 @@
 						
 						<ul class="sidebar-menu" id="side-menu">
 						  <li><a href='#'><i class='fa fa-sitemap fa-fw'></i>订单管理<i class='fa fa-fw'></i><span class='fa'></span></a></li>
-						  <li><a href='#'><i class='fa fa-sitemap fa-fw'></i>机构管理<i class='fa fa-fw'></i><span class='fa'></span></a></li>
+						  <li><a href='${ctx}/organiz/prepareQuery.do'><i class='fa fa-sitemap fa-fw'></i>机构管理<i class='fa fa-fw'></i><span class='fa'></span></a></li>
 						  <li><a href='${ctx}/user/prepareQuery.do'><i class='fa fa-sitemap fa-fw'></i>用户管理<i class='fa fa-fw'></i><span class='fa'></span></a></li>
 						</ul>
 				    </div>
