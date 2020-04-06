@@ -1,4 +1,4 @@
-package com.platform.user.schema.vo;
+package com.platform.common.schema;
 
 
 
