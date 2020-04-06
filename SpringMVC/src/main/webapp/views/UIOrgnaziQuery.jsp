@@ -8,7 +8,6 @@ white-space: nowrap;
 }
 </style>
 <script type="text/javascript"	src="${ctx}/views/js/UIOrgnaziQuery.js"></script>
-
 <title>机构管理</title>
 </head>
 <body>
@@ -83,10 +82,8 @@ white-space: nowrap;
 			<div class="panel panel-info" id="showTitle"  >
 				<div class="panel-heading">
 					<h4 class="panel-title">
-						<button class="btn btn-primary" type="button" id="addbtn" 
-						onclick="window.location.href='${ctx}/organiz/createOrganiz.do'">新增</button>
-						<!-- <button class="btn btn-primary" type="button" id="updatebtn">修改</button>
-						<button class="btn btn-primary" type="button" id="delbtn">删除</button> -->
+						<button class="btn btn-primary  glyphicon glyphicon-plus"
+							id="addbtn" data-toggle="modal" data-target="#orgnaziModal" >新增</button>
 					</h4>
 				</div>
 				<div id="collapseTwo" class="panel-collapse" >
@@ -112,6 +109,6 @@ white-space: nowrap;
 			</div>
 		</div>
 	</div>
+<div id="orgnaziModal"  class="modal fade" role="dialog"  data-backdrop="false" tabindex="-1" style="display:none;"></div>
 </body>
-<div id="orgnaziModal" class="modal fade" role="dialog" tabindex="-1" style="display: none;"/>
 </html>

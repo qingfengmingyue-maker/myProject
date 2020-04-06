@@ -7,25 +7,32 @@ jQuery(function($) {
                 {"data": "orgCode","bSortable": false},
                 {
                     "data": function (data) {
-                        return  "<a href='"+ contextRootPath+"/organiz/editOrganiz.do?orgCode="+ data.orgCode + "'>编辑</a> &nbsp; <a id='btnDelete' href='"+ contextRootPath+"/organiz/delOrganiz.do?orgCode="+ data.orgCode + "' >删除</a>"
+                    	return "<button class='btn btn-primary btn-outline' onclick='editOrg("+data.orgCode+")' >编辑</button>&nbsp;" +
+                    			"<button class='btn btn-primary btn-outline' onclick='delOrg("+data.orgCode+")' >删除</button>";
                     }
                 }
               ];
        $(dataTableInit(contextRootPath+"/organiz/quryOrganizList.do", colModel,"",10));
 });
+function editOrg(obj){
+	var modal = $("#orgnaziModal");
+	var url = contextPath + "/organiz/editOrganiz.do?orgCode="+obj;
+	modal.load(url, '', function(){
+		modal.modal();
+	});
+}
+function delOrg(obj){
+	window.location.href =contextPath + "/organiz/delOrganiz.do?orgCode="+obj;
+}
 $(function() {
-//	$("#addbtn").click(	function(){ 
-//		var url = contextRootPath + "/organiz/createOrganiz.do";
-//		window.open(url,'width=500000,height=300，resizable=1')
-//		window.showModalDialog(url,window,"resizable:yes;dialogHide:yes;help:no;status:no;scroll:yes;dialogWidth:3000px;dialogHeight:1000px");
-		//识别成功跳转证件浏览界面
-//		var modal = $("#orgnaziModal");
-//		alert(url)
-//		modal.load(url,'', function() {
-//			modal.modal();
-//		});
-//		
-//	});
+	$("#addbtn").click(
+			function(){
+				var modal = $("#orgnaziModal");
+				var url = contextPath + "/organiz/createOrganiz.do";
+				modal.load(url, '', function(){
+					modal.modal();
+				});
+	});
 	$('.dataTables_length select').on('change',function(){
 		$('.table-sort').DataTable().page(0).draw( false );
 	});

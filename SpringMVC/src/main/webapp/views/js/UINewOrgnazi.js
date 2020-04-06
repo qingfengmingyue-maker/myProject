@@ -1,5 +1,9 @@
 $(function() {
-	$("#savebtn").click(function(){
-		$("#fm").submit();
-	})
+	$("#saveOrgbtn").click(function(){
+		$("#createNewOrg").submit();
+	});
+	$("#closeOrgbtn").click(function(){
+		$("#closeExamDialog").click();
+	});
+	
 });
