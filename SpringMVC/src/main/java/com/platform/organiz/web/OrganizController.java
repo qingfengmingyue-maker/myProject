@@ -45,11 +45,11 @@ public class OrganizController {
 		}
 		return new ModelAndView("success");
 	}
-	@RequestMapping("/quryOrganizList")
-	public Pager<Organization> quryOrganizList(Organization organization,int pageNo,int start,int length){
-		Page<Organization> page=new Page<Organization>(userVo.getCurrentPageNum(), userVo.getiDisplayLength());
-		return null;
-	}
+//	@RequestMapping("/quryOrganizList")
+//	public Pager<Organization> quryOrganizList(Organization organization,int pageNo,int start,int length){
+//		Page<Organization> page=new Page<Organization>(userVo.getCurrentPageNum(), userVo.getiDisplayLength());
+//		return null;
+//	}
 	
 	/*
 	   @RequestMapping("/queryUser")
