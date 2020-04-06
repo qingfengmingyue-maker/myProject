@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.platform.common.schema.vo.PageVo;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,7 +57,7 @@ public class Organization {
 	String brandName;
 	@Column(name="inserttime" ,insertable = false, updatable = false)
 	Date insertTime;
-	@Column(name="operatetime",insertable = false)
+	@Column(name="operatetime")
 	Date operateTime;
 
 }

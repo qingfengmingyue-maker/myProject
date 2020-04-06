@@ -10,6 +10,6 @@ public interface OrganizService {
 	void delOrganization(String orgcode) throws Exception;
 	void updateOrganization(Organization organization) throws Exception;
 	Organization findOrganization(String orgcode) throws Exception;
-	Page quryOrganizationList(Page page, Organization organization)
+	Page quryOrganizationList(Page page, Organization organization,int pageNo,int pageSize)
 			throws Exception;
 }

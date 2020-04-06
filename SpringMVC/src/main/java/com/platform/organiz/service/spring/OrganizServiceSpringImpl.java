@@ -39,9 +39,10 @@ public class OrganizServiceSpringImpl extends IBaseDaoServiceSpringImpl<Organiza
 	}
 
 	@Override
-	public Page quryOrganizationList(Page page, Organization organization)
+	public Page quryOrganizationList(Page page, Organization organization,int pageNo,int pageSize)
 			throws Exception {
-		StringBuffer hql = new StringBuffer(" from Organization where 1=1 ");
+		StringBuffer hql = new StringBuffer("");
+		int total = 0;
 		Map<String,String> map = new HashMap<String,String>();
 		String orgName = organization.getOrgName();
 		String orgCode = organization.getOrgCode();
@@ -58,8 +59,13 @@ public class OrganizServiceSpringImpl extends IBaseDaoServiceSpringImpl<Organiza
 			hql.append(" and creditCode=:creditCode");
 			map.put("creditCode", creditCode);
 		}
-		int total = super.getCountByHqlCondition(hql.toString(), map);
-		List<Organization> organizations =  super.listByHQL(hql.toString(),map,(page.getPageNo()-1)*page.getPageSize(), page.getPageSize());
+		
+		if(StringUtils.isNotBlank(hql.toString())){
+			total = super.getCountByHqlCondition(hql.toString(),map);
+		}else{
+			total = super.getCountByHqlCondition("",map);
+		}
+		List<Organization> organizations =  super.listByHQL(" from Organization where 1=1 "+ hql.toString(),map,(pageNo-1)*pageSize, pageSize);
 		return new Page(page.getPageNo(), page.getPageSize(), total,organizations);
 	}
 
