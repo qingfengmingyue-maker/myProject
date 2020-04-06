@@ -5,22 +5,22 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.platform.common.service.SaaUserService;
 import com.platform.common.spring.IBaseDaoServiceSpringImpl;
-import com.platform.user.schema.model.User;
+import com.platform.user.schema.model.UserMsg;
+import com.platform.user.service.facade.SaaUserService;
 
 @Service(value="saaUserService")
-public class SaaUserServiceSpringImpl extends IBaseDaoServiceSpringImpl<User,Integer> implements SaaUserService {
+public class SaaUserServiceSpringImpl extends IBaseDaoServiceSpringImpl<UserMsg,String> implements SaaUserService {
 
 	@Override
-	public User checkLogin(String userName, String passWord) {
-		User user = null;
-		String hql = "from User where userName = :userName and passWord = :passWord";
+	public UserMsg checkLogin(String userName, String passWord) {
+		UserMsg userMsg = null;
+		String hql = "from UserMsg where userName = :userName and userPwd = :userPwd";
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("userName", userName);
-		map.put("passWord", passWord);
-		user = super.getByHQL(hql, map);
-		return user;
+		map.put("userPwd", passWord);
+		userMsg = super.getByHQL(hql, map);
+		return userMsg;
 	}
 
 }

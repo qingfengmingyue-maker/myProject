@@ -9,6 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.platform.user.schema.model.User;
+import com.platform.user.schema.model.UserMsg;
 
 public class LoginInterceptor implements HandlerInterceptor{
 
@@ -34,9 +35,9 @@ public class LoginInterceptor implements HandlerInterceptor{
         }
        //获取session
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("USER_SESSION");
+        UserMsg userMsg = (UserMsg) session.getAttribute("USER_SESSION");
         //判断session中是否有用户数据，如果有，则返回true，继续向下执行
-        if (user != null) {
+        if (userMsg != null) {
             return true;
         }
         //不符合条件的给出提示信息，并转发到登录页面

@@ -9,10 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.platform.common.service.SaaUserService;
 import com.platform.common.utils.Utils;
-import com.platform.user.schema.model.User;
+import com.platform.user.schema.model.UserMsg;
+import com.platform.user.service.facade.SaaUserService;
 
 @Controller
 @RequestMapping("/saaUserPower")
@@ -22,7 +21,7 @@ public class SaaUserPowerController {
 	  private SaaUserService saaUserService;
 	    
 	  @RequestMapping(value = "/login", method = RequestMethod.POST,produces="text/html;charset=utf-8")
-	  public String login(HttpServletRequest request,  Model model,String username, String password, String validateCode,HttpSession session) {
+	  public String login(HttpServletRequest request,  Model model,String userName, String userPwd, String validateCode,HttpSession session) {
 	    String currentValidateCode = String.valueOf(request.getSession().getAttribute(Utils.VALIDATE_CODE));
 	    if(StringUtils.isNotBlank(currentValidateCode) && "null".equals(currentValidateCode)) {
 			 return "/login";
@@ -35,19 +34,15 @@ public class SaaUserPowerController {
 	    	  model.addAttribute("message", "验证码错误");
 	    	  return "/login";
 	      }
-	     User user =  new User();//.checkLogin(username, password);
-	     user.setId(1);
-	     user.setPassWord("123");
-	     user.setUserName("222");
-	     if(user !=null) {
-	    	session.setAttribute("USER_SESSION",user);
+	     UserMsg userMsg =  saaUserService.checkLogin(userName, userPwd);
+	     if(userMsg !=null) {
+	    	session.setAttribute("USER_SESSION",userMsg);
 	    	return "redirect: main.do";
 	     }else {
 	    	 model.addAttribute("message", "用户名或者密码错误!");
 	    	 return "/login";
 	     }
-	 }
-	  
+	   }
        @RequestMapping(value = "/toLogin")
        public String toLogin(){
            return  "/login";

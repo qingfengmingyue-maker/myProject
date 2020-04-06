@@ -1,8 +1,8 @@
 package com.platform.user.service.facade;
 
-import com.platform.user.schema.model.User;
+import com.platform.user.schema.model.UserMsg;
 
 public interface SaaUserService {
 
-	User checkLogin(String userName,String passWord);
+	UserMsg checkLogin(String userName,String passWord);
 }
