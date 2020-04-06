@@ -26,7 +26,7 @@ public class Organization {
 	@Column(name="cityCode")
 	String cityCode;
 	@Column(name="creditcode")
-	String creditcode;
+	String creditCode;
 	@Column(name="orgshortname")
 	String orgShortName;
 	@Column(name="postcode")

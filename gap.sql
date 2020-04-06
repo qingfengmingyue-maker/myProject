@@ -3,7 +3,8 @@ CREATE TABLE organization
 (
 orgcode	varchar(10) NOT NULL,
 orgname	varchar(100) NOT NULL,
-cityname	varchar(100) NOT NULL,
+cityname	varchar(100),
+citycode	varchar(6) NOT NULL,
 creditcode	varchar(20) NOT NULL,
 orgshortname	varchar(100),
 postcode	varchar(10),
@@ -19,7 +20,7 @@ accountno	varchar(20),
 bankname	varchar(100),
 brandname	varchar(255),
 inserttime	timestamp,
-operatetime	timestamp,
+operatetime	timestamp DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (orgcode) 
 );
 --**drop table usermsg;
@@ -28,6 +29,7 @@ CREATE TABLE usermsg
 usercode	varchar(10) not null,
 orgname	varchar(100) not null,
 username	varchar(100),
+userpwd		varchar(8),
 telphone	varchar(20),
 postflag	char(1),
 inserttime	timestamp,
@@ -132,11 +134,11 @@ PRIMARY KEY (classname)
 --**drop table regulation;
 CREATE TABLE regulation
 (
+businessno varchar(25),
 groupno	varchar(15),
 maxno	varchar(10),
 inserttime	timestamp,
-operatetime	timestamp,
-PRIMARY KEY (groupno, maxno)
+PRIMARY KEY (businessno)
 );
 --**drop table userrecord;
 CREATE TABLE userrecord

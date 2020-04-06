@@ -1,22 +1,54 @@
 package com.platform.organiz.web;
 
+import java.util.Date;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.platform.common.schema.vo.Page;
+import com.platform.common.schema.vo.Pager;
+import com.platform.common.service.RegulationService;
+import com.platform.organiz.schema.model.Organization;
 import com.platform.organiz.service.facade.OrganizService;
+import com.platform.user.schema.vo.UserVo;
 @Controller
 @RequestMapping("/organiz")
 public class OrganizController {
+	
 	@Autowired
 	OrganizService organizService;
+	@Autowired
+	RegulationService regulationService;
 	@RequestMapping("/prepareQuery")
 	public String prepareQuery(){
 		return "/UIOrgnaziQuery";
 	}
-	
-	
-	
+	@RequestMapping("/createOrganiz")
+	public String createOrganiz(){
+		return "/UINewOrgnazi";
+	}
+	@RequestMapping("/saveOrganiz")
+	public ModelAndView saveOrganiz(Organization organization){
+		try {
+			String cityCode = organization.getCityCode();
+			if(StringUtils.isBlank(organization.getOrgCode())){
+				String orgCode = regulationService.getOrgCode(cityCode, "orgnaiz");
+				organization.setOrgCode(orgCode);
+			}
+			organization.setOperateTime(new Date());
+			organizService.updateOrganization(organization);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("success");
+	}
+	public Pager<Organization> quryOrganizationList(Organization organization,int pageNo,int start,int length){
+		Page<Organization> page=new Page<Organization>(userVo.getCurrentPageNum(), userVo.getiDisplayLength());
+		return null;
+	}
 	
 	/*
 	   @RequestMapping("/queryUser")
