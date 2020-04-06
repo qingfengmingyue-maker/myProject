@@ -24,7 +24,7 @@ jQuery(function($) {
                 }
 
               ];
-       $(dataTableInit(contextRootPath+"/user/queryUser.do", colModel,'',10));
+       $(dataTableInit(contextRootPath+"/user/queryUser.do", colModel,1,10));
 });
 
 

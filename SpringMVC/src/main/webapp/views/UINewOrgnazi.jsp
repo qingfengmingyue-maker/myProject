@@ -43,7 +43,9 @@ body {
 												<label for="" class="control-label">经销商全称</label>
 											</div>
 											<div class="col-xs-8">
-												<input id="orgName" name="orgName" class="form-control" />
+												<input id="orgName" name="orgName" class="form-control"
+												value="${organization.orgName}" />
+												
 											</div>
 										</div>
 									</div>
@@ -55,7 +57,7 @@ body {
 											</div>
 											<div class="col-xs-8">
 												<input id="orgCode" name="orgCode" 
-													class="form-control" readonly="true" value="" />
+													class="form-control" readonly="true" value="${organization.orgCode}" />
 											</div>
 										</div>
 									</div>
@@ -90,7 +92,7 @@ body {
 											</div>
 											<div class="col-xs-8">
 												<input id="creditCode" name="creditCode" class="form-control"
-													type="text" value="" />
+													type="text" value="${organization.creditCode}" />
 											</div>
 										</div>
 									</div>
@@ -105,7 +107,7 @@ body {
 												<input id="orgShortName"
 													name="orgShortName" class="form-control"
 													type="text" placeholder=""
-													value="">
+													value="${organization.orgShortName}">
 											</div>
 										</div>
 									</div>
@@ -115,8 +117,8 @@ body {
 												<label for="" class="control-label">地址</label>
 											</div>
 											<div class="col-xs-8">
-												<input id="address"
-													name="address" class="form-control" />
+												<input id="address" name="address" class="form-control" 
+												value="${organization.address}"/>
 											</div>
 										</div>
 									</div>
@@ -129,7 +131,7 @@ body {
 											</div>
 											<div class="col-xs-8">
 												<input id="legalPerson" name="legalPerson" class="form-control"
-													type="text" value="" />
+													type="text" value="${organization.legalPerson}" />
 											</div>
 										</div>
 									</div>
@@ -142,7 +144,7 @@ body {
 												<input id="postCode"
 													name="postCode" class="form-control"
 													type="text" placeholder=""
-													value="">
+													value="${organization.postCode}">
 											</div>
 										</div>
 									</div>
@@ -155,7 +157,7 @@ body {
 											</div>
 											<div class="col-xs-8">
 												<input id="telphone" name="telphone" class="form-control"
-													type="text" value="" />
+													type="text" value="${organization.telphone}"/>
 											</div>
 										</div>
 									</div>
@@ -168,7 +170,7 @@ body {
 												<input id="faxno"
 													name="faxno" class="form-control"
 													type="text" placeholder=""
-													value="">
+													value="${organization.faxno}">
 											</div>
 										</div>
 									</div>
@@ -181,8 +183,7 @@ body {
 											</div>
 											<div class="col-xs-8">
 												<input id="accountName" name="accountName" 
-													class="form-control"
-													type="text" value="" />
+													class="form-control" type="text"value="${organization.accountName}" />
 											</div>
 										</div>
 									</div>
@@ -195,7 +196,7 @@ body {
 												<input id="accountNo"
 													name="accountNo" class="form-control"
 													type="text" placeholder=""
-													value="">
+													value="${organization.accountNo}">
 											</div>
 										</div>
 									</div>
@@ -208,7 +209,7 @@ body {
 											</div>
 											<div class="col-xs-8">
 												<input id="bankName" name="bankName" 
-													class="form-control" type="text" value="" />
+													class="form-control" type="text" value="${organization.bankName}" />
 											</div>
 										</div>
 									</div>
@@ -221,7 +222,7 @@ body {
 												<input id="brandName"
 													name="brandName" class="form-control"
 													type="text" placeholder=""
-													value="">
+													value="${organization.brandName}">
 											</div>
 										</div>
 									</div>

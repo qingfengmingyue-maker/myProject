@@ -29,22 +29,22 @@ white-space: nowrap;
 									<div class="col-lg-4 col-md-4 col-xs-12">
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
-												<label for="organization.orgName" class="control-label">机构名称</label>
+												<label class="control-label">机构名称</label>
 											</div>
 											<div class="col-xs-8">
-												<input id="organization.orgName"
-													name="organization.orgName" class="form-control" />
+												<input id="orgName"
+													name="orgName" class="form-control" />
 											</div>
 										</div>
 									</div>
 									<div class="col-lg-4 col-md-4 col-xs-12">
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
-												<label for="organization.orgCode" class="control-label">机构代码</label>
+												<label for="" class="control-label">机构代码</label>
 											</div>
 											<div class="col-xs-8">
-												<input id="organization.orgCode"
-													name="organization.orgCode" class="form-control" />
+												<input id="orgCode"
+													name="orgCode" class="form-control" />
 											</div>
 										</div>
 									</div>
@@ -54,8 +54,8 @@ white-space: nowrap;
 												<label class="control-label">统一社会信用代码</label>
 											</div>
 											<div class="col-xs-7">
-												<input id="organization.creditCode"
-													name="organization.creditCode" class="form-control" />
+												<input id="creditCode"
+													name="creditCode" class="form-control" />
 											</div>
 										</div>
 									</div>
@@ -85,8 +85,8 @@ white-space: nowrap;
 					<h4 class="panel-title">
 						<button class="btn btn-primary" type="button" id="addbtn" 
 						onclick="window.location.href='${ctx}/organiz/createOrganiz.do'">新增</button>
-						<button class="btn btn-primary" type="button" id="updatebtn">修改</button>
-						<button class="btn btn-primary" type="button" id="delbtn">删除</button>
+						<!-- <button class="btn btn-primary" type="button" id="updatebtn">修改</button>
+						<button class="btn btn-primary" type="button" id="delbtn">删除</button> -->
 					</h4>
 				</div>
 				<div id="collapseTwo" class="panel-collapse" >
@@ -100,6 +100,7 @@ white-space: nowrap;
 										<th>机构名称</th>
 										<th>统一社会信用代码</th>
 										<th>机构代码</th>
+										<th>操作</th>
 									</tr>
 								</thead>
 								<tbody>									

@@ -1,12 +1,19 @@
+jQuery(function($) {
+    //列值定义,clientIP和count都是对应的返回对象的字段
+    colModel = [
+                {"data": null,"bSortable": false},
+                {"data": "orgName","bSortable": false},
+                {"data": "creditCode","bSortable": false},
+                {"data": "orgCode","bSortable": false},
+                {
+                    "data": function (data) {
+                        return  "<a href='"+ contextRootPath+"/organiz/editOrganiz.do?orgCode="+ data.orgCode + "'>编辑</a> &nbsp; <a id='btnDelete' href='"+ contextRootPath+"/organiz/delOrganiz.do?orgCode="+ data.orgCode + "' >删除</a>"
+                    }
+                }
+              ];
+       $(dataTableInit(contextRootPath+"/organiz/quryOrganizList.do", colModel,"",10));
+});
 $(function() {
-	//校验规则   
-	 var rules = {};
-	//校验提示
-	var messages = {};
-	//4.Ajax表单操作相关
-	var ajaxEdit = new AjaxEdit("#newPolicyForm");
-	ajaxEdit.rules = rules;
-	ajaxEdit.messages = messages;
 //	$("#addbtn").click(	function(){ 
 //		var url = contextRootPath + "/organiz/createOrganiz.do";
 //		window.open(url,'width=500000,height=300，resizable=1')
@@ -19,4 +26,12 @@ $(function() {
 //		});
 //		
 //	});
+	$('.dataTables_length select').on('change',function(){
+		$('.table-sort').DataTable().page(0).draw( false );
+	});
+	$("#search").click(function() {
+		jsonCondition=$("#fm").serializeObject();
+		var table = $('.table-sort').DataTable();
+		table.ajax.reload();
+	});
 });

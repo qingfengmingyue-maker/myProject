@@ -34,7 +34,7 @@
 		fm.userName.select();
 	} 
 	function reloadValidateCode(){
-       $("#validateCodeImg").attr("src", contextRootPath+'/validate/validateCode.do');
+       $("#validateCodeImg").attr("src", contextRootPath+'/validate/validateCode.do?'+Math.random());
      }
 </script>
   </head>
@@ -47,11 +47,11 @@
                   <p>${message }</p>  <%--这里显示上边的controller里边用户或者密码错误的信息--%>
                </div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="text" class="form-control no-border input-lg rounded" name="userName" maxlength="10" placeholder="用户名" autofocus  value="张三">
+				  <input type="text" class="form-control no-border input-lg rounded" name="userName" maxlength="10" placeholder="用户名" autofocus  value="admin">
 				  <span class="fa fa-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="password" class="form-control no-border input-lg rounded" name="userPwd" placeholder="密&nbsp;&nbsp;&nbsp;码"  value="111">
+				  <input type="password" class="form-control no-border input-lg rounded" name="userPwd" placeholder="密&nbsp;&nbsp;&nbsp;码"  value="admin">
 				  <span class="fa fa-unlock-alt form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
