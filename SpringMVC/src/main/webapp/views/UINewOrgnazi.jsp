@@ -19,7 +19,7 @@
 								<label for="" class="control-label">经销商全称</label>
 							</div>
 							<div class="col-xs-8">
-								<input id="orgName" name="orgName" class="form-control"
+								<input id="orgName" name="orgName" class="form-control" required="required"
 								value="${organization.orgName}" />
 							</div>
 						</div>
@@ -44,18 +44,18 @@
 								<span style="color: red">*</span>	
 								<label for="" class="control-label">所属地区</label>
 							</div>
-							<div class="col-xs-4">
-								<select cssClass="form-control" id="" name="">
-									<option value="11000">北京</option>
-									<option value="12000">天津</option>
-								</select>
+							<div class="col-xs-3">
+								<ce:select cssClass="form-control" id="" name="" list="#{110000:北京,120000:天津 }">
+								</ce:select>
+							</div>
+							<div class="col-xs-1">
 								<label for="" class="control-label">省</label>
 							</div>
-							<div class="col-xs-4">
-								<select cssClass="form-control" id="cityCode" name="cityCode">
-									<option value="110000">北京</option>
-									<option value="120000">天津</option>
-								</select>
+							<div class="col-xs-3">
+								<ce:select cssClass="form-control" id="cityCode" name="cityCode" list="#{110000:北京,120000:天津 }">
+								</ce:select>
+							</div>
+							<div class="col-xs-1">
 								<label for="" class="control-label">市</label>
 							</div>
 						</div>
@@ -131,7 +131,7 @@
 								<label for="" class="control-label">电话</label>
 							</div>
 							<div class="col-xs-8">
-								<input id="telphone" name="telphone" class="form-control"
+								<input id="telphone" name="telphone" class="form-control" isMobile="isMobile"
 									type="text" value="${organization.telphone}"/>
 							</div>
 						</div>
@@ -203,8 +203,8 @@
 					</div>
 				</div>
     			<div class="row">
-    				<div class="col-lg-12 col-md-12 col-xs-12">
-						<div class="btn-toolbar" style="text-align: center;" >
+    				<div class="col-lg-12 col-md-offset-5 col-xs-12" style="text-align: center;" >
+						<div class="btn-toolbar" >
 							<button class="btn btn-primary btn-outline btn-save"
 								id="saveOrgbtn" type="button">保存</button>
 						    <button class="btn btn-primary btn-outline btn-save"

@@ -93,7 +93,7 @@ white-space: nowrap;
 								id="information">
 								<thead>
 									<tr>
-										<th><input id="checkAll" type="hidden">序列</th>
+										<!-- <th width="12px"><input id="checkAll"  type="checkbox" >选择</th> -->
 										<th>机构名称</th>
 										<th>统一社会信用代码</th>
 										<th>机构代码</th>

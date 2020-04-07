@@ -1,10 +1,14 @@
 jQuery(function($) {
     //列值定义,clientIP和count都是对应的返回对象的字段
     colModel = [
-                {"data": null,"bSortable": false},
-                {"data": "orgName","bSortable": false},
-                {"data": "creditCode","bSortable": false},
-                {"data": "orgCode","bSortable": false},
+                /*{"data": null,"bSortable": false,
+	  				"render" : function(data, type, row) {
+	  					return '<input name="checkCode" type="checkbox" id="'+data.orgCode+'">';
+	  				}
+                },*/
+                {"data": "orgName","bSortable": true},
+                {"data": "creditCode","bSortable": true},
+                {"data": "orgCode","bSortable": true},
                 {
                     "data": function (data) {
                     	return "<button class='btn btn-primary btn-outline' onclick='editOrg("+data.orgCode+")' >编辑</button>&nbsp;" +
