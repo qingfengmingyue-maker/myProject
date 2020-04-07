@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.platform.common.schema.vo.Page;
 import com.platform.common.spring.IBaseDaoServiceSpringImpl;
 import com.platform.organiz.schema.model.Organization;
+import com.platform.organiz.schema.model.OrganizationVo;
 import com.platform.organiz.service.facade.OrganizService;
+import com.platform.user.schema.model.UserMsg;
 
 @Service(value="organizService")
 public class OrganizServiceSpringImpl extends IBaseDaoServiceSpringImpl<Organization,String> implements OrganizService {
@@ -39,7 +41,7 @@ public class OrganizServiceSpringImpl extends IBaseDaoServiceSpringImpl<Organiza
 	}
 
 	@Override
-	public Page quryOrganizationList(Page page, Organization organization,int pageNo,int pageSize)
+	public Page quryOrganizationList(Page page, OrganizationVo organization)
 			throws Exception {
 		StringBuffer hql = new StringBuffer("");
 		int total = 0;
@@ -65,7 +67,8 @@ public class OrganizServiceSpringImpl extends IBaseDaoServiceSpringImpl<Organiza
 		}else{
 			total = super.getCountByHqlCondition("",map);
 		}
-		List<Organization> organizations =  super.listByHQL(" from Organization where 1=1 "+ hql.toString(),map,(pageNo-1)*pageSize, pageSize);
+		List<Organization> organizations =  super.listByHQL(" from Organization where 1=1 "+ hql.toString(),map,
+				(page.getPageNo()-1)*page.getPageSize(), page.getPageSize() );
 		return new Page(page.getPageNo(), page.getPageSize(), total,organizations);
 	}
 
