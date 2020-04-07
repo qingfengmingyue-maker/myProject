@@ -9,7 +9,7 @@ var jsonCondition=null;
  */
 function dataTableInit(sourceUrl,columns,columnDefs,pageLength){
 	$('.table-sort').DataTable({
-		// "dom": '<"top"i>rt<"bottom"flp><"clear">',  //设置分页的位置
+		 "dom": '<"top"i>rt<"bottom"flp><"clear">', //设置分页的位置
 		 "bProcessing": true,    
 	     // 件数选择下拉框内容
 	     "lengthMenu": [10, 50, 75, 100,200],
@@ -41,9 +41,9 @@ function dataTableInit(sourceUrl,columns,columnDefs,pageLength){
               }
          },
          "fnDrawCallback"    : function(){
-           　　        this.api().column(0).nodes().each(function(cell, i) {
-           　　　　        cell.innerHTML =  i + 1;
-           　　         });
+//           　　        this.api().column(0).nodes().each(function(cell, i) {
+//           　　　　        cell.innerHTML =  i + 1;
+//           　　         });
            },
 	 });
 }

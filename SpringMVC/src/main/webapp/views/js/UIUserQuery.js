@@ -13,7 +13,12 @@ jQuery(function($) {
     //列值定义,clientIP和count都是对应的返回对象的字段
     colModel = [
                
-                {"data": null,"bSortable": false},
+    	  {"data": null,"class" : "center",
+    			"render" : function(data, type, row) {
+
+    				return "";
+    			}
+           },
                 {"data": "userName","bSortable": false},
                 {"data": "passWord","bSortable": false},
                 {

@@ -579,7 +579,7 @@ ul.sidebar-menu li {
 	left: -240px;
 }
 
-/* 收起左侧菜单栏后，信息显示不全问题  wangxiaoye 20160928*/
+/* 锟斤拷锟斤拷锟斤拷锟剿碉拷锟斤拷锟斤拷锟斤拷息锟斤拷示锟斤拷全锟斤拷锟斤拷  wangxiaoye 20160928*/
 .page-content.toggle {
 	margin-left: 10px;
 }
@@ -614,7 +614,7 @@ ul.sidebar-menu li {
 	margin-top: 10px; 
 }
 .dealer-text{
-	font-family:"微软雅黑";
+	font-family:"微锟斤拷锟脚猴拷";
 	font-size:20px;
 	font-weight: bold;
 	text-align: justify;
@@ -733,7 +733,7 @@ ul.sidebar-menu li {
 div.table-responsive,div.dataTables_scrollBody{
 	padding-bottom:20px;
 }
-/*隐藏菜单样式*/
+/*锟斤拷锟截菜碉拷锟斤拷式*/
 .hiddenleft{
 	width:5%;
 	height:100%;
@@ -747,7 +747,6 @@ div.table-responsive,div.dataTables_scrollBody{
 .boxtwo{
 	width:250px;
 }
-/* 项目配置-保障计划-保障组合选项样式 wangxiaoye 20160928-*/ 
 .specialCol{
 	width:10.3%;
 	position: relative;

@@ -29,7 +29,7 @@ white-space: nowrap;
 									<div class="col-lg-6 col-md-6 col-xs-6">
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
-												<label for="projectVo.projectCode" class="control-label">用户名称</label>
+												<label for="userName" class="control-label">用户名称</label>
 											</div>
 											<div class="col-xs-8">
 												<input id="userName"
