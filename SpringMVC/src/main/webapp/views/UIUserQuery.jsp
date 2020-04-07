@@ -29,7 +29,7 @@ white-space: nowrap;
 									<div class="col-lg-6 col-md-6 col-xs-6">
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
-												<label for="projectVo.projectCode" class="control-label">用户名称</label>
+												<label for="userName" class="control-label">用户名称</label>
 											</div>
 											<div class="col-xs-8">
 												<input id="userName"
@@ -37,6 +37,19 @@ white-space: nowrap;
 											</div>
 										</div>
 									</div>
+									<div class="col-lg-6 col-md-6 col-xs-6">
+										<div class="row form-group">
+											<div class="col-xs-3" align="right">
+												<label for="projectVo.projectCode" class="control-label">业务类型</label>
+											</div>
+											<div class="col-xs-8">
+												<ce:select id="prpDproject.businessType" name="prpDproject.businessType" cssClass="form-control" required="required"
+													list="#{'':'--请选择--','1':'经销商单店','2':'全国性经销商集团','3':'主机厂','4':'修理厂','5':'专业延保公司'}" value="1" />
+											</div>
+										</div>
+									</div>
+									
+								
 								</div>
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-xs-12">

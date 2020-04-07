@@ -1,13 +1,18 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ include file="/static/common/taglibs.jsp"%>
+<link href='${ctx}/static/common/css/custom.css' rel="stylesheet" type="text/css" />
+<%@ include file="/static/common/meta_js.jsp"%>
+<script type="text/javascript"	src="${ctx}/views/js/UIUserMsgOperate.js"></script>
 <div class="modal-dialog modal-lg" data-backdrop="false">
     <div class="modal-content">
       <div class="modal-header">
 			<button type="button" class="close glyphicon glyphicon-remove-circle"
-				data-dismiss="modal" aria-hidden="true" id="closeExamDialog"></button>
-			<h4 class="modal-title" id="myModalLabel" class="panel panel-primary">新增用户</h4>
+				data-dismiss="modal" aria-hidden="true" id="closeUserDialog"></button>
+			<h4 class="modal-title" id="myModalLabel" class="panel panel-primary">${message }</h4>
       </div>
      <div class="modal-body">
-    	<form id="createNewUserMsg"  action="${ctx }/userMsg/saveUserMsg.do">
+    	<form id="userfm" name="fm"  action="${ctx}/userMsg/saveUserMsg.do" method="post">
               <div class="row">
                      <div class="col-lg-2 col-md-2 col-xs-2"></div>
 				     <div class="col-lg-6 col-md-6 col-xs-6">
@@ -16,7 +21,7 @@
 							<label for="userMsgVo.userCode" class="control-label">用户代码</label>
 						</div>
 						<div class="col-xs-8">
-						<input  class="form-control"  id="userMsgVo.userCode" name="userMsgVo.userCode">
+						<input  class="form-control"  id="userCode" name="userCode"  placeholder="自动生成" readonly="readonly" value ="${userMsg.userCode }">
 					</div>
 				</div>
 			   </div>
@@ -29,20 +34,35 @@
 							<label for="userMsgVo.orgName" class="control-label">机构名称</label>
 						</div>
 						<div class="col-xs-8">
-						<input   class="form-control" id="userMsgVo.orgName" name="userMsgVo.orgName" >
+						<input   class="form-control" id="orgName" name="orgName" maxlength="50" value ="${userMsg.orgName }"  ${editType == 'view' ? 'readonly' : ''} >
 					</div>
 				</div>
 			   </div>
 		   </div>
 		   <div class="row">
-                     <div class="col-lg-2 col-md-2 col-xs-2"></div>
+              <div class="col-lg-2 col-md-2 col-xs-2"></div>
 				     <div class="col-lg-6 col-md-6 col-xs-6">
 					 <div class="row form-group">
 						<div class="col-xs-3" align="right">
 							<label for="userMsgVo.userName" class="control-label">用户名称</label>
 						</div>
 						<div class="col-xs-8">
-						<input   class="form-control" id="userMsgVo.userName" name="userMsgVo.userName" >
+						<input  class="form-control" id="userName" name="userName" maxlength="30"   value ="${userMsg.userName }"  
+						 ${editType == 'view' ? 'readonly' : ''}   data-tip="请输入用户名称"  
+						  data-valid="isNonEmpty||onlyZh||between:2-5" data-error="用户名称不能为空||用户名称只能为中文||用户名称长度为2-5位">
+					</div>
+				</div>
+			   </div>
+		   </div>
+		   <div class="row">
+              <div class="col-lg-2 col-md-2 col-xs-2"></div>
+				     <div class="col-lg-6 col-md-6 col-xs-6">
+					 <div class="row form-group">
+						<div class="col-xs-3" align="right">
+							<label for="userPwd" class="control-label">用户密码</label>
+						</div>
+						<div class="col-xs-8">
+						<input  class="form-control"  id="userPwd" name="userPwd" maxlength="10" type="password"  value ="${userMsg.userPwd }"   ${editType == 'view' ? 'readonly' : ''}>
 					</div>
 				</div>
 			   </div>
@@ -55,20 +75,42 @@
 							<label for="userMsgVo.telphone" class="control-label">手机号</label>
 						</div>
 						<div class="col-xs-8">
-						<input   class="form-control"  id="userMsgVo.telphone" name="userMsgVo.telphone" >
+						<input   class="form-control"  id="telPhone" name="telPhone"  maxlength="11"  value ="${userMsg.telPhone }"     ${editType == 'view' ? 'readonly' : ''}>
 					</div>
 				</div>
 			  </div>
 		 </div>
 		 <div class="row">
-			<div class="col-lg-12 col-md-12 col-xs-12">
-				<div class="btn-toolbar" style="text-align: center;" >
-					<button class="btn btn-primary btn-outline btn-save"
-						id="saveUserMsg" type="button"  onClick="submitForm()">保存</button>
-				    <button class="btn btn-primary btn-outline btn-save"
-						id="close" type="button"  onClick="closeDialog()">关闭</button>
+		   <c:if test="${editType !='view' }">
+		      <div class="col-lg-6 col-md-6 col-xs-6">
+				<div class="col-xs-10">
+					<div style="text-align: right;">
+						<button class="btn btn-primary btn-outline btn-save"
+						id="saveUserMsg" type="button" >保存</button>
+					</div>
 				</div>
 			</div>
+			<div class="col-lg-6 col-md-6 col-xs-6">
+				<div class="col-xs-10">
+					<div class="btn-toolbar" style="text-align: left;">
+						 <button class="btn btn-primary btn-outline btn-close"
+						id="closeDialog" type="button" >关闭</button>
+							
+					</div>
+				</div>
+			</div>
+		   </c:if>
+			<c:if test="${editType == 'view' }">
+			    	<div class="col-lg-12 col-md-12 col-xs-12">
+			    	<div class="col-lg-5 col-md-5 col-xs-5"></div>
+			    	<div class="col-lg-7 col-md-7 col-xs-7">
+					<div style="text-align:left;">
+						 <button class="btn btn-primary btn-outline btn-close"
+						id="closeDialog" type="button" >关闭</button>
+					</div>
+			    	</div>
+			</div>
+			</c:if>
 		</div>
        </form>
    </div>

@@ -49,6 +49,7 @@ public class OrganizController {
 		}
 		return new ModelAndView("redirect:prepareQuery.do");
 	}
+<<<<<<< HEAD
 	@RequestMapping("/quryOrganizList")
 	@ResponseBody
 	public Pager<Organization> quryOrganizList(Organization organization,PageVo pageVo){
@@ -64,6 +65,23 @@ public class OrganizController {
 		try {
 	   		page=organizService.quryOrganizationList(page,organization,pageNo,pageSize);
 	   		return new Pager<Organization>().wrapPager(page);
+=======
+//	@RequestMapping("/quryOrganizList")
+//	public Pager<Organization> quryOrganizList(Organization organization,int pageNo,int start,int length){
+//		Page<Organization> page=new Page<Organization>(userVo.getCurrentPageNum(), userVo.getiDisplayLength());
+//		return null;
+//	}
+	
+	/*
+	   @RequestMapping("/queryUser")
+	   @ResponseBody
+	   public Pager<UserVo> getData(@RequestBody UserVo userVo) {
+	       //适合dataTable的分页信息转换成标准的分页信息
+	   	Page<UserVo> page=new Page<UserVo>(userVo.getCurrentPageNum(), userVo.getiDisplayLength());
+	   	try {
+	   		page=userServcie.findListByPage(page,userVo);
+	   		return new Pager<UserVo>().wrapPager(page);
+>>>>>>> 28d1b1bfdf17c25fdca6a9260d8c134ebfd31998
 	   	} catch (Exception e) {
 	   		e.printStackTrace();
 	   	}

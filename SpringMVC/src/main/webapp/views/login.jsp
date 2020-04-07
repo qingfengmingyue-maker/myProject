@@ -27,7 +27,6 @@
 		}else{
 		   fm.submit();
 		}
-		
 	}
 	function init() {
 		fm.userName.focus();
