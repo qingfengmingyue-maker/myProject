@@ -6,6 +6,7 @@
 <link href='${ctx}/static/common/css/frame.css' rel="stylesheet" type="text/css" />
 <link href="${ctx}/static/common/css/login.css" rel="stylesheet" type="text/css" />
 <link href='${ctx}/static/common/css/frame-responsive.css' rel="stylesheet" type="text/css" />
+<link href='${ctx}/static/common/css/custom.css' rel="stylesheet" type="text/css" />
 <style>
 .breadcrumb > li {
 display: inline;

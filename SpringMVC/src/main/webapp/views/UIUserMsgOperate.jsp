@@ -1,5 +1,8 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ include file="/static/common/taglibs.jsp"%>
+<link href='${ctx}/static/common/css/custom.css' rel="stylesheet" type="text/css" />
+<%@ include file="/static/common/meta_js.jsp"%>
 <script type="text/javascript"	src="${ctx}/views/js/UIUserMsgOperate.js"></script>
 <div class="modal-dialog modal-lg" data-backdrop="false">
     <div class="modal-content">
@@ -9,7 +12,7 @@
 			<h4 class="modal-title" id="myModalLabel" class="panel panel-primary">${message }</h4>
       </div>
      <div class="modal-body">
-    	<form id="fm" name="fm"   action="${ctx}/userMsg/saveUserMsg.do" method="post">
+    	<form id="userfm" name="fm"  action="${ctx}/userMsg/saveUserMsg.do" method="post">
               <div class="row">
                      <div class="col-lg-2 col-md-2 col-xs-2"></div>
 				     <div class="col-lg-6 col-md-6 col-xs-6">
@@ -31,20 +34,35 @@
 							<label for="userMsgVo.orgName" class="control-label">机构名称</label>
 						</div>
 						<div class="col-xs-8">
-						<input   class="form-control" id="orgName" name="orgName" maxlength="50" value ="${userMsg.orgName }"  ${editType == 'view' ? 'readonly' : ''}>
+						<input   class="form-control" id="orgName" name="orgName" maxlength="50" value ="${userMsg.orgName }"  ${editType == 'view' ? 'readonly' : ''} >
 					</div>
 				</div>
 			   </div>
 		   </div>
 		   <div class="row">
-                     <div class="col-lg-2 col-md-2 col-xs-2"></div>
+              <div class="col-lg-2 col-md-2 col-xs-2"></div>
 				     <div class="col-lg-6 col-md-6 col-xs-6">
 					 <div class="row form-group">
 						<div class="col-xs-3" align="right">
 							<label for="userMsgVo.userName" class="control-label">用户名称</label>
 						</div>
 						<div class="col-xs-8">
-						<input  class="form-control" id="userName" name="userName" maxlength="30"   value ="${userMsg.userName }"   ${editType == 'view' ? 'readonly' : ''}>
+						<input  class="form-control" id="userName" name="userName" maxlength="30"   value ="${userMsg.userName }"  
+						 ${editType == 'view' ? 'readonly' : ''}   data-tip="请输入用户名称"  
+						  data-valid="isNonEmpty||onlyZh||between:2-5" data-error="用户名称不能为空||用户名称只能为中文||用户名称长度为2-5位">
+					</div>
+				</div>
+			   </div>
+		   </div>
+		   <div class="row">
+              <div class="col-lg-2 col-md-2 col-xs-2"></div>
+				     <div class="col-lg-6 col-md-6 col-xs-6">
+					 <div class="row form-group">
+						<div class="col-xs-3" align="right">
+							<label for="userPwd" class="control-label">用户密码</label>
+						</div>
+						<div class="col-xs-8">
+						<input  class="form-control"  id="userPwd" name="userPwd" maxlength="10" type="password"  value ="${userMsg.userPwd }"   ${editType == 'view' ? 'readonly' : ''}>
 					</div>
 				</div>
 			   </div>
@@ -57,7 +75,7 @@
 							<label for="userMsgVo.telphone" class="control-label">手机号</label>
 						</div>
 						<div class="col-xs-8">
-						<input   class="form-control"  id="telPhone" name="telPhone"  maxlength="11"  value ="${userMsg.telPhone }"     ${editType == 'view' ? 'readonly' : ''} >
+						<input   class="form-control"  id="telPhone" name="telPhone"  maxlength="11"  value ="${userMsg.telPhone }"     ${editType == 'view' ? 'readonly' : ''}>
 					</div>
 				</div>
 			  </div>

@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html;charset=GBK"> 
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
 <script type="text/javascript">
 	var contextPath = "${ctx}";
 </script>
@@ -12,6 +12,8 @@
 <script src="${ctx}/static/widgets/jquery/jquery.dataTables.js"></script>
 <script src="${ctx}/static/widgets/jquery/AjaxList.js"></script>
 <script src="${ctx}/static/widgets/jquery/DataTableUtils.js"></script>
+<script src="${ctx}/static/widgets/jquery/jquery.validate.js"></script>
+<script src="${ctx}/static/common/js/validate.js"></script>
 <script type="text/javascript">
 $(function(){
 	if($.trim($(".breadcrumb").html()) == ""){

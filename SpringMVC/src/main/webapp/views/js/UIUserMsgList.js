@@ -42,7 +42,7 @@ $(function(){
 								if(obj=='删除成功'){
 									alert(obj);
 								}
-								$("#search").click();
+								window.location.reload();
 							},
 							error : function(XMLHttpRequest, textStatus, errorThrown) {
 								alert(textStatus + errorThrown);
