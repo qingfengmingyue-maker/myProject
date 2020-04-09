@@ -96,8 +96,8 @@ licensefee	DECIMAL(14,2),
 taxamount	DECIMAL(14,2),
 PRIMARY KEY (id) 
 );
---**drop table mainservice;
-CREATE TABLE mainservice
+--**drop table maincontract;
+CREATE TABLE  maincontract
 (
 contractno	varchar(17) not null,
 servicetype	varchar(2),
@@ -109,6 +109,11 @@ enddate	date,
 saleuser	varchar(50),
 appendmsg	varchar(2000),
 remark	varchar(2000),
+policyno varchar(22),
+cityname	varchar(100),
+citycode	varchar(6) NOT NULL,
+upperbaseorg varchar(6) NOT NULL,
+upperbaseorgname varchar(100),
 inserttime	timestamp,
 operatetime	timestamp,
 PRIMARY KEY (contractno) 
