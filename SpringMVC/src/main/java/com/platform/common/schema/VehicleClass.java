@@ -18,6 +18,7 @@ public class VehicleClass {
 	String brandName;
 	@Column(name="inserttime")
 	Date insertTime;
+	
 	@Column(name="operatetime")
 	Date operateTime;
 

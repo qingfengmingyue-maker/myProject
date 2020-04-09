@@ -35,6 +35,7 @@ public class MainService {
 	String appendMsg;
 	@Column(name="remark")
 	String reMark;
+	
 	@Column(name="inserttime" ,insertable = false, updatable = false)
 	Date insertTime;
 	@Column(name="operatetime")
