@@ -2,7 +2,11 @@ package com.platform.contract.schema.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -27,6 +31,9 @@ public class PartyB {
 	String documentType;
 	@Column(name="documentno")
 	String documentNo;
+	@OneToOne(fetch = FetchType.LAZY)	
+	@JoinColumn(name = "contractno", nullable = false, insertable = false, updatable = false)
+	MainContract mainContract;
 
 
 }

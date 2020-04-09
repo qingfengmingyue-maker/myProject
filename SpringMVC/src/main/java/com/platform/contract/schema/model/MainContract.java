@@ -3,17 +3,21 @@ package com.platform.contract.schema.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 @Entity
 //创建的数据库表名称
-@Table(name = "mainservice")
+@Table(name = " maincontract")
 @Data
-public class MainService {
+public class MainContract {
 	@Id
 	@Column(name="contractno")
 	String contractNo;
@@ -35,9 +39,24 @@ public class MainService {
 	String appendMsg;
 	@Column(name="remark")
 	String reMark;
-	
+	@Column(name="policyno")
+	String policyNo;
+	@Column(name="cityName")
+	String cityName;
+	@Column(name="cityCode")
+	String cityCode;
+	@Column(name="upperbaseorg")
+	String upperBaseOrg;
+	@Column(name="upperBaseOrgName")
+	String upperBaseOrgName;
 	@Column(name="inserttime" ,insertable = false, updatable = false)
 	Date insertTime;
 	@Column(name="operatetime")
 	Date operateTime;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "mainContract")	
+	PartyA partyA;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "mainContract")	
+	PartyB partyB;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "mainContract")	
+	VehicleMsg vehicleMsg;
 }
