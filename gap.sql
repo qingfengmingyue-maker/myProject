@@ -5,6 +5,8 @@ orgcode	varchar(10) NOT NULL,
 orgname	varchar(100) NOT NULL,
 cityname	varchar(100),
 citycode	varchar(6) NOT NULL,
+upperbaseorg varchar(6) NOT NULL,
+upperbaseorgname varchar(100),
 creditcode	varchar(20) NOT NULL,
 orgshortname	varchar(100),
 postcode	varchar(10),
@@ -20,7 +22,7 @@ accountno	varchar(20),
 bankname	varchar(100),
 brandname	varchar(255),
 inserttime	timestamp,
-operatetime	timestamp DEFAULT CURRENT_TIMESTAMP,
+operatetime	timestamp,
 PRIMARY KEY (orgcode) 
 );
 --**drop table usermsg;
