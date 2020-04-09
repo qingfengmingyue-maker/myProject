@@ -42,21 +42,31 @@
 						<div class="row form-group">
 							<div class="col-xs-3" style="text-align:right;">
 								<span style="color: red">*</span>	
-								<label for="" class="control-label">所属地区</label>
+								<label for="" class="control-label">所属地区${organization.upperBaseOrg}</label>
 							</div>
 							<div class="col-xs-3">
-								<ce:select cssClass="form-control" id="" name="" list="#{110000:北京,120000:天津 }">
-								</ce:select>
+								<select class="form-control" name="upperBaseOrg" id="upperBaseOrg" 
+									value="${organization.upperBaseOrg}" >
+									<option value="${organization.upperBaseOrg}">${organization.upperBaseOrgName }</option>
+									<c:set var="baseOrgIndex" value="0"/>
+									<c:forEach items="${baseOrganizationList}" var="baseOrganization" >
+										<option value="${baseOrganization.cityCode}">${baseOrganization.cityName }</option>
+										<c:set var="baseOrgIndex" value="${baseOrgIndex + 1 }" />
+									</c:forEach>
+								</select>
+								<input type="hidden" name="upperBaseOrgName" id="upperBaseOrgName" value="${organization.upperBaseOrgName}">
 							</div>
 							<div class="col-xs-1">
 								<label for="" class="control-label">省</label>
 							</div>
 							<div class="col-xs-3">
-								<ce:select cssClass="form-control" id="cityCode" name="cityCode" list="#{110000:北京,120000:天津 }">
-								</ce:select>
+								<select class="form-control" name="cityCode" id="cityCode" value="${organization.cityCode}" >
+									<option value="${organization.cityCode}">${organization.cityName }</option>
+								</select>
+								<input type="hidden" name="cityName" id="cityName" value="${baseOrganization.cityName}">
 							</div>
 							<div class="col-xs-1">
-								<label for="" class="control-label">市</label>
+								<label for="" class="control-label">市${organization.cityCode}</label>
 							</div>
 						</div>
 					</div>
@@ -67,7 +77,7 @@
 							</div>
 							<div class="col-xs-8">
 								<input id="creditCode" name="creditCode" class="form-control"
-									type="text" value="${organization.creditCode}" />
+									type="text" value="${organization.creditCode}" onChange="isChinaUnifiedSocialCreditCode(this)" />
 							</div>
 						</div>
 					</div>
