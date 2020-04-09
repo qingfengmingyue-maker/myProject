@@ -8,9 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.platform.common.schema.BaseOrganization;
 import com.platform.common.service.BaseOrganizServcie;
-import com.platform.common.spring.IBaseDaoServiceSpringImpl;
 @Service(value="baseOrganizServcie")
-public class BaseOrganizServcieSpringImpl extends IBaseDaoServiceSpringImpl<BaseOrganization,Integer> implements BaseOrganizServcie {
+public class BaseOrganizServcieSpringImpl extends IBaseDaoServiceSpringImpl<BaseOrganization,String> implements BaseOrganizServcie {
 
 
 	@Override
@@ -20,13 +19,23 @@ public class BaseOrganizServcieSpringImpl extends IBaseDaoServiceSpringImpl<Base
 
 	@Override
 	public BaseOrganization findUserByPK(String id) {
-		StringBuffer sb = new StringBuffer("from BaseOrganization where 1=1");
-		sb.append(" and citycode = :citycode");
+		return super.get(id);
+	}
+
+	@Override
+	public List<BaseOrganization> findFirstOrg() throws Exception {
+		String sb = "from BaseOrganization where orgLevel='1'";
 		Map<String,String> map = new HashMap<String,String>();
-		map.put("citycode", "1");
-		List<BaseOrganization> BaseOrganizations = super.listByHQL(sb.toString(),map);
-		System.out.println(11);
-		return null;
+		return super.listByHQL(sb.toString(),map);
+	}
+
+	@Override
+	public List<BaseOrganization> findSubOrg(String uperOrgCode)
+			throws Exception {
+		String sb = "from BaseOrganization where orgLevel='2' and upperCode =:upperCode";
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("upperCode", uperOrgCode);
+		return super.listByHQL(sb.toString(),map);
 	}
 
 }

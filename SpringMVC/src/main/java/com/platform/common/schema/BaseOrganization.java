@@ -21,16 +21,16 @@ import lombok.NoArgsConstructor;
 public class BaseOrganization {
 	@Id
 	@Column(name="citycode")
-	public String citycode;
+	public String cityCode;
 	@Column(name="cityname")
-	public String cityname;
+	public String cityName;
 	@Column(name="orglevel")
-	public String orglevel;
+	public String orgLevel;
 	@Column(name="uppercode")
-	public String uppercode;
+	public String upperCode;
 	@Column(name="inserttime")
-	public Date inserttime;
+	public Date insertTime;
 	@Column(name="operatetime")
-	public Date operatetime;
+	public Date operateTime;
 
 }
