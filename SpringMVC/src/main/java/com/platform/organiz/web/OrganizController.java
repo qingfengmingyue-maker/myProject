@@ -86,11 +86,12 @@ public class OrganizController {
 		 return "redirect:prepareQuery.do";
 	}
 	@RequestMapping("/editOrganiz")
-	public ModelAndView editOrganiz(String orgCode){
+	public ModelAndView editOrganiz(String orgCode,String busiType){
 		ModelAndView mv = new ModelAndView("");
 		try {
 			Organization organization = organizService.findOrganization(orgCode);
 			mv.addObject("organization",organization);
+			mv.addObject("busiType", busiType);
 			mv.setViewName("/UINewOrgnazi");
 		} catch (Exception e) {
 			e.printStackTrace();
