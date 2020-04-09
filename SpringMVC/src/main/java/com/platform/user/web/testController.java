@@ -63,19 +63,19 @@ public class testController {
 			List<BaseOrganization> baseOrganizations = new ArrayList<BaseOrganization>();
 			for(ComCode comCode:comcodes){
 				BaseOrganization baseOrganization = new BaseOrganization();
-				baseOrganization.setCitycode(comCode.getProvince_code());
-				baseOrganization.setCityname(comCode.getProvince());
-				baseOrganization.setOrglevel("1");
-				baseOrganization.setUppercode("000000");
+				baseOrganization.setCityCode(comCode.getProvince_code());
+				baseOrganization.setCityCode(comCode.getProvince());
+				baseOrganization.setOrgLevel("1");
+				baseOrganization.setUpperCode("000000");
 //				baseOrganizations.add(baseOrganization);
 				testServcie.saveBaseOrganization(baseOrganization);
 				List<City> citys = comCode.getCities();
 				for(City city:citys){
 					BaseOrganization baseOrganizationnew = new BaseOrganization();
-					baseOrganizationnew.setCitycode(city.getCity_code());
-					baseOrganizationnew.setCityname(city.getCity());
-					baseOrganizationnew.setOrglevel("2");
-					baseOrganizationnew.setUppercode(comCode.getProvince_code());
+					baseOrganizationnew.setCityCode(city.getCity_code());
+					baseOrganizationnew.setCityCode(city.getCity());
+					baseOrganizationnew.setOrgLevel("2");
+					baseOrganizationnew.setUpperCode(comCode.getProvince_code());
 					testServcie.saveBaseOrganization(baseOrganizationnew);
 					baseOrganizations.add(baseOrganizationnew);
 				}
