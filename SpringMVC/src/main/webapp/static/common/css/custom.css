@@ -1,2 +1,6 @@
 .required {color:red;}
 .error {color:red;}
+custom.css
+.modal-backdrop{
+            z-index:0;
+}

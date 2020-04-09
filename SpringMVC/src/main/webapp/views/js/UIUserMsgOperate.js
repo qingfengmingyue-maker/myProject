@@ -21,6 +21,39 @@ $(function(){
 	
 });
 
+/**
+ * @describe:重置功能
+ * @returns
+ */
+$(function(){
+	$("#resetUser").click(
+		function(){
+		    $("#userfm")[0].reset();
+     })
+	
+});
+
+
+
+/**
+ * @describe:点击查询按钮
+ * @returns
+ */
+$(function(){
+	$("#searchComPany").click(
+			function(){
+				var orgName = $('#orgName').val();
+				var url = contextRootPath + "/userMsg/prepareOrganization.do?orgName="+orgName;
+				var $modal = $('#myModal');
+				$modal.load(url, '',
+				function() {
+					$modal.modal();
+				});
+				
+	})
+});
+
+
 
 $('form').validate({
     onFocus: function () {
@@ -63,4 +96,4 @@ $().ready(function() {
 
 	    });
 
-	});
+});

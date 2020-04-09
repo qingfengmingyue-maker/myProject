@@ -20,6 +20,8 @@
 		<pattern>*.js</pattern>
 		<pattern>*/*createOrganiz.do*</pattern>
 		<pattern>*/*UINewOrgnazi.jsp*</pattern>
+		<pattern>*/*prepareOrganization.do*</pattern>
+		<pattern>*/*UIPrepareOrganization.jsp*</pattern>
 	</excludes>
 	<decorator name="main" page="main.jsp">
 	    <pattern>/*</pattern>

@@ -1,26 +1,10 @@
-//添加用户信息
-$(function(){
-	$("#add").click(
-			function(){
-				var $modal = $('#myModal');
-				$modal.load(contextRootPath + "/userMsg/createUserMsg.do", '',
-				function() {
-					$modal.modal();
-				});
-	})
-});
-
 //修改用户信息
 $(function(){
 	$("#edit").click(
 			function(){
 				var result = selectOne();
 				if(result != null){
-					var $modal = $('#myModal');
-					$modal.load(contextRootPath + "/userMsg/findUserMsgByUserCode.do?userCode="+result+"&editType=edit", '',
-					function() {
-						$modal.modal();
-					});
+					window.location.href=contextRootPath + "/userMsg/findUserMsgByUserCode.do?userCode="+result+"&editType=edit";
 			   }
 	 })
 });
@@ -59,11 +43,7 @@ $(function(){
 			function(){
 				var result = selectOne();
 				if(result != null){
-					var $modal = $('#myModal');
-					$modal.load(contextRootPath + "/userMsg/findUserMsgByUserCode.do?userCode="+result+"&editType=view", '',
-					function() {
-						$modal.modal();
-					});
+					window.location.href=contextRootPath + "/userMsg/findUserMsgByUserCode.do?userCode="+result+"&editType=view";
 			   }
 	 })
 });
@@ -87,6 +67,7 @@ jQuery(function($) {
           {"data": "telPhone","class" : "center","bSortable": false}
      ];
        $(dataTableInit(contextRootPath+"/userMsg/queryUserMsg.do", colModel,'',10));
+      
 });
 
 

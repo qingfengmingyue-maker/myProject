@@ -169,6 +169,15 @@ public   class IBaseDaoServiceSpringImpl <T, ID extends Serializable>  implement
 	}
 	
 	@Override
+	public List   listByHQLOtherCondition(String hqlString, Map<String, ?> params, int firstResult,int maxResult) {
+		Query  query = this.getSession().createQuery(hqlString);
+		this.setParameterToQuery(query, params);
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResult);
+		return query.list();
+	}
+	
+	@Override
 	public <V> List<V> listByHQL(String hqlString, Map<String, ?> params, int firstResult, int maxResult,Class<V> theClass) {
 		Query<V> query = this.getSession().createQuery(hqlString, theClass);
 		this.setParameterToQuery(query, params);

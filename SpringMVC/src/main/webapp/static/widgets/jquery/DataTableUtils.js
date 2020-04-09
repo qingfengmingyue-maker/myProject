@@ -23,6 +23,7 @@ function dataTableInit(sourceUrl,columns,columnDefs,pageLength){
 	     "paginationType": "full_numbers",      //详细分页组，可以支持直接跳转到某页  
 	     "ajaxSource": sourceUrl,//这个是请求的地址
 	     "serverData": retrieveData, // 获取数据的处理函数
+	     "bDestroy":true,
 	     // 每次创建是否销毁以前的DataTable,默认false
 	     "destroy": true,
 	  //   "autoWidth":true,//设置列宽自动
@@ -98,7 +99,8 @@ var page=new Object();
         dataType : 'json',
         contentType:"application/json",
         //async : false,
-        success : function(result) {   //后台执行成功的回调函数
+        success : function(result) {
+        	 //后台执行成功的回调函数
             fnCallback(result);//把返回的数据传给这个方法就可以了,datatable会自动绑定数据的
         },
         error : function(msg) {
