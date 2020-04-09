@@ -1,0 +1,54 @@
+package com.platform.contract.schema.model;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Entity
+//创建的数据库表名称
+@Table(name = "vehiclemsg")
+@Data
+public class VehicleMsg {
+	@Id
+	@Column(name="id")
+	int id;
+	@Column(name="contractno")
+	String contractNo;
+	@Column(name="purchasedate")
+	Date purchaseDate;
+	@Column(name="carstate")
+	String carState;
+	@Column(name="usernature")
+	String userNature;
+	@Column(name="licenseno")
+	String licenseNo;
+	@Column(name="engineno")
+	String engineNo;
+	@Column(name="vinno")
+	String vinNo;
+	@Column(name="brandname")
+	String brandName;
+	@Column(name="classname")
+	String className;
+	@Column(name="modelname")
+	String modelName;
+	@Column(name="invoiceamount")
+	BigDecimal invoiceAmount;
+	@Column(name="purchaseamount")
+	BigDecimal purchaseAmount;
+	@Column(name="insurancetype")
+	String insuranceType;
+	@Column(name="insurancename")
+	String insuranceName;
+	@Column(name="licensefee")
+	BigDecimal licenseFee;
+	@Column(name="taxamount")
+	BigDecimal taxAmount;
+
+}
