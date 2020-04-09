@@ -1,6 +1,10 @@
 package com.platform.organiz.web;
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.platform.common.schema.BaseOrganization;
 import com.platform.common.schema.vo.Page;
 import com.platform.common.schema.vo.Pager;
+import com.platform.common.service.BaseOrganizServcie;
 import com.platform.common.service.RegulationService;
 import com.platform.organiz.schema.model.Organization;
 import com.platform.organiz.schema.model.OrganizationVo;
@@ -24,13 +30,34 @@ public class OrganizController {
 	OrganizService organizService;
 	@Autowired
 	RegulationService regulationService;
+	@Autowired
+	BaseOrganizServcie baseOrganizServcie;
 	@RequestMapping("/prepareQuery")
 	public String prepareQuery(){
 		return "/UIOrgnaziQuery";
 	}
 	@RequestMapping("/createOrganiz")
-	public String createOrganiz(Organization organization){
-		return "/UINewOrgnazi";
+	public ModelAndView createOrganiz(){
+		ModelAndView mv = new ModelAndView("");
+		try {
+			List<BaseOrganization> baseOrganizationList = baseOrganizServcie.findFirstOrg();
+			mv.addObject("baseOrganizationList",baseOrganizationList);
+			mv.setViewName("/UINewOrgnazi");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	@RequestMapping("/getSubOrg")
+	@ResponseBody
+	public List<BaseOrganization> getSubOrg(String upperBaseOrg){
+		List<BaseOrganization> baseSubOrgList = null;
+		try {
+			baseSubOrgList = baseOrganizServcie.findSubOrg(upperBaseOrg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return baseSubOrgList;
 	}
 	@RequestMapping("/saveOrganiz")
 	@ResponseBody

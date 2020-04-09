@@ -27,6 +27,10 @@ public class Organization {
 	String cityName;
 	@Column(name="cityCode")
 	String cityCode;
+	@Column(name="upperbaseorg")
+	String upperBaseOrg;
+	@Column(name="upperBaseOrgName")
+	String upperBaseOrgName;
 	@Column(name="creditcode")
 	String creditCode;
 	@Column(name="orgshortname")
