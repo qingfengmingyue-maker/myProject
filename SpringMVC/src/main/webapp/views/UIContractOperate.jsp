@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>${title }</title>
-<script type="text/javascript" src="${ctx}/views/js/UIOrderOperate.js"></script>
+<script type="text/javascript" src="${ctx}/views/js/UIContractOperate.js"></script>
 <style type="text/css">
 body {
 	position: relative;

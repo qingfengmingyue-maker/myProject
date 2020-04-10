@@ -26,10 +26,20 @@ public class ContractController {
 	 * 跳转查询页面
 	 * @return
 	 */
-	@RequestMapping("/prepareQuery")
+	@RequestMapping("/contractList")
 	public String prepareQuery(){
-		return "/UIContractuery";
+		return "/UIContractQuery";
 	}
+	/**
+	 * 跳转新增合同页面
+	 * @return
+	 */
+	@RequestMapping("/createNewContract")
+	    public ModelAndView createNewUser() {
+		   ModelAndView mv = new ModelAndView("/UIContractOperate");
+		   mv.addObject("title", "新增合同");
+		   return mv;
+	 }
 	/**
 	 * 保存
 	 * @param ContractVo

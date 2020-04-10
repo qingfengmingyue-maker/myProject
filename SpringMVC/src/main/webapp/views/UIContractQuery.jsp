@@ -11,7 +11,7 @@ white-space: nowrap;
 </style>
 <title>用户信息展示页面</title>
 <script type="text/javascript"	src="${ctx}/static/common/js/common.js"></script>
-<script type="text/javascript"	src="${ctx}/views/js/UIOrderList.js"></script>
+<script type="text/javascript"	src="${ctx}/views/js/UIContractQuery.js"></script>
 </head>
 <body>
 <div class="row">
@@ -19,7 +19,7 @@ white-space: nowrap;
 		    <div class="panel-body">
 			<div style="text-align: left;">
 				<button class="btn btn-primary  glyphicon glyphicon-plus"
-					id="add" type="button"  onclick="window.location.href='${ctx}/order/createNewOrder.do'">新增</button>
+					id="add" type="button"  onclick="window.location.href='${ctx}/contract/createNewContract.do'">新增</button>
 				<button class="btn btn-primary glyphicon glyphicon-pencil"
 					id="edit" type="button" >修改</button>
 				<button class="btn btn-primary glyphicon glyphicon-remove" id="remove"
