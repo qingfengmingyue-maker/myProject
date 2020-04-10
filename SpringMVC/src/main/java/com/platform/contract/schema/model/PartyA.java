@@ -21,6 +21,8 @@ public class PartyA {
 	int id;
 	@Column(name="contractno")
 	String contractNo;
+	@Column(name="orgcode")
+	String orgCode;
 	@Column(name="orgname")
 	String orgName;
 	@Column(name="businessname")
