@@ -70,6 +70,11 @@ public   class IBaseDaoServiceSpringImpl <T, ID extends Serializable>  implement
 	public int excuteHql(String hqlString, Map<String, ?> params) {
 	   return this.setParameterToQuery(this.getSession().createQuery(hqlString), params).executeUpdate();
 	}
+	@Override
+	public List executeSql(String sqlString,Map<String, ?> params) {
+		return this.setParameterToQuery(this.getSession().createNativeQuery(sqlString), params).list();
+	}
+   
 	 
 	@Override
 	public int excuteSql(String sqlString) {
@@ -176,6 +181,15 @@ public   class IBaseDaoServiceSpringImpl <T, ID extends Serializable>  implement
 		query.setMaxResults(maxResult);
 		return query.list();
 	}
+	
+	@Override
+	public  List listBySQL(String sqlString, Map<String, ?> params, int firstResult, int maxResult) {
+		Query  query = this.getSession().createNativeQuery(sqlString);
+		this.setParameterToQuery(query, params);
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResult);
+		return query.list();
+	}
 	 
 	@Override
 	public List<T> listBySQL(String sqlString) {
@@ -241,6 +255,15 @@ public   class IBaseDaoServiceSpringImpl <T, ID extends Serializable>  implement
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public List listByHQLOtherCondition(String hqlString, Map<String, ?> params, int firstResult, int maxResult) {
+		Query  query = this.getSession().createQuery(hqlString);
+		this.setParameterToQuery(query, params);
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResult);
+		return query.list();
 	}
 
 }

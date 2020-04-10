@@ -14,7 +14,7 @@
        
        
        
-       <mvc:annotation-driven>
+       <mvc:annotation-driven >
 		<mvc:message-converters>
 			<bean
 				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -26,7 +26,7 @@
                 <value>application/x-www-form-urlencoded; charset=UTF-8</value>
             </list>
         </property>
-		<property name="objectMapper">
+	 	<property name="objectMapper">
 				<bean class="com.fasterxml.jackson.databind.ObjectMapper">
 					<property name="dateFormat">
 						<bean class="java.text.SimpleDateFormat">
@@ -34,15 +34,10 @@
 						</bean>
 					</property>
 				</bean>
-			</property>
+			</property> 
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-       
-       
-       
-       
-       
        
        <mvc:annotation-driven />
         <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -1,5 +1,9 @@
 package com.platform.contract.service.spring;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +17,7 @@ import com.platform.common.service.RegulationService;
 import com.platform.common.spring.IBaseDaoServiceSpringImpl;
 import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
+import com.platform.contract.schema.vo.ContractReturnVo;
 import com.platform.contract.service.facade.ContractService;
 @Service(value="contractservice")
 public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainContract,String> implements ContractService {
@@ -77,7 +82,9 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 	@Override
 	public Page findContractPageList(Page page, ContractQueryVo contractQueryVo)
 			throws Exception {
-		StringBuffer hql = new StringBuffer(" from MainContract a where 1=1 ");
+		StringBuffer hql = new StringBuffer("select a.contractNo, pb.ownerName, vm.brandName, vm.className,vm.modelName,vm.carState,a.insertTime, "
+				+"a.servicetype,a.settleamount,a.servicedate,pa.orgName,a.operateTime,pa.businessName  "
+				+ "from MainContract a,partya pa,partyb pb,vehiclemsg vm  where 1=1 and a.contractno=pa.contractno and a.contractno=pb.contractno and a.contractno=vm.contractno ");
 		StringBuffer hql_count = new StringBuffer();
 		Map<String,String> map = new HashMap<String,String>();
 		String policyNo = contractQueryVo.getPolicyNo();//保单号
@@ -93,19 +100,39 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 			map.put("contractNo", contractNo);
 		}
 		if(StringUtils.isNotBlank(ownerName)) {
-			hql_count.append(" and a.partyB.ownerName = :ownerName");
+			hql_count.append(" and pb.ownerName = :ownerName");
 			map.put("ownerName", ownerName);
 		}
 		if(StringUtils.isNotBlank(vinNo)){
-			hql_count.append(" and a.vehicleMsg.vinNo = :vinNo ");
+			hql_count.append(" and vm.vinNo = :vinNo ");
 			map.put("vinNo", vinNo);
 		}
 		if(StringUtils.isNotBlank(hql_count.toString())){
 			hql = hql.append(hql_count);
 		}
-		int total = super.getCountByHqlCondition(hql_count.toString(), map);
-		List<MainContract> mainContractPage =  super.listByHQL(hql.toString(),map,(page.getPageNo()-1)*page.getPageSize(), page.getPageSize());
-		return new Page(page.getPageNo(), page.getPageSize(), total,mainContractPage);
+		hql.append("  order by a.operateTime desc");
+		//int total = super.getCountByHqlCondition(hql_count.toString(), map);
+		List<Object[]> mainContractPage =  super.listBySQL(hql.toString(),map,(page.getPageNo()-1)*page.getPageSize(), page.getPageSize());
+		List<ContractReturnVo> contractReturnVos = new ArrayList<ContractReturnVo>();
+		for(Object[] obj : mainContractPage) {
+			ContractReturnVo  contractReturnVo = new ContractReturnVo();
+			contractReturnVo.setContractNo((String)obj[0]);
+			contractReturnVo.setOwnerName((String)obj[1]);
+			contractReturnVo.setBrandName((String)obj[2]);
+			contractReturnVo.setClassName((String)obj[3]);
+			contractReturnVo.setModelName((String)obj[4]);
+			contractReturnVo.setCarState((String)obj[5]);
+			contractReturnVo.setInsertTime(obj[6]!=null?(Date)obj[6] : null );
+			contractReturnVo.setServiceType((String)obj[7]);
+			contractReturnVo.setSettleAmount(obj[8]!=null? (BigDecimal)obj[8] : null);
+			contractReturnVo.setServiceDate((Character)obj[9]);
+			contractReturnVo.setOrgName((String)obj[10]);
+			contractReturnVo.setInsertTimeVo(contractReturnVo.getInsertTime());
+			contractReturnVo.setOperateTime(obj[11]!=null?(Date)obj[11] : null );
+			contractReturnVo.setBusinessName((String)obj[12]);
+			contractReturnVos.add(contractReturnVo);
+		}
+		return new Page(page.getPageNo(), page.getPageSize(), contractReturnVos.size(),contractReturnVos);
 	}
 
 }

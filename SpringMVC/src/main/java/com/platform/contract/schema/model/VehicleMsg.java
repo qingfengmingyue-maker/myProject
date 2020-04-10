@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Entity
@@ -23,6 +25,7 @@ public class VehicleMsg {
 	int id;
 	@Column(name="contractno")
 	String contractNo;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="purchasedate")
 	Date purchaseDate;
 	@Column(name="carstate")

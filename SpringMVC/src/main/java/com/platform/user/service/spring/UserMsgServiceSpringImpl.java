@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.platform.common.schema.vo.Page;
 import com.platform.common.spring.IBaseDaoServiceSpringImpl;
+import com.platform.organiz.schema.model.Organization;
 import com.platform.user.schema.model.UserMsg;
+import com.platform.user.schema.vo.OrganizationVo;
 import com.platform.user.schema.vo.UserMsgVo;
 import com.platform.user.service.facade.UserMsgService;
 @Service(value="userMsgService")
@@ -59,6 +61,19 @@ public class UserMsgServiceSpringImpl extends IBaseDaoServiceSpringImpl<UserMsg,
 		return super.deleteById(userCode);
 	}
 
-
-
+	@Override
+	public Page findOrganizationListByPage(Page page, OrganizationVo organizationVo) {
+		StringBuffer hql = new StringBuffer(" from Organization where 1=1 ");
+		StringBuffer hql_count = new StringBuffer();
+		Map<String,String> map = new HashMap<String,String>();
+		if(StringUtils.isNotBlank(organizationVo.getOrgName())) {
+			String param = " and orgName like :orgName";
+			hql.append(param);
+			hql_count.append(param);
+			map.put("orgName", organizationVo.getOrgName()+"%");
+		}
+		int total = super.getCountByHqlOtherCondition(Organization.class,hql_count.toString(), map);
+		List<Organization> organizations =  super.listByHQLOtherCondition(hql.toString(),map,(page.getPageNo()-1)*page.getPageSize(), page.getPageSize());
+		return new Page(page.getPageNo(), page.getPageSize(), total,organizations);
+	}
 }

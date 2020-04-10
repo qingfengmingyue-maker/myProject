@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 @Entity
@@ -24,13 +28,15 @@ public class MainContract {
 	@Column(name="servicetype")
 	String serviceType;
 	@Column(name="servicedate")
-	Date serviceDate;
+	String serviceDate;
 	@Column(name="settleamount")
 	BigDecimal settleAmount;
 	@Column(name="settleprice")
 	BigDecimal settlePrice;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="startdate")
 	Date startDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="enddate")
 	Date endDate;
 	@Column(name="saleuser")

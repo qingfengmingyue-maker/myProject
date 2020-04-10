@@ -14,6 +14,7 @@ import com.platform.common.schema.vo.Pager;
 import com.platform.common.service.RegulationService;
 import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
+import com.platform.contract.schema.vo.ContractReturnVo;
 import com.platform.contract.service.facade.ContractService;
 @Controller
 @RequestMapping("/contract")
@@ -46,7 +47,6 @@ public class ContractController {
 	 * @return
 	 */
 	@RequestMapping("/saveContract")
-	@ResponseBody
 	public ModelAndView saveContract(MainContract mainContract){
 		try {
 			mainContract.setContractNo("H1300002020040003");
@@ -54,7 +54,7 @@ public class ContractController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ModelAndView("redirect:prepareQuery.do");
+		return new ModelAndView("redirect:contractList.do");
 	}
 	/**
 	 * 修改跳转修改页面
@@ -103,11 +103,11 @@ public class ContractController {
 	 */
 	@RequestMapping("/quryContractPageList")
 	@ResponseBody
-	public Pager<ContractQueryVo> quryContractPageList(@RequestBody ContractQueryVo contractQueryVo){
-		Page<ContractQueryVo> page=new Page<ContractQueryVo>(contractQueryVo.getCurrentPageNum(), contractQueryVo.getiDisplayLength());
+	public Pager<ContractReturnVo> quryContractPageList(@RequestBody ContractQueryVo contractQueryVo){
+		Page page=new Page<ContractQueryVo>(contractQueryVo.getCurrentPageNum(), contractQueryVo.getiDisplayLength());
 	   	try {
 			page=contractService.findContractPageList(page, contractQueryVo);
-			return new Pager<ContractQueryVo>().wrapPager(page);
+			return new Pager<ContractReturnVo>().wrapPager(page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

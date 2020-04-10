@@ -56,6 +56,6 @@ public class SaaUserPowerController {
 	  @RequestMapping(value = "/logout")
 	  public String logout(HttpSession session){
 	    session.invalidate();
-	     return "redirect:toLogin";
+	     return "redirect:toLogin.do";
 	  }
 }

@@ -19,7 +19,7 @@ white-space: nowrap;
 		    <div class="panel-body">
 			<div style="text-align: left;">
 				<button class="btn btn-primary  glyphicon glyphicon-plus"
-					id="add" type="button" >新增</button>
+					id="add" type="button"  onclick="window.location.href='${ctx}/userMsg/createUserMsg.do'">新增</button>
 				<button class="btn btn-primary glyphicon glyphicon-pencil"
 					id="edit" type="button" >修改</button>
 				<button class="btn btn-primary glyphicon glyphicon-remove" id="remove"
@@ -39,7 +39,7 @@ white-space: nowrap;
 					 	<div class="row">
 							<div class="col-lg-3 col-md-3 col-xs-3">
 								<div class="row form-group">
-									<div class="col-xs-3" align="left">
+									<div class="col-xs-4" align="left">
 										<label for="userName" class="control-label">用户名称</label>
 									</div>
 									<div class="col-xs-8">
@@ -50,7 +50,7 @@ white-space: nowrap;
 							</div>
 							<div class="col-lg-3 col-md-3 col-xs-3">
 								<div class="row form-group">
-									<div class="col-xs-3" align="left">
+									<div class="col-xs-4" align="left">
 										<label for="userCode" class="control-label">用户代码</label>
 									</div>
 									<div class="col-xs-8">
@@ -61,7 +61,7 @@ white-space: nowrap;
 							</div>
 							<div class="col-lg-3 col-md-3 col-xs-3">
 								<div class="row form-group">
-									<div class="col-xs-3" align="left">
+									<div class="col-xs-4" align="left">
 										<label for="telPhone" class="control-label">手机号</label>
 									</div>
 									<div class="col-xs-8">
@@ -101,7 +101,5 @@ white-space: nowrap;
 			</div>
 		</div>
 	</div>
-	<!-- 模态框（Modal） -->
-   <div id="myModal"  class="modal fade" role="dialog" data-backdrop="false" tabindex="-1" style="display:none;"></div>
 </body>
 </html>

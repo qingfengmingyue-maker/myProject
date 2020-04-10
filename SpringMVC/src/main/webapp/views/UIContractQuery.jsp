@@ -47,8 +47,8 @@ white-space: nowrap;
 										<label for="userName" class="control-label">保单号:</label>
 									</div>
 									<div class="col-xs-8">
-										<input id="userName"
-											name="userName" class="form-control" />
+										<input id="policyNo"
+											name="policyNo" class="form-control" />
 									</div>
 								</div>
 							</div>
@@ -58,30 +58,30 @@ white-space: nowrap;
 										<label for="userCode" class="control-label">合同号:</label>
 									</div>
 									<div class="col-xs-8">
-										<input id="userCode"
-											name="userCode" class="form-control" />
+										<input id="contractNo"
+											name="contractNo" class="form-control" />
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-3 col-md-3 col-xs-3">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
-										<label for="telPhone" class="control-label">车主:</label>
+										<label for="ownerName" class="control-label">车主:</label>
 									</div>
 									<div class="col-xs-8">
-										<input id="telPhone"
-											name="telPhone" class="form-control" />
+										<input id="ownerName"
+											name="ownerName" class="form-control" />
 									</div>
 								</div>
 							</div>
 								<div class="col-lg-3 col-md-3 col-xs-3">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
-										<label for="telPhone" class="control-label">车架号:</label>
+										<label for="vinNo" class="control-label">车架号:</label>
 									</div>
 									<div class="col-xs-8">
-										<input id="telPhone"
-											name="telPhone" class="form-control" />
+										<input id="vinNo"
+											name="vinNo" class="form-control" />
 									</div>
 								</div>
 							</div>
@@ -111,8 +111,8 @@ white-space: nowrap;
 									<tr align="center">
 										<th><input id="checkAll"  type="checkbox" ></th>
 										<th>合同号</th>
-										<th>保单号</th>
-										<th>主数据状态</th>
+										<!-- <th>保单号</th> -->
+									<!-- 	<th>主数据状态</th> -->
 										<th>车主</th>
 										<th>品牌</th>
 										<th>车系</th>

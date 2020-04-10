@@ -30,3 +30,17 @@ $(function() {
 		pickerPosition : "bottom-left"
 	});
 });
+
+
+
+/**
+ * @describe:保存用户信息
+ * @returns
+ */
+$(function(){
+	$("#temptSaveButton").click(
+		function(){
+		    $("#contractfm").submit();
+     })
+	
+});

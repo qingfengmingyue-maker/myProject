@@ -16,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.platform.common.schema.vo.Page;
 import com.platform.common.schema.vo.Pager;
 import com.platform.common.service.RegulationService;
+import com.platform.organiz.schema.model.Organization;
 import com.platform.user.schema.model.UserMsg;
+import com.platform.user.schema.vo.OrganizationVo;
 import com.platform.user.schema.vo.UserMsgVo;
 import com.platform.user.schema.vo.UserVo;
 import com.platform.user.service.facade.UserMsgService;
@@ -31,7 +33,7 @@ public class UserMsgController {
 	    @Autowired
 		RegulationService regulationService;
 	    @RequestMapping("/userMsgList")
-	    public String prepareQuery() {
+	    public String userMsgList() {
 	       return "/UIUserMsgList";
 	    }
 	    
@@ -111,4 +113,31 @@ public class UserMsgController {
 		   	return null;
 		 }
 	    
+	    /**
+	     * @describe:查询机构名称
+	     * @param userCode
+	     * @param editType
+	     * @return
+	     */
+	    @RequestMapping("/queryOrganization")
+	    @ResponseBody
+	    public Pager<OrganizationVo> queryOrganization(@RequestBody OrganizationVo organizationVo) {
+		       //适合dataTable的分页信息转换成标准的分页信息
+		Page<OrganizationVo> page=new Page<OrganizationVo>(organizationVo.getCurrentPageNum(), organizationVo.getiDisplayLength());
+		 try {
+		   	   page=userMsgService.findOrganizationListByPage(page,organizationVo);
+		   		return new Pager<OrganizationVo>().wrapPager(page);
+		   	} catch (Exception e) {
+		   		e.printStackTrace();
+		   	}
+		   	return null;
+		 }
+	    
+	    
+	    @RequestMapping("/prepareOrganization")
+	    public ModelAndView prepareOrganization(String orgName) {
+	       ModelAndView mv = new ModelAndView("/UIPrepareOrganization");
+		   mv.addObject("orgName", orgName);
+		   return mv;
+	    }
 }

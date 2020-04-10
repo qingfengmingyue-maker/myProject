@@ -92,4 +92,10 @@ public interface IBaseDao<T, ID extends Serializable> {
     int getCountByHqlCondition(String hql);
     
     int getCountByHqlCondition(String hqlString,Map<String, ?> params);
+    
+    List executeSql(String sqlString,Map<String, ?> params);
+    
+    List listBySQL(String sqlString, Map<String, ?> params, int firstResult, int maxResult);
+    
+    public List   listByHQLOtherCondition(String hqlString, Map<String, ?> params, int firstResult,int maxResult) ;
 }

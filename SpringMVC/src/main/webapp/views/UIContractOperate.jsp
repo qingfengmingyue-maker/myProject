@@ -72,7 +72,7 @@ body {
 
 	<div class="row">
 		<div class="col-lg-12">
-			<form id="userfm" name="fm" action="${ctx}/userMsg/saveUserMsg.do" method="post">
+			<form id="contractfm" name="fm" action="${ctx}/contract/saveContract.do" method="post">
 			    <!-- 甲方信息开始 -->
 			<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
@@ -87,10 +87,11 @@ body {
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>经销商全称：</label>
+										<label for="partyA.orgName" class="control-label"><span style="color: red">*</span>经销商全称：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+									    <input class="form-control" type="text" id="partyA.orgCode"  name="partyA.orgCode"  value="111"/>
+										<input class="form-control" type="text" id="partyA.orgName"  name="partyA.orgName"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchComPany" class="btn btn-primary"  >查询</button>
@@ -103,7 +104,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>业务联系人：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="partyA.businessName"  name="partyA.businessName" />
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >查询</button>
@@ -116,7 +117,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>联系电话：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text"  id="partyA.mobile"  name="partyA.mobile"/>
 									</div>
 									
 								</div>
@@ -142,10 +143,10 @@ body {
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车主：</label>
+										<label for="PartyB.ownerName" class="control-label"><span style="color: red">*</span>车主：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="PartyB.ownerName" name="PartyB.ownerName" />
 									</div>
 								</div>
 							</div>
@@ -155,7 +156,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>联系方式：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="PartyB.ownerMobile" name="PartyB.ownerMobile"/>
 									</div>
 								</div>
 							</div>
@@ -165,7 +166,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label">联系地址：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="PartyB.ownerDress" name="PartyB.ownerDress" />
 									</div>
 									
 								</div>
@@ -176,11 +177,11 @@ body {
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>证件类型：</label>
+										<label for="documentType" class="control-label"><span style="color: red">*</span>证件类型：</label>
 									</div>
 									<div class="col-xs-6">
-										<ce:select list="#{'':'--请选择--','01':'身份证','03':'护照','04':'军官证','31':'组织机构代码','37':'统一社会信用代码','99':'其他'}"
-													id="" name=""
+										<ce:select list="#{'':'--请选择--','01':'身份证','02':'护照','03':'军官证','04':'组织机构代码','05':'统一社会信用代码','99':'其他'}"
+													id="PartyB.documentType" name="PartyB.documentType"
 													cssClass="form-control"></ce:select>
 									</div>
 								</div>
@@ -188,10 +189,10 @@ body {
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>证件号码：</label>
+										<label for="PartyB.documentType" class="control-label"><span style="color: red">*</span>证件号码：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="PartyB.documentNo" name="PartyB.documentNo"/>
 									</div>
 								</div>
 							</div>
@@ -202,7 +203,7 @@ body {
 			     <!-- 乙方信息结束 -->
 			     
 			     <!-- 车辆信息开始 -->
-			<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
+			 <div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
 					<h4 class="panel-title" id="jfxx"
 						style="padding-top: 160px; margin-top: -160px;">
@@ -217,15 +218,15 @@ body {
 									<div class="col-xs-4">
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>首次购车日期：</label>
 									</div>
-									<div class="col-xs-6">
+									 <div class="col-xs-6">
 											<div class="input-group input-append date form_date">
-													<input id="" readonly="readonly"
-														name="" class="form-control"
+													<input id="VehicleMsg.purchaseDate" name="VehicleMsg.purchaseDate" readonly="readonly"
+														class="form-control"
 														type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
 														<i class="glyphicon glyphicon-th"> </i>
 													</span>
 											</div>
-									</div>
+									</div> 
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-xs-12">
@@ -234,32 +235,32 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车辆状态：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="VehicleMsg.carState" name="VehicleMsg.carState" />
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-4 col-md-4 col-xs-12">
+						 	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>使用性质：</label>
+										<label for="VehicleMsg.userNature" class="control-label"><span style="color: red">*</span>使用性质：</label>
 									</div>
 									<div class="col-xs-6">
 										<ce:select list="#{'1':'家庭自用','2':'非营运'}"
-													id="" name=""
+													id="VehicleMsg.userNature" name="VehicleMsg.userNature" 
 													cssClass="form-control"></ce:select>
 									</div>
 									
 								</div>
 							</div>
 					    </div>
-					    <div class="row">
+					     <div class="row">
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车牌号码：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="VehicleMsg.licenseNo" name="VehicleMsg.licenseNo"  />
 									</div>
 								</div>
 							</div>
@@ -269,7 +270,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label">发动机号码：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text"  id="VehicleMsg.engineNo" name="VehicleMsg.engineNo" />
 									</div>
 								</div>
 							</div>
@@ -279,7 +280,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label">车辆识别码(VIN码)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="VehicleMsg.vinNo" name="VehicleMsg.vinNo" />
 									</div>
 									
 								</div>
@@ -293,7 +294,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>品牌：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="VehicleMsg.brandName" name="VehicleMsg.brandName"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchComPany" class="btn btn-primary"  >选择</button>
@@ -306,7 +307,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车系：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text"  id="VehicleMsg.className" name="VehicleMsg.className"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >选择</button>
@@ -319,26 +320,26 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车型：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text"  id="VehicleMsg.modelName" name="VehicleMsg.modelName"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >选择</button>
 									</div>
 								</div>
 							</div>
-					</div>
-					  <div class="row">
+					</div> 
+				 	  <div class="row">
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车辆发票金额(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text"  id="VehicleMsg.invoiceAmount" name="VehicleMsg.invoiceAmount" />
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-4 col-md-4 col-xs-12">
+							<!-- <div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
 										<label for="prpDproject.projectName" class="control-label">发票金额大写：</label>
@@ -347,14 +348,14 @@ body {
 										<input class="form-control" type="text" />
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
 										<label for="prpDproject.projectName" class="control-label">购置费用(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="VehicleMsg.purchaseAmount" name="VehicleMsg.purchaseAmount"/>
 									</div>
 									
 								</div>
@@ -366,12 +367,12 @@ body {
 								<div class="row form-group">
 									<div class="col-xs-2">
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>投保险种：</label>
-									</div>
+									</div> 
 									<div class="col-xs-10">
-										<div  class="col-xs-2"><input type="checkbox"   checked="checked">车损险 </div>
-										<div  class="col-xs-2"><input type="checkbox"   checked="checked">不计免赔 </div>
-										<div  class="col-xs-2"><input type="checkbox">盗抢险 </div>
-										<div  class="col-xs-2"><input type="checkbox">自燃险 </div>
+										<div  class="col-xs-2"><input type="checkbox"  name="VehicleMsg.insuranceType"  checked="checked" value="1">车损险 </div>
+										<div  class="col-xs-2"><input type="checkbox"  name="VehicleMsg.insuranceType"  checked="checked" value="2">不计免赔 </div>
+										<div  class="col-xs-2"><input type="checkbox"  name="VehicleMsg.insuranceType"  value="3">盗抢险 </div>
+										<div  class="col-xs-2"><input type="checkbox"  name="VehicleMsg.insuranceType"  value="4">自燃险 </div>
 									</div>
 								</div>
 							</div>
@@ -381,14 +382,14 @@ body {
 										<label for="prpDproject.projectName" class="control-label">车险保险公司：</label>
 									</div>
 									<div class="col-xs-6">
-										<ce:select list="#{'1':'人保','2':'平安','3':'太保','4':'国寿财','5':'其他','6':'鑫安'}"
-													id="" name=""
+										<ce:select list="#{'1':'人保','2':'平安','3':'太保','4':'国寿财','5':'鑫安','6':'其他'}"
+													id="VehicleMsg.insuranceName" name="VehicleMsg.insuranceName"
 													cssClass="form-control"></ce:select>
 									</div>
 								</div>
 							</div>
 							
-					    </div>
+					    </div> 
 						  <div class="row">
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
@@ -396,7 +397,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label">上牌费：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text"  id="VehicleMsg.licenseFee" name="VehicleMsg.licenseFee"/>
 									</div>
 									
 								</div>
@@ -407,20 +408,19 @@ body {
 										<label for="prpDproject.projectName" class="control-label">车船税：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="VehicleMsg.taxAmount" name="VehicleMsg.taxAmount"/>
 									</div>
-									
 								</div>
 							</div>
-					    </div>
+					    </div> 
 			        </div>
 			   </div>
-			   </div>
+			   </div> 
 			    <!-- 车辆信息结束 -->
 			    
 			    
 			  <!-- 服务信息开始 -->
-			<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
+	 		<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
 					<h4 class="panel-title" id="jfxx"
 						style="padding-top: 160px; margin-top: -160px;">
@@ -430,37 +430,37 @@ body {
 				<div id="collapseFWXX" class="panel-collapse collapse in">
 					<div class="panel-body">
 					<div class="row">
-					    	<div class="col-lg-4 col-md-4 col-xs-12">
+					    	 <div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>服务类型：</label>
+										<label for="serviceType" class="control-label"><span style="color: red">*</span>服务类型：</label>
 									</div>
 									<div class="col-xs-6">
-										<ce:select list="#{'1':'赔付包含购置税'}"
-													id="" name=""
-													cssClass="form-control"></ce:select>
+										 <ce:select list="#{'1':'赔付包含购置税'}"
+													id="serviceType" name="serviceType"
+													cssClass="form-control"></ce:select> 
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>服务期限：</label>
+										<label for="serviceDate" class="control-label"><span style="color: red">*</span>服务期限：</label>
 									</div>
 									<div class="col-xs-6">
-										<ce:select list="#{'1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
-													id="" name=""
+												<ce:select list="#{'1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
+													id="serviceDate" name="serviceDate"
 													cssClass="form-control"></ce:select>
 									</div>
 								</div>
-							</div>
+							</div> 
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label">结算金额(元)：</label>
+										<label for="settleAmount" class="control-label">结算金额(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" 	id="settleAmount" name="settleAmount"/>
 									</div>
 									
 								</div>
@@ -471,10 +471,10 @@ body {
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>服务售价(元)：</label>
+										<label for="settlePrice" class="control-label"><span style="color: red">*</span>服务售价(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text" id="settlePrice" name="settlePrice" />
 									</div>
 								</div>
 							</div>
@@ -485,13 +485,13 @@ body {
 									</div>
 									<div class="col-xs-6">
 											<div class="input-group input-append date form_date">
-													<input id="" readonly="readonly"
-														name="" class="form-control"
+													<input  id="startDate" name="startDate" readonly="readonly"
+														 class="form-control"
 														type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
 														<i class="glyphicon glyphicon-th"> </i>
 													</span>
 											</div>
-									</div>
+									</div> 
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-xs-12">
@@ -501,8 +501,8 @@ body {
 									</div>
 									<div class="col-xs-6">
 											<div class="input-group input-append date form_date">
-													<input id="" readonly="readonly"
-														name="" class="form-control"
+													<input  id="endDate" name="endDate" readonly="readonly"
+														 class="form-control"
 														type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
 														<i class="glyphicon glyphicon-th"> </i>
 													</span>
@@ -517,27 +517,27 @@ body {
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>销售人员：</label>
+										<label for="saleUser" class="control-label"><span style="color: red">*</span>销售人员：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" />
+										<input class="form-control" type="text"  id="saleUser" name="saleUser" />
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label">合同号：</label>
+										<label for="contractNo" class="control-label">合同号：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" placeholder="系统唯一生成，无需填写"  readonly="readonly"/>
+										<input class="form-control" type="text" placeholder="系统唯一生成，无需填写"  readonly="readonly"  id="contractNo" name="contractNo"/>
 									</div>
 								</div>
 							</div>
 					  </div>
 			        </div>
 			   </div>
-			   </div>
+			   </div> 
 			    <!-- 服务信息结束 -->
 			    
 			 <!-- 其他信息开始 -->
@@ -557,7 +557,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>附加服务：</label>
 									</div>
 									<div class="col-xs-8">
-										<textarea class="form-control" rows="2" cols="100"  >无</textarea>
+										<textarea class="form-control" rows="2" cols="100" id="appendMsg" name="appendMsg"  >无</textarea>
 									</div>
 								</div>
 							</div>
@@ -570,7 +570,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>备注：</label>
 									</div>
 									<div class="col-xs-8">
-										<textarea class="form-control" rows="2" cols="100"  >无备注。</textarea>
+										<textarea class="form-control" rows="2" cols="100"  id="reMark" name="reMark" >无备注。</textarea>
 									</div>
 								</div>
 							</div>
