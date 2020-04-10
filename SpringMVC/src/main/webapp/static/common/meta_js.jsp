@@ -14,6 +14,8 @@
 <script src="${ctx}/static/widgets/jquery/DataTableUtils.js"></script>
 <script src="${ctx}/static/widgets/jquery/jquery.validate.js"></script>
 <script src="${ctx}/static/common/js/validate.js"></script>
+<script src="${ctx}/static/widgets/bootstrap-datetimepicker_v2.3.0/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript"	src="${ctx}/static/widgets/bootstrap-datetimepicker_v2.3.0/js/locales/bootstrap-datetimepicker.zh-CN-UTF8.js"></script>
 <script type="text/javascript">
 $(function(){
 	if($.trim($(".breadcrumb").html()) == ""){
