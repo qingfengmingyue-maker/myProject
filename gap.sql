@@ -29,35 +29,25 @@ PRIMARY KEY (orgcode)
 CREATE TABLE usermsg
 (
 usercode	varchar(10) not null,
+username	varchar(100) not null,
+userpwd		varchar(8) not null,
+orgcode	varchar(10) not null,
 orgname	varchar(100) not null,
-username	varchar(100),
-userpwd		varchar(8),
 telphone	varchar(20),
 postflag	char(1),
+businesspost	varchar(100),
 inserttime	timestamp,
 operatetime	timestamp,
 PRIMARY KEY (usercode) 
 );
---**drop table businessmsg;
-CREATE TABLE businessmsg
-(
-id	int AUTO_INCREMENT,
-orgname	varchar(100),
-orgcode	varchar(10),
-telphone	varchar(20),
-businessname	varchar(100),
-businesspost	varchar(100),
-businessmobile	varchar(20),
-inserttime	timestamp,
-operatetime	timestamp,
-PRIMARY KEY (id) 
-);
+
 --**drop table partya;
 CREATE TABLE partya
 (
 id	int AUTO_INCREMENT,
 contractno	varchar(17),
 orgname	varchar(100),
+orgcode	varchar(10) not null,
 businessname	varchar(100),
 mobile	varchar(20),
 PRIMARY KEY (id) 
@@ -110,10 +100,6 @@ saleuser	varchar(50),
 appendmsg	varchar(2000),
 remark	varchar(2000),
 policyno varchar(22),
-cityname	varchar(100),
-citycode	varchar(6) NOT NULL,
-upperbaseorg varchar(6) NOT NULL,
-upperbaseorgname varchar(100),
 inserttime	timestamp,
 operatetime	timestamp,
 PRIMARY KEY (contractno) 
@@ -146,11 +132,4 @@ groupno	varchar(15),
 maxno	varchar(10),
 inserttime	timestamp,
 PRIMARY KEY (businessno)
-);
---**drop table userrecord;
-CREATE TABLE userrecord
-(
-usedno	varchar(20),
-inserttime	timestamp,
-operatetime	timestamp
 );

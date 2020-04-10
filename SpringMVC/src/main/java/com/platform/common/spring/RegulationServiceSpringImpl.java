@@ -30,6 +30,7 @@ public class RegulationServiceSpringImpl extends IBaseDaoServiceSpringImpl<Regul
 		if("userCode".equals(codeType)){
 			groupno = groupno.substring(0,4);//所属区域4位代码+4位流水
 		}else if("contractNo".equals(codeType)){
+			groupno = groupno.substring(0,6);
 			groupno = "H"+groupno;//H+6位机构+6位日期+4位流水
 			Calendar calendar = Calendar.getInstance();
 			int year =  calendar.get(calendar.YEAR);
