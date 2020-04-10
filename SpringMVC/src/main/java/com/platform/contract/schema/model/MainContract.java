@@ -41,14 +41,6 @@ public class MainContract {
 	String reMark;
 	@Column(name="policyno")
 	String policyNo;
-	@Column(name="cityName")
-	String cityName;
-	@Column(name="cityCode")
-	String cityCode;
-	@Column(name="upperbaseorg")
-	String upperBaseOrg;
-	@Column(name="upperBaseOrgName")
-	String upperBaseOrgName;
 	@Column(name="inserttime" ,insertable = false, updatable = false)
 	Date insertTime;
 	@Column(name="operatetime")
