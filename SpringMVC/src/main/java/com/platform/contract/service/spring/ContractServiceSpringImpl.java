@@ -21,9 +21,9 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 	@Override
 	public Boolean saveContract(MainContract mainContract) throws Exception {
 		String contractNo = mainContract.getContractNo();
-		String cityCode = mainContract.getCityCode();//归属机构
 		if(StringUtils.isBlank(contractNo)){
-			contractNo = regulationService.getOrgCode(cityCode, "contractNo");
+			String orgCode = mainContract.getPartyA().getOrgCode();//归属机构
+			contractNo = regulationService.getOrgCode(orgCode, "contractNo");
 			mainContract.setContractNo(contractNo);
 			mainContract.getPartyA().setContractNo(contractNo);
 			mainContract.getPartyB().setContractNo(contractNo);
