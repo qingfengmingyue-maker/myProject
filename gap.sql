@@ -44,30 +44,27 @@ PRIMARY KEY (usercode)
 --**drop table partya;
 CREATE TABLE partya
 (
-id	int AUTO_INCREMENT,
 contractno	varchar(17),
 orgname	varchar(100),
 orgcode	varchar(10) not null,
 businessname	varchar(100),
 mobile	varchar(20),
-PRIMARY KEY (id) 
+PRIMARY KEY (contractno) 
 );
 --**drop table partyb;
 CREATE TABLE partyb
 (
-id	int AUTO_INCREMENT,
 contractno	varchar(17),
 ownername	varchar(100),
 ownermobile	varchar(20),
 ownerdress	varchar(200),
 documenttype	varchar(2),
 documentno	varchar(20),
-PRIMARY KEY (id) 
+PRIMARY KEY (contractno) 
 );
 --**drop table vehiclemsg;
 CREATE TABLE vehiclemsg
 (
-id	int AUTO_INCREMENT,
 contractno	varchar(17),
 purchasedate	date,
 carstate	varchar(50),
@@ -84,7 +81,7 @@ insurancetype	varchar(20),
 insurancename	varchar(50),
 licensefee	DECIMAL(14,2),
 taxamount	DECIMAL(14,2),
-PRIMARY KEY (id) 
+PRIMARY KEY (contractno) 
 );
 --**drop table maincontract;
 CREATE TABLE  maincontract

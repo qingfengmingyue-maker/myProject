@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.taglibs.standard.lang.support.ExpressionEvaluatorManager;
 
 public class SelectTag extends TagBase{
@@ -30,17 +31,17 @@ public class SelectTag extends TagBase{
 			    if (this.id == null) {
 			      this.id = this.name;
 			    }
-			    if (this.value != null) {
-			      if ((this.value.startsWith("{")) && (this.value.endsWith("}"))) {
-			        this.value = this.value.substring(1, this.value.length() - 1);
-			        String[] values = this.value.split(",");
-			        for (int i = 0; i < values.length; i++) {
-			          if ((values[i].startsWith("'")) && (values[i].endsWith("'"))) {
-			            values[i] = values[i].substring(1, values[i].length() - 1);
-			          }
-			          valueList.add(values[i].trim());
-			        }
-			      }
+			    if (this.value != null && StringUtils.isNotBlank(this.value)) {
+//			      if ((this.value.startsWith("{")) && (this.value.endsWith("}"))) {
+//			        this.value = this.value.substring(1, this.value.length() - 1);
+//			        String[] values = this.value.split(",");
+//			        for (int i = 0; i < values.length; i++) {
+//			          if ((values[i].startsWith("'")) && (values[i].endsWith("'"))) {
+//			            values[i] = values[i].substring(1, values[i].length() - 1);
+//			          }
+			          valueList.add(this.value.trim());
+//			        }
+//			      }
 			    }
 
 			    buffer.append("<select");

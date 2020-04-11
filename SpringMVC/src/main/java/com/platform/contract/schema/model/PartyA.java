@@ -17,8 +17,6 @@ import lombok.Data;
 @Data
 public class PartyA {
 	@Id
-	@Column(name="id")
-	int id;
 	@Column(name="contractno")
 	String contractNo;
 	@Column(name="orgcode")

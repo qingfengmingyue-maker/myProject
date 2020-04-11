@@ -16,6 +16,7 @@ import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
 import com.platform.contract.schema.vo.ContractReturnVo;
 import com.platform.contract.service.facade.ContractService;
+import com.platform.user.schema.model.UserMsg;
 @Controller
 @RequestMapping("/contract")
 public class ContractController {
@@ -41,6 +42,27 @@ public class ContractController {
 		   mv.addObject("title", "新增合同");
 		   return mv;
 	 }
+	
+	
+    @RequestMapping("/findContractByContractNo")
+    public ModelAndView findContractByContractNo(String contractNo,String editType) {
+    	 ModelAndView mv = new ModelAndView("/UIContractOperate");
+    	 MainContract mainContract =null;
+		try {
+			mainContract = contractService.findContractVo(contractNo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	 if("view".equals(editType)) {
+    		 mv.addObject("message", "浏览合同");
+    		 mv.addObject("editType", "view");
+    	 }else {
+    		 mv.addObject("message", "更改合同");
+    	 }
+    	 mv.addObject("mainContract",mainContract);
+    	 return mv;
+   }
 	/**
 	 * 保存
 	 * @param ContractVo

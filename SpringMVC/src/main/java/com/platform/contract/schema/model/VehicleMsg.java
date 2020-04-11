@@ -21,8 +21,6 @@ import lombok.Data;
 @Data
 public class VehicleMsg {
 	@Id
-	@Column(name="id")
-	int id;
 	@Column(name="contractno")
 	String contractNo;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -5,7 +5,7 @@ jQuery(function($) {
                
     	  {"data": null,"class" : "center",
    			"render" : function(data, type, row) {
-   			return '<input name="checkCode" type="checkbox" id="'+data.userCode+'">';
+   			return '<input name="checkCode" type="checkbox" id="'+data.contractNo+'">';
    			}
           },
           {"data": "contractNo","class" : "center","bSortable": false},
@@ -57,11 +57,7 @@ $(function(){
 			function(){
 				var result = selectOne();
 				if(result != null){
-					var $modal = $('#myModal');
-					$modal.load(contextRootPath + "/userMsg/findUserMsgByUserCode.do?userCode="+result+"&editType=edit", '',
-					function() {
-						$modal.modal();
-					});
+					window.location.href=contextRootPath + "/contract/findContractByContractNo.do?contractNo="+result+"&editType=edit";
 			   }
 	 })
 });
