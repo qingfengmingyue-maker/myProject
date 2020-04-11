@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,14 +74,21 @@ public class ContractController {
 	 * @return
 	 */
 	@RequestMapping("/saveContract")
-	public ModelAndView saveContract(MainContract mainContract){
+	public ModelAndView saveContract(MainContract mainContract,HttpServletResponse response){
 		try {
 			mainContract.setContractNo("H1300002020040003");
-			contractService.saveContract(mainContract);
+			mainContract = contractService.saveContract(mainContract);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ModelAndView("redirect:contractList.do");
+		if(StringUtils.isNotBlank(mainContract.getSaveType()) && "0".equals(mainContract.getSaveType())) {
+			 ModelAndView mv = new ModelAndView("/UIContractOperate");
+			 mv.addObject("mainContract",mainContract);
+			 return mv;
+		}else {
+			return new ModelAndView("redirect:contractList.do");
+		}
+		
 	}
 	/**
 	 * 修改跳转修改页面

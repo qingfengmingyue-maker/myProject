@@ -73,6 +73,8 @@ body {
 	<div class="row">
 		<div class="col-lg-12">
 			<form id="contractfm" name="fm" action="${ctx}/contract/saveContract.do" method="post">
+			  <!-- 保存状态，暂存为0，保存为1 -->
+			 <input type="hidden"  id="saveType" name="saveType" value="1" >
 			    <!-- 甲方信息开始 -->
 			<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
@@ -91,7 +93,7 @@ body {
 									</div>
 									<div class="col-xs-6">
 									    <input class="form-control" type="hidden" id="PartyA.orgCode"  name="PartyA.orgCode"  value="${mainContract.partyA.orgCode }"/>
-										<input class="form-control" type="text" id="PartyA.orgName"  name="PartyA.orgName"  value="${mainContract.partyA.orgName }"/>
+										<input class="form-control  required" type="text" id="PartyA.orgName"  name="PartyA.orgName"  value="${mainContract.partyA.orgName }" />
 										<input class="form-control" type="hidden" id="PartyA.contractNo" name="PartyA.contractNo" value="${mainContract.partyA.contractNo}"/>
 										<input class="form-control" type="hidden" id="editType" name="editType" value="${editType}"/>
 									</div>
@@ -106,7 +108,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>业务联系人：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="PartyA.businessName"  name="PartyA.businessName"   value="${mainContract.partyA.businessName }"/>
+										<input class="form-control  required" type="text" id="PartyA.businessName"  name="PartyA.businessName"   value="${mainContract.partyA.businessName }"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >查询</button>
@@ -119,7 +121,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>联系电话：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text"  id="PartyA.mobile"  name="PartyA.mobile" value="${mainContract.partyA.mobile }"/>
+										<input class="form-control  required" type="text"  id="PartyA.mobile"  name="PartyA.mobile" value="${mainContract.partyA.mobile }"/>
 									</div>
 									
 								</div>
@@ -148,7 +150,7 @@ body {
 										<label for="PartyB.ownerName" class="control-label"><span style="color: red">*</span>车主：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="PartyB.ownerName" name="PartyB.ownerName" value="${mainContract.partyB.ownerName}"/>
+										<input class="form-control  required" type="text" id="PartyB.ownerName" name="PartyB.ownerName" value="${mainContract.partyB.ownerName}"/>
 										<input class="form-control" type="hidden" id="PartyB.contractNo" name="PartyB.contractNo" value="${mainContract.partyB.contractNo}"/>
 									</div>
 								</div>
@@ -159,7 +161,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>联系方式：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="PartyB.ownerMobile" name="PartyB.ownerMobile" value="${mainContract.partyB.ownerMobile}"/>
+										<input class="form-control  required" type="text" id="PartyB.ownerMobile" name="PartyB.ownerMobile" value="${mainContract.partyB.ownerMobile}"/>
 									</div>
 								</div>
 							</div>
@@ -185,7 +187,7 @@ body {
 									<div class="col-xs-6">
 										<ce:select list="#{'':'--请选择--','01':'身份证','02':'护照','03':'军官证','04':'组织机构代码','05':'统一社会信用代码','99':'其他'}"
 													id="PartyB.documentType" name="PartyB.documentType"
-													cssClass="form-control"  value="${mainContract.partyB.documentType}"></ce:select>
+													cssClass="form-control  required"  value="${mainContract.partyB.documentType}"></ce:select>
 									</div>
 								</div>
 							</div>
@@ -195,7 +197,7 @@ body {
 										<label for="PartyB.documentType" class="control-label"><span style="color: red">*</span>证件号码：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="PartyB.documentNo" name="PartyB.documentNo"  value="${mainContract.partyB.documentNo}"/>
+										<input class="form-control  required" type="text" id="PartyB.documentNo" name="PartyB.documentNo"  value="${mainContract.partyB.documentNo}"/>
 									</div>
 								</div>
 							</div>
@@ -219,14 +221,14 @@ body {
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>首次购车日期：</label>
+										<label for="prpDproject.projectName" class="control-label "><span style="color: red">*</span>首次购车日期：</label>
 									</div>
 									 <div class="col-xs-6">
 											<div class="input-group input-append date form_date">
 													<input id="VehicleMsg.purchaseDate" name="VehicleMsg.purchaseDate" readonly="readonly"
-														class="form-control"    value="<fmt:formatDate value="${mainContract.vehicleMsg.purchaseDate}" pattern="yyyy-MM-dd"/>"
-														type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
-														<i class="glyphicon glyphicon-th"> </i>
+														class="form-control "    value="<fmt:formatDate value="${mainContract.vehicleMsg.purchaseDate}" pattern="yyyy-MM-dd"/>"
+														type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on ">
+														<i class="glyphicon glyphicon-th "> </i>
 													</span>
 													<input type="hidden"   id="VehicleMsg.contractNo" name="VehicleMsg.contractNo"  value="${mainContract.vehicleMsg.contractNo}">
 											</div>
@@ -239,7 +241,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车辆状态：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="VehicleMsg.carState" name="VehicleMsg.carState"  value="${mainContract.vehicleMsg.carState}" />
+										<input class="form-control required" type="text" id="VehicleMsg.carState" name="VehicleMsg.carState"  value="${mainContract.vehicleMsg.carState}" />
 									</div>
 								</div>
 							</div>
@@ -251,7 +253,7 @@ body {
 									<div class="col-xs-6">
 										<ce:select list="#{'1':'家庭自用','2':'非营运'}"
 													id="VehicleMsg.userNature" name="VehicleMsg.userNature" 
-													cssClass="form-control" value="${mainContract.vehicleMsg.userNature}"></ce:select>
+													cssClass="form-control  required" value="${mainContract.vehicleMsg.userNature}"></ce:select>
 									</div>
 									
 								</div>
@@ -264,7 +266,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车牌号码：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="VehicleMsg.licenseNo" name="VehicleMsg.licenseNo"   value="${mainContract.vehicleMsg.licenseNo}"/>
+										<input class="form-control  required" type="text" id="VehicleMsg.licenseNo" name="VehicleMsg.licenseNo"   value="${mainContract.vehicleMsg.licenseNo}"/>
 									</div>
 								</div>
 							</div>
@@ -281,10 +283,10 @@ body {
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label">车辆识别码(VIN码)：</label>
+										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车辆识别码(VIN码)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="VehicleMsg.vinNo" name="VehicleMsg.vinNo" value="${mainContract.vehicleMsg.vinNo}" />
+										<input class="form-control  required" type="text" id="VehicleMsg.vinNo" name="VehicleMsg.vinNo" value="${mainContract.vehicleMsg.vinNo}" />
 									</div>
 									
 								</div>
@@ -298,7 +300,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>品牌：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="VehicleMsg.brandName" name="VehicleMsg.brandName" value="${mainContract.vehicleMsg.brandName}"/>
+										<input class="form-control  required" type="text" id="VehicleMsg.brandName" name="VehicleMsg.brandName" value="${mainContract.vehicleMsg.brandName}"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchComPany" class="btn btn-primary"  >选择</button>
@@ -311,7 +313,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车系：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text"  id="VehicleMsg.className" name="VehicleMsg.className" value="${mainContract.vehicleMsg.className}"/>
+										<input class="form-control  required" type="text"  id="VehicleMsg.className" name="VehicleMsg.className" value="${mainContract.vehicleMsg.className}"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >选择</button>
@@ -324,7 +326,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车型：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text"  id="VehicleMsg.modelName" name="VehicleMsg.modelName" value="${mainContract.vehicleMsg.modelName}"/>
+										<input class="form-control  required" type="text"  id="VehicleMsg.modelName" name="VehicleMsg.modelName" value="${mainContract.vehicleMsg.modelName}"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >选择</button>
@@ -339,7 +341,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车辆发票金额(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text"  id="VehicleMsg.invoiceAmount" name="VehicleMsg.invoiceAmount" value="${mainContract.vehicleMsg.invoiceAmount}"/>
+										<input class="form-control  required" type="text"  id="VehicleMsg.invoiceAmount" name="VehicleMsg.invoiceAmount" value="${mainContract.vehicleMsg.invoiceAmount}"/>
 									</div>
 								</div>
 							</div>
@@ -373,22 +375,23 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>投保险种：</label>
 									</div> 
 									<div class="col-xs-10">
-										<div  class="col-xs-2"><input type="checkbox"  name="VehicleMsg.insuranceType"  checked="checked" value="1">车损险 </div>
-										<div  class="col-xs-2"><input type="checkbox"  name="VehicleMsg.insuranceType"  checked="checked" value="2">不计免赔 </div>
-										<div  class="col-xs-2"><input type="checkbox"  name="VehicleMsg.insuranceType"  value="3">盗抢险 </div>
-										<div  class="col-xs-2"><input type="checkbox"  name="VehicleMsg.insuranceType"  value="4">自燃险 </div>
+										<div  class="col-xs-2"><input type="checkbox"  name="insuranceType"  ${mainContract.vehicleMsg.insuranceType == null ?'checked':''}  value="1">车损险 </div>
+										<div  class="col-xs-2"><input type="checkbox"  name="insuranceType"  ${mainContract.vehicleMsg.insuranceType == null ?'checked':''}  value="2">不计免赔 </div>
+										<div  class="col-xs-2"><input type="checkbox"  name="insuranceType"  value="3">盗抢险 </div>
+										<div  class="col-xs-2"><input type="checkbox"  name="insuranceType"  value="4">自燃险 </div>
 									</div>
+									<input type="hidden" id="VehicleMsg.insuranceType" name="VehicleMsg.insuranceType"   value="${mainContract.vehicleMsg.insuranceType}">
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label">车险保险公司：</label>
+										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车险保险公司：</label>
 									</div>
 									<div class="col-xs-6">
 										<ce:select list="#{'1':'人保','2':'平安','3':'太保','4':'国寿财','5':'鑫安','6':'其他'}"
 													id="VehicleMsg.insuranceName" name="VehicleMsg.insuranceName"
-													cssClass="form-control"  value="${mainContract.vehicleMsg.insuranceName}"></ce:select>
+													cssClass="form-control  required"  value="${mainContract.vehicleMsg.insuranceName}"></ce:select>
 									</div>
 								</div>
 							</div>
@@ -442,7 +445,7 @@ body {
 									<div class="col-xs-6">
 										 <ce:select list="#{'1':'赔付包含购置税'}"
 													id="serviceType" name="serviceType"
-													cssClass="form-control"   value="${mainContract.serviceType}"></ce:select> 
+													cssClass="form-control  required"   value="${mainContract.serviceType}"></ce:select> 
 									</div>
 								</div>
 							</div>
@@ -454,17 +457,17 @@ body {
 									<div class="col-xs-6">
 												<ce:select list="#{'1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
 													id="serviceDate" name="serviceDate"
-													cssClass="form-control"  value="${mainContract.serviceDate}"></ce:select>
+													cssClass="form-control  required"  value="${mainContract.serviceDate}"></ce:select>
 									</div>
 								</div>
 							</div> 
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="settleAmount" class="control-label">结算金额(元)：</label>
+										<label for="settleAmount" class="control-label"><span style="color: red">*</span>结算金额(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" 	id="settleAmount" name="settleAmount"  value="${mainContract.settleAmount}"/>
+										<input class="form-control required" type="text" 	id="settleAmount" name="settleAmount"  value="${mainContract.settleAmount}"/>
 									</div>
 									
 								</div>
@@ -478,7 +481,7 @@ body {
 										<label for="settlePrice" class="control-label"><span style="color: red">*</span>服务售价(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="settlePrice" name="settlePrice" value="${mainContract.settlePrice}" />
+										<input class="form-control  required" type="text" id="settlePrice" name="settlePrice" value="${mainContract.settlePrice}" />
 									</div>
 								</div>
 							</div>
@@ -501,7 +504,7 @@ body {
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label">服务终止日期：</label>
+										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>服务终止日期：</label>
 									</div>
 									<div class="col-xs-6">
 											<div class="input-group input-append date form_date">
@@ -524,7 +527,7 @@ body {
 										<label for="saleUser" class="control-label"><span style="color: red">*</span>销售人员：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text"  id="saleUser" name="saleUser" value="${mainContract.saleUser}"/>
+										<input class="form-control required" type="text"  id="saleUser" name="saleUser" value="${mainContract.saleUser}"/>
 									</div>
 								</div>
 							</div>
@@ -561,7 +564,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>附加服务：</label>
 									</div>
 									<div class="col-xs-8">
-										<textarea class="form-control" rows="2" cols="100" id="appendMsg" name="appendMsg"  >${mainContract.appendMsg}</textarea>
+										<textarea class="form-control  required" rows="2" cols="100" id="appendMsg" name="appendMsg"  >${mainContract.appendMsg == null? '无':mainContract.appendMsg } </textarea>
 									</div>
 								</div>
 							</div>
@@ -574,7 +577,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>备注：</label>
 									</div>
 									<div class="col-xs-8">
-										<textarea class="form-control" rows="2" cols="100"  id="reMark" name="reMark" >${mainContract.reMark}</textarea>
+										<textarea class="form-control  required" rows="2" cols="100"  id="reMark" name="reMark" >${mainContract.reMark ==null ? '无备注。':mainContract.reMark }</textarea>
 									</div>
 								</div>
 							</div>

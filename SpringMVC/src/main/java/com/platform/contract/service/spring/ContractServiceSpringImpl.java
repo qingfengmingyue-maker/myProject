@@ -24,7 +24,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 	@Autowired
 	RegulationService regulationService;
 	@Override
-	public Boolean saveContract(MainContract mainContract) throws Exception {
+	public MainContract saveContract(MainContract mainContract) throws Exception {
 		String contractNo = mainContract.getContractNo();
 		if(StringUtils.isBlank(contractNo)){
 			String orgCode = mainContract.getPartyA().getOrgCode();//归属机构
@@ -35,7 +35,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		mainContract.getPartyB().setContractNo(contractNo);
 		mainContract.getVehicleMsg().setContractNo(contractNo);
 		super.saveOrUpdate(mainContract);
-		return true;
+		return mainContract;
 	}
 
 	@Override

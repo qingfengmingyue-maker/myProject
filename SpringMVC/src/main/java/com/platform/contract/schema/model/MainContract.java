@@ -47,6 +47,9 @@ public class MainContract {
 	String reMark;
 	@Column(name="policyno")
 	String policyNo;
+	//暂存还是保存标识 0为暂存，1为保存
+	@Column(name="savetype")
+	String saveType;
 	@Column(name="inserttime" ,insertable = false, updatable = false)
 	Date insertTime;
 	@Column(name="operatetime")
@@ -57,4 +60,5 @@ public class MainContract {
 	PartyB partyB;
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "mainContract")	
 	VehicleMsg vehicleMsg;
+	
 }

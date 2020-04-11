@@ -13,7 +13,7 @@ public interface ContractService {
 	 * @return
 	 * @throws Exception
 	 */
-	Boolean saveContract(MainContract mainContract) throws Exception;
+	MainContract saveContract(MainContract mainContract) throws Exception;
 	Boolean delContract(String contractNo)throws Exception;
 	MainContract findContractVo(String contractNo) throws Exception;
 	/**
