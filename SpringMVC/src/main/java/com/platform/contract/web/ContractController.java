@@ -1,6 +1,10 @@
 package com.platform.contract.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +20,6 @@ import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
 import com.platform.contract.schema.vo.ContractReturnVo;
 import com.platform.contract.service.facade.ContractService;
-import com.platform.user.schema.model.UserMsg;
 @Controller
 @RequestMapping("/contract")
 public class ContractController {
@@ -59,6 +62,7 @@ public class ContractController {
     		 mv.addObject("editType", "view");
     	 }else {
     		 mv.addObject("message", "更改合同");
+    		 mv.addObject("editType", "edit");
     	 }
     	 mv.addObject("mainContract",mainContract);
     	 return mv;
@@ -135,4 +139,33 @@ public class ContractController {
 		}
 	   	return null;
 	}
+	
+	
+    /**
+     * @deprecated:删除合同信息
+     * @param userCode
+     * @param response
+     */
+    @RequestMapping("/deleteContractByContractNo")
+    public void deleteContractByContractNo(String contractNo,HttpServletResponse response) {
+    	boolean flag = false;
+    	String msg = "删除失败";
+		try {
+			flag = contractService.delContract(contractNo);
+			response.setHeader("Content-Type", "text/html;charset=UTF-8");//这句话是解决乱码的
+			if(flag) {
+	    		 msg = "删除成功";
+	    	}
+			PrintWriter writer = response.getWriter();
+			writer.print(msg);
+			writer.flush();
+			writer.close();
+		}  catch (IOException e1) {
+			e1.printStackTrace();
+		}  catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   }
+    
 }

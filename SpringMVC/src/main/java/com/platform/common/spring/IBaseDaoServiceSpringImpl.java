@@ -71,8 +71,8 @@ public   class IBaseDaoServiceSpringImpl <T, ID extends Serializable>  implement
 	   return this.setParameterToQuery(this.getSession().createQuery(hqlString), params).executeUpdate();
 	}
 	@Override
-	public List executeSql(String sqlString,Map<String, ?> params) {
-		return this.setParameterToQuery(this.getSession().createNativeQuery(sqlString), params).list();
+	public int getCountBySqlCondition(String sqlString,Map<String, ?> params) {
+		return this.setParameterToQuery(this.getSession().createNativeQuery(sqlString), params).list().size();
 	}
    
 	 
@@ -190,6 +190,8 @@ public   class IBaseDaoServiceSpringImpl <T, ID extends Serializable>  implement
 		query.setMaxResults(maxResult);
 		return query.list();
 	}
+	
+	
 	 
 	@Override
 	public List<T> listBySQL(String sqlString) {

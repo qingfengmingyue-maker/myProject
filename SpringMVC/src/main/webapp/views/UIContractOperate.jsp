@@ -90,9 +90,10 @@ body {
 										<label for="partyA.orgName" class="control-label"><span style="color: red">*</span>经销商全称：</label>
 									</div>
 									<div class="col-xs-6">
-									    <input class="form-control" type="text" id="PartyA.orgCode"  name="PartyA.orgCode"  value="${mainContract.partyA.orgCode }"/>
+									    <input class="form-control" type="hidden" id="PartyA.orgCode"  name="PartyA.orgCode"  value="${mainContract.partyA.orgCode }"/>
 										<input class="form-control" type="text" id="PartyA.orgName"  name="PartyA.orgName"  value="${mainContract.partyA.orgName }"/>
 										<input class="form-control" type="hidden" id="PartyA.contractNo" name="PartyA.contractNo" value="${mainContract.partyA.contractNo}"/>
+										<input class="form-control" type="hidden" id="editType" name="editType" value="${editType}"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchComPany" class="btn btn-primary"  >查询</button>
@@ -148,7 +149,7 @@ body {
 									</div>
 									<div class="col-xs-6">
 										<input class="form-control" type="text" id="PartyB.ownerName" name="PartyB.ownerName" value="${mainContract.partyB.ownerName}"/>
-										<input class="form-control" type="text" id="PartyB.contractNo" name="PartyB.contractNo" value="${mainContract.partyB.contractNo}"/>
+										<input class="form-control" type="hidden" id="PartyB.contractNo" name="PartyB.contractNo" value="${mainContract.partyB.contractNo}"/>
 									</div>
 								</div>
 							</div>
@@ -223,7 +224,7 @@ body {
 									 <div class="col-xs-6">
 											<div class="input-group input-append date form_date">
 													<input id="VehicleMsg.purchaseDate" name="VehicleMsg.purchaseDate" readonly="readonly"
-														class="form-control"  value="${mainContract.vehicleMsg.purchaseDate}"
+														class="form-control"    value="<fmt:formatDate value="${mainContract.vehicleMsg.purchaseDate}" pattern="yyyy-MM-dd"/>"
 														type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
 														<i class="glyphicon glyphicon-th"> </i>
 													</span>

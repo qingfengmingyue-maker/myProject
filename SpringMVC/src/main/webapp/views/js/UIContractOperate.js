@@ -18,23 +18,10 @@ return fmt;
 }
 
 
-$(function() {
-	$(".form_date").datetimepicker({
-		format : "yyyy-mm-dd",
-		language : "zh-CN",
-		autoclose : true,
-		todayBtn : true,
-		todayHighlight : true,
-		showMeridian : false,
-		minView : "month",
-		pickerPosition : "bottom-left"
-	});
-});
-
 
 
 /**
- * @describe:保存用户信息
+ * @describe:保存合同信息
  * @returns
  */
 $(function(){
@@ -42,5 +29,28 @@ $(function(){
 		function(){
 		    $("#contractfm").submit();
      })
-	
 });
+
+
+
+window.onload=function(){ 
+	var editType = $('#editType').val();
+	if('view' == editType){
+		$(":input").attr("disabled", true);
+	}else{
+		$(".form_date").datetimepicker({
+			format : "yyyy-mm-dd",
+			language : "zh-CN",
+			autoclose : true,
+			todayBtn : true,
+			todayHighlight : true,
+			showMeridian : false,
+			minView : "month",
+			pickerPosition : "bottom-left"
+		});
+	}
+	$('#dropdownMenu2').attr("disabled", false);
+}
+
+
+

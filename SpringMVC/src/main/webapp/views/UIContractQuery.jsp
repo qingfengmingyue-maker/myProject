@@ -26,9 +26,9 @@ white-space: nowrap;
 					type="button">删除</button>
 			    <button class="btn btn-primary glyphicon glyphicon-eye-open" id="view"
 					type="button">浏览</button>
-				 <button class="btn btn-primary glyphicon glyphicon glyphicon-file" id="view"
+				 <button class="btn btn-primary glyphicon glyphicon glyphicon-file" id="print"
 					type="button">打印</button>
-				 <button class="btn btn-primary glyphicon glyphicon glyphicon-download-alt" id="view"
+				 <button class="btn btn-primary glyphicon glyphicon glyphicon-download-alt" id="export"
 					type="button">导出</button>
 			  </div>
 			</div>
@@ -49,6 +49,8 @@ white-space: nowrap;
 									<div class="col-xs-8">
 										<input id="policyNo"
 											name="policyNo" class="form-control" />
+										<input id="queryType"  type="hidden" 
+											name="queryType" class="form-control" />
 									</div>
 								</div>
 							</div>
@@ -99,7 +101,7 @@ white-space: nowrap;
 								<div class="row form-group">
 									<div class="col-xs-3" align="left"></div>
 									<div class="col-xs-8">
-										<button class="btn btn-primary btn-outline btn-search" id="moreSearch" type="button" >更多查询</button>
+										<button class="btn btn-primary btn-outline btn-search"  type="button"   data-toggle="modal" data-target="#moreSearchModal">更多查询</button>
 									</div>
 								</div>
 							</div>	
@@ -133,10 +135,209 @@ white-space: nowrap;
 							</table>
 						</div>
 					  </div>
+					  <input  type = "hidden" id="policyNoComplex"  name="policyNoComplex"/>
+					  <input  type = "hidden" id="orgNameComplex"   name="orgNameComplex"/>
+					  <input  type = "hidden" id="insertTimeComplex"  name="insertTimeComplex"/>
+					  <input  type = "hidden" id="insertTime1Complex"  name="insertTime1Complex"/>
+					  <input  type = "hidden" id="contractNoComplex"  name="contractNoComplex"/>
+					  <input  type = "hidden" id="vinNoComplex"  name="vinNoComplex"/>
+					  <input  type = "hidden" id="ownerNameComplex"  name="ownerNameComplex"/>
+					  <input  type = "hidden" id="carStateComplex"  name="carStateComplex"/>
+					  <input  type = "hidden" id="serviceTypeComplex"  name="serviceTypeComplex"/>
+					  <input  type = "hidden" id="serviceDateComplex"  name="serviceDateComplex"/>
 					</form>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="moreSearchModal"  class="modal fade" role="dialog"  data-backdrop="false" tabindex="-1" style="display:none;">
+	<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close glyphicon glyphicon-remove-circle"
+				data-dismiss="modal" aria-hidden="true" id="closeDialog"></button>
+			<h4 class="modal-title" id="myModalLabel" class="panel panel-primary">高级搜索</h4>
+		</div>
+		<div class="modal-body"> 
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="policyNo" class="control-label">保单号：</label>
+							</div>
+							<div class="col-xs-8">
+								<input type="text" id="showPolicyNo" name="showPolicyNo"  class="form-control"   >
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">经销商简称：</label>
+							</div>
+							<div class="col-xs-8">
+								<input type="text" id="showOrgName" name="showOrgName"  class="form-control"   >
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">保存日期起期：</label>
+							</div>
+							<div class="col-xs-8">
+								<div class="input-group input-append date form_date">
+									  <input  id="showInsertTime" name="showInsertTime" readonly="readonly"  
+										class="form-control"   
+										type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
+										<i class="glyphicon glyphicon-th"> </i>
+										</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">保存日期止期：</label>
+							</div>
+							<div class="col-xs-8">
+								<div class="input-group input-append date form_date">
+									  <input  id="showInsertTime1" name="showInsertTime1" readonly="readonly"  
+										class="form-control"   
+										type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
+										<i class="glyphicon glyphicon-th"> </i>
+										</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">合同号：</label>
+							</div>
+							<div class="col-xs-8">
+								<input type="text" id="showContractNo" name="showContractNo"  class="form-control"   >
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">车架号：</label>
+							</div>
+							<div class="col-xs-8">
+								<input type="text" id="showVinNo" name="showVinNo"  class="form-control"   >
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">车主：</label>
+							</div>
+							<div class="col-xs-8">
+								<input type="text" id="showoOwnerName" name="showoOwnerName"  class="form-control"   >
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			    <div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">车辆状态：</label>
+							</div>
+							<div class="col-xs-8">
+								<ce:select list="#{'':'','1':'新车','2':'一年以内次新车','3':'1年至2年在用车','4':'2年至3年在用车','5':'3年至4年在用车','6':'5年至6年在用车'}"
+													id="showCarState" name="showCarState"
+													cssClass="form-control"  ></ce:select>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">服务类型：</label>
+							</div>
+							<div class="col-xs-8">
+								 <ce:select list="#{'':'','1':'赔付包含购置税'}"
+													id="showServiceType" name="showServiceType"
+													cssClass="form-control"  ></ce:select>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+					<div class="row">
+					<div class="col-lg-2 col-md-2 col-xs-2"></div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="row form-group">
+							<div class="col-xs-4" align="right">
+								<label for="simpleOrgName" class="control-label">服务期限：</label>
+							</div>
+							<div class="col-xs-8">
+								<ce:select list="#{'':'','1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
+													id="showServiceDate" name="showServiceDate"
+													cssClass="form-control"  ></ce:select>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="col-xs-12">
+							<div  style="text-align: right;">
+								<button class="btn btn-primary btn-outline btn-submit"
+									type="button" id="submitQuery">确定</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-xs-6">
+						<div class="col-xs-10">
+							<div  style="text-align: left;">
+								<button class="btn btn-primary btn-outline btn-returnQuery"
+									type="button"  id="cancelQuery">取消</button>
+
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
 	</div>
 </body>
 </html>
