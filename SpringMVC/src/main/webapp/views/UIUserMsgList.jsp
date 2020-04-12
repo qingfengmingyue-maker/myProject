@@ -85,10 +85,12 @@ white-space: nowrap;
 								<thead>
 									<tr align="center">
 										<th><input id="checkAll"  type="checkbox" ></th>
+										<th>机构代码</th>
 										<th>机构名称</th>
 										<th>用户名称</th>
 										<th>用户代码</th>
 										<th>手机号</th>
+										<th>职务</th>
 									</tr>
 								 </thead>
 								<tbody>									

@@ -16,6 +16,17 @@ $(function(){
 $(function(){
 	$("#saveUserMsg").click(
 		function(){
+			 $("#userfm").validate({
+
+				   rules: {
+					   telPhone:{isMobile:true}
+				  },
+
+				   messages: {
+				    	
+			       }
+
+			 });
 		    $("#userfm").submit();
      })
 	
@@ -71,29 +82,3 @@ $('form').validate({
     }
 });
 
-
-
-
-$().ready(function() {
-
-	 $("#userfm").validate({
-
-	   rules: {
-		   userName: "required",
-		   orgName:"required",
-		   userPwd:{required :true,maxlength: 10},
-		   telPhone:{isMobile:true}
-	  },
-
-	   messages: {
-	    	userName: "请输入用户名称",
-	    	 orgName:"请输入机构名称",
-	    	 userPwd:{
-	    		 required: "请输入用户密码",
-	    		 maxlength: "密码长度不能大于10位"
-	    	  }
-       }
-
-	    });
-
-});

@@ -25,6 +25,9 @@ public class UserMsg {
 	@Column(name="userpwd")
 	private String userPwd;
 	
+	@Column(name="orgcode")
+	private String orgCode;
+	
 	@Column(name="orgname")
 	private String orgName;
 	
@@ -33,6 +36,9 @@ public class UserMsg {
 	
 	@Column(name="telphone")
 	private String telPhone;
+	
+	@Column(name="businesspost")
+	private String businessPost;
 	
 	@Column(name="postflag")
 	private String postFlag;

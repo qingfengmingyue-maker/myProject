@@ -5,7 +5,7 @@ jQuery(function($) {
                
     	  {"data": null,"class" : "center",
    			"render" : function(data, type, row) {
-   			return '<input name="checkCode" type="checkbox" id="'+data.orgName+'">';
+   			return '<input name="checkCode" type="checkbox" id="'+data.orgCode+","+data.orgName +'">';
    			}
           },
           {"data": "orgCode","class" : "center","bSortable": false},
@@ -43,8 +43,11 @@ $(function() {
 $(function() {
 	$("#sureCheck").click(function() {
 		var result = selectOne();
+		result = result+'';
 		if(result != null){
-		     $("#orgName").val(result);
+			 let obj = result.split(",");
+			 $("#orgCode").val(obj[0]);
+		     $("#orgName").val(obj[1]);
 		     $("#closeDialog").click();
 		     
 		}

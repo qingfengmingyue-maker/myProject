@@ -61,10 +61,12 @@ jQuery(function($) {
    			return '<input name="checkCode" type="checkbox" id="'+data.userCode+'">';
    			}
           },
+          {"data": "orgCode","class" : "center","bSortable": false},
           {"data": "orgName","class" : "center","bSortable": false},
           {"data": "userName","class" : "center","bSortable": false},
           {"data": "userCode","class" : "center","bSortable": false},
-          {"data": "telPhone","class" : "center","bSortable": false}
+          {"data": "telPhone","class" : "center","bSortable": false},
+          {"data": "businessPost","class" : "center","bSortable": false}
      ];
        $(dataTableInit(contextRootPath+"/userMsg/queryUserMsg.do", colModel,'',10));
       

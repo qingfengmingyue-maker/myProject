@@ -33,7 +33,7 @@
 												<label for="userMsgVo.userCode" class="control-label">用户代码</label>
 											</div>
 											<div class="col-xs-8">
-												<input class="form-control" id="userCode" name="userCode"
+												<input class="form-control " id="userCode" name="userCode"
 													placeholder="自动生成" readonly="readonly"
 													value="${userMsg.userCode }">
 											</div>
@@ -46,10 +46,27 @@
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
 												<label for="userMsgVo.orgName" class="control-label"><span
+													style="color: red">*</span>机构代码</label>
+											</div>
+											<div class="col-xs-8">
+												<input class="form-control required" id="orgCode" name="orgCode"
+													maxlength="10" value="${userMsg.orgCode }"  placeholder="选择机构自动带出"
+													readonly="readonly">
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-lg-2 col-md-2 col-xs-2"></div>
+									<div class="col-lg-6 col-md-6 col-xs-6">
+										<div class="row form-group">
+											<div class="col-xs-3" align="right">
+												<label for="userMsgVo.orgName" class="control-label"><span
 													style="color: red">*</span>机构名称</label>
 											</div>
 											<div class="col-xs-8">
-												<input class="form-control" id="orgName" name="orgName"
+												<input class="form-control required" id="orgName" name="orgName"
 													maxlength="50" value="${userMsg.orgName }"
 													${editType == 'view' ? 'readonly' : ''}>
 											</div>
@@ -69,7 +86,7 @@
 													style="color: red">*</span>用户名称</label>
 											</div>
 											<div class="col-xs-8">
-												<input class="form-control" id="userName" name="userName"
+												<input class="form-control  required" id="userName" name="userName"
 													maxlength="30" value="${userMsg.userName }"
 													${editType == 'view' ? 'readonly' : ''}>
 											</div>
@@ -85,7 +102,7 @@
 													style="color: red">*</span>用户密码</label>
 											</div>
 											<div class="col-xs-8">
-												<input class="form-control" id="userPwd" name="userPwd"
+												<input class="form-control required" id="userPwd" name="userPwd"
 													maxlength="10" type="password" value="${userMsg.userPwd }"
 													${editType == 'view' ? 'readonly' : ''}>
 											</div>
@@ -101,7 +118,22 @@
 											</div>
 											<div class="col-xs-8">
 												<input class="form-control" id="telPhone" name="telPhone"
-													maxlength="11" value="${userMsg.telPhone }"
+													maxlength="11" value="${userMsg.telPhone }"  
+													${editType == 'view' ? 'readonly' : ''}>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-2 col-md-2 col-xs-2"></div>
+									<div class="col-lg-6 col-md-6 col-xs-6">
+										<div class="row form-group">
+											<div class="col-xs-3" align="right">
+												<label for="userMsgVo.businessPost" class="control-label">职务</label>
+											</div>
+											<div class="col-xs-8">
+												<input class="form-control" id="businessPost" name="businessPost"
+													maxlength="11" value="${userMsg.businessPost }"
 													${editType == 'view' ? 'readonly' : ''}>
 											</div>
 										</div>
