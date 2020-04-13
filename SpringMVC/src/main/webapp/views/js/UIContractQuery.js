@@ -152,3 +152,17 @@ $(function() {
 		$("#closeDialog").click();
 	});
 });
+
+
+/**
+ * 打印功能
+ */
+$(function() {
+	$("#print").click(function() {
+		var result = selectOne();
+		if(result != null){
+			window.location.href=contextRootPath + "/contract/print.do?contractNo="+result;
+		}
+	});
+});
+

@@ -176,4 +176,21 @@ public class ContractController {
 		}
    }
     
+    
+    /**
+     * @deprecated:打印
+     */
+    @RequestMapping("/print")
+    public ModelAndView print(String contractNo) {
+    	 ModelAndView mv = new ModelAndView("/UIContractPrint");
+    	 MainContract mainContract =null;
+		try {
+			mainContract = contractService.findContractVo(contractNo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	 mv.addObject("mainContract",mainContract);
+    	return mv;
+   }
 }

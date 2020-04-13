@@ -108,7 +108,7 @@ white-space: nowrap;
 						</div>	
 						<div class="table-responsive" >
 							<table   class="table table-striped table-bordered table-sort" 
-								id="information" a>
+								id="information" >
 								<thead>
 									<tr align="center">
 										<th><input id="checkAll"  type="checkbox" ></th>
