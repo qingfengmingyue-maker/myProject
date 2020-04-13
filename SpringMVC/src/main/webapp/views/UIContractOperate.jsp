@@ -118,10 +118,10 @@ body {
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>联系电话：</label>
+										<label for="mobile" class="control-label"><span style="color: red">*</span>联系电话：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text"  id="PartyA.mobile"  name="PartyA.mobile" value="${mainContract.partyA.mobile }"/>
+										<input class="form-control  required" type="text"  id="PartyA.mobile"  name="PartyA.mobile" value="${mainContract.partyA.mobile }"  onchange="checkMobile(this)"/>
 									</div>
 									
 								</div>
@@ -187,7 +187,7 @@ body {
 									<div class="col-xs-6">
 										<ce:select list="#{'':'--请选择--','01':'身份证','02':'护照','03':'军官证','04':'组织机构代码','05':'统一社会信用代码','99':'其他'}"
 													id="PartyB.documentType" name="PartyB.documentType"
-													cssClass="form-control  required"  value="${mainContract.partyB.documentType}"></ce:select>
+													cssClass="form-control  required"  value="${mainContract.partyB.documentType}"  onchange="checkDocumentType();"></ce:select>
 									</div>
 								</div>
 							</div>
@@ -197,7 +197,7 @@ body {
 										<label for="PartyB.documentType" class="control-label"><span style="color: red">*</span>证件号码：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text" id="PartyB.documentNo" name="PartyB.documentNo"  value="${mainContract.partyB.documentNo}"/>
+										<input class="form-control  required" type="text" id="PartyB.documentNo" name="PartyB.documentNo"  value="${mainContract.partyB.documentNo}"  onchange="checkDocumentNo(this);"/>
 									</div>
 								</div>
 							</div>
@@ -266,7 +266,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车牌号码：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text" id="VehicleMsg.licenseNo" name="VehicleMsg.licenseNo"   value="${mainContract.vehicleMsg.licenseNo}"/>
+										<input class="form-control  required" type="text" id="VehicleMsg.licenseNo" name="VehicleMsg.licenseNo"   value="${mainContract.vehicleMsg.licenseNo}"   onchange="checkLicenseNo(this);"/>
 									</div>
 								</div>
 							</div>
@@ -286,7 +286,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车辆识别码(VIN码)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text" id="VehicleMsg.vinNo" name="VehicleMsg.vinNo" value="${mainContract.vehicleMsg.vinNo}" />
+										<input class="form-control  required" type="text" id="VehicleMsg.vinNo" name="VehicleMsg.vinNo" value="${mainContract.vehicleMsg.vinNo}"  onchange="checkVINNO(this);"  maxlength="17"/>
 									</div>
 									
 								</div>
@@ -341,7 +341,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车辆发票金额(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text"  id="VehicleMsg.invoiceAmount" name="VehicleMsg.invoiceAmount" value="${mainContract.vehicleMsg.invoiceAmount}"/>
+										<input class="form-control  required" type="text"  id="VehicleMsg.invoiceAmount" name="VehicleMsg.invoiceAmount" value="${mainContract.vehicleMsg.invoiceAmount}" onchange="checkMoney(this,'车辆发票金额(元)')"    maxlength="14" />
 									</div>
 								</div>
 							</div>
@@ -361,7 +361,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label">购置费用(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="VehicleMsg.purchaseAmount" name="VehicleMsg.purchaseAmount" value="${mainContract.vehicleMsg.purchaseAmount}"/>
+										<input class="form-control" type="text" id="VehicleMsg.purchaseAmount" name="VehicleMsg.purchaseAmount" value="${mainContract.vehicleMsg.purchaseAmount}"  onchange="checkMoney(this,'购置费用(元)')"    maxlength="14" />
 									</div>
 									
 								</div>
@@ -380,7 +380,7 @@ body {
 										<div  class="col-xs-2"><input type="checkbox"  name="insuranceType"  value="3">盗抢险 </div>
 										<div  class="col-xs-2"><input type="checkbox"  name="insuranceType"  value="4">自燃险 </div>
 									</div>
-									<input type="hidden" id="VehicleMsg.insuranceType" name="VehicleMsg.insuranceType"   value="${mainContract.vehicleMsg.insuranceType}">
+									<input type="hidden" id="VehicleMsg.insuranceType" name="VehicleMsg.insuranceType"   value="${mainContract.vehicleMsg.insuranceType}"  >
 								</div>
 							</div>
 							<div class="col-lg-4 col-md-4 col-xs-12">
@@ -404,7 +404,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label">上牌费：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text"  id="VehicleMsg.licenseFee" name="VehicleMsg.licenseFee"   value="${mainContract.vehicleMsg.licenseFee}"/>
+										<input class="form-control" type="text"  id="VehicleMsg.licenseFee" name="VehicleMsg.licenseFee"   value="${mainContract.vehicleMsg.licenseFee}"  onchange="checkMoney(this,'上牌费')"   maxlength="14"  />
 									</div>
 									
 								</div>
@@ -415,7 +415,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label">车船税：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="VehicleMsg.taxAmount" name="VehicleMsg.taxAmount"  value="${mainContract.vehicleMsg.taxAmount}"/>
+										<input class="form-control" type="text" id="VehicleMsg.taxAmount" name="VehicleMsg.taxAmount"  value="${mainContract.vehicleMsg.taxAmount}"  onchange="checkMoney(this,'车船税')"   maxlength="14"/>
 									</div>
 								</div>
 							</div>
@@ -467,7 +467,7 @@ body {
 										<label for="settleAmount" class="control-label"><span style="color: red">*</span>结算金额(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control required" type="text" 	id="settleAmount" name="settleAmount"  value="${mainContract.settleAmount}"/>
+										<input class="form-control required" type="text" 	id="settleAmount" name="settleAmount"  value="${mainContract.settleAmount}"  onchange="checkMoney(this,'结算金额(元)')"  maxlength="14" />
 									</div>
 									
 								</div>
@@ -481,7 +481,7 @@ body {
 										<label for="settlePrice" class="control-label"><span style="color: red">*</span>服务售价(元)：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text" id="settlePrice" name="settlePrice" value="${mainContract.settlePrice}" />
+										<input class="form-control  required" type="text" id="settlePrice" name="settlePrice" value="${mainContract.settlePrice}"  onchange="checkMoney(this,'服务售价(元)')"  maxlength="14"  />
 									</div>
 								</div>
 							</div>
@@ -515,7 +515,6 @@ body {
 													</span>
 											</div>
 									</div>
-									
 								</div>
 							</div>
 					</div>

@@ -46,11 +46,11 @@
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
 												<label for="userMsgVo.orgName" class="control-label"><span
-													style="color: red">*</span>机构代码</label>
+													style="color: red">*</span>经销商代码</label>
 											</div>
 											<div class="col-xs-8">
 												<input class="form-control required" id="orgCode" name="orgCode"
-													maxlength="10" value="${userMsg.orgCode }"  placeholder="选择机构自动带出"
+													maxlength="10" value="${userMsg.orgCode }"  placeholder="选择经销商自动带出"
 													readonly="readonly">
 											</div>
 										</div>
@@ -63,7 +63,7 @@
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
 												<label for="userMsgVo.orgName" class="control-label"><span
-													style="color: red">*</span>机构名称</label>
+													style="color: red">*</span>经销商名称</label>
 											</div>
 											<div class="col-xs-8">
 												<input class="form-control required" id="orgName" name="orgName"
