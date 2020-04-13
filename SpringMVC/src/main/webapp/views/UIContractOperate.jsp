@@ -294,16 +294,16 @@ body {
 					    </div>
 					    
 					    	<div class="row">
-					    	<div class="col-lg-4 col-md-4 col-xs-12">
+					    	
+					    		<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>品牌：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text" id="VehicleMsg.brandName" name="VehicleMsg.brandName" value="${mainContract.vehicleMsg.brandName}"/>
-									</div>
-									<div class="col-xs-2" align="left" style="padding-left: 0px">
-										<button type="button" id="searchComPany" class="btn btn-primary"  >选择</button>
+										<ce:select list="#{'一汽奥迪':'一汽奥迪'}"
+											id="VehicleMsg.brandName" name="VehicleMsg.brandName" 
+											cssClass="form-control  required" value="${mainContract.vehicleMsg.brandName}"></ce:select>
 									</div>
 								</div>
 							</div>
@@ -313,10 +313,17 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车系：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text"  id="VehicleMsg.className" name="VehicleMsg.className" value="${mainContract.vehicleMsg.className}"/>
-									</div>
-									<div class="col-xs-2" align="left" style="padding-left: 0px">
-										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >选择</button>
+										<select class="form-control" name="VehicleMsg.className" id="VehicleMsg.className" required="required"
+											value="${VehicleMsg.className}" >
+											<c:if test="${busiType != null}">
+												<option value="${mainContract.VehicleMsg.className}">${mainContract.VehicleMsg.className}</option>
+											</c:if>
+											<c:set var="vehicleIndex" value="0"/>
+											<c:forEach items="${vehicleClasslist}" var="vehicleClass" >
+												<option value="${vehicleClass.className}">${vehicleClass.className }</option>
+												<c:set var="baseOrgIndex" value="${vehicleIndex + 1 }" />
+											</c:forEach>
+										</select>
 									</div>
 								</div>
 							</div>

@@ -1,12 +1,19 @@
 package com.platform.contract.web;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.platform.common.schema.VehicleClass;
 import com.platform.common.schema.vo.Page;
 import com.platform.common.schema.vo.Pager;
 import com.platform.common.service.RegulationService;
+import com.platform.common.service.VehicleClassService;
 import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
 import com.platform.contract.schema.vo.ContractReturnVo;
@@ -28,6 +37,9 @@ public class ContractController {
 	RegulationService regulationService;
 	@Autowired
 	ContractService contractService;
+	@Autowired
+	VehicleClassService vehicleClassService;
+	
 	/**
 	 * 跳转查询页面
 	 * @return
@@ -41,11 +53,19 @@ public class ContractController {
 	 * @return
 	 */
 	@RequestMapping("/createNewContract")
-	    public ModelAndView createNewUser() {
-		   ModelAndView mv = new ModelAndView("/UIContractOperate");
-		   mv.addObject("title", "新增合同");
-		   return mv;
-	 }
+	public ModelAndView createNewUser() {
+		ModelAndView mv = new ModelAndView("/UIContractOperate");
+		List<VehicleClass> vehicleClasslist = null;
+		try {
+			vehicleClasslist = vehicleClassService.findVehicleClassList("");
+		} catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		mv.addObject("vehicleClasslist", vehicleClasslist);
+		mv.addObject("title", "新增合同");
+		return mv;
+	}
 	
 	
     @RequestMapping("/findContractByContractNo")
@@ -193,4 +213,67 @@ public class ContractController {
     	 mv.addObject("mainContract",mainContract);
     	return mv;
    }
+    
+    
+    
+    /**
+	 * 下载
+	 */
+	@RequestMapping("/loadContractExcel")
+	public void loadContractExcel(ContractQueryVo contractQueryVo,HttpServletResponse response){
+		List<MainContract> mainContractList = null;
+	   	try {
+			mainContractList=contractService.findContractList(contractQueryVo);
+			String [] columnName={"合同号","车主","品牌","车系",	"车型","车辆状态","保存日期","服务类型","结算金额（元）","服务期限","经销商名称","创建日期","更新日期","操作者"};
+			HSSFWorkbook wb = new HSSFWorkbook();
+			HSSFSheet sheet = wb.createSheet("合同报表");
+			HSSFRow rowTitle = sheet.createRow(0);
+			int columnNameLength = columnName.length;
+			for(int i=0;i<columnNameLength;i++){
+				HSSFCell cell = rowTitle.createCell(i);
+		    	cell.setCellValue(columnName[i]);
+		    }
+			int rownum = 1;
+			SimpleDateFormat datetemp1 = new SimpleDateFormat("yyyy-MM-dd");
+			for(MainContract mainContract:mainContractList){
+				HSSFRow row = sheet.createRow(rownum++);
+				int cellnum = 0;
+				HSSFCell cell = row.createCell(cellnum++);
+			    cell.setCellValue(mainContract.getContractNo());//合同号
+			    row.createCell(cellnum++).setCellValue(mainContract.getPartyB().getOwnerName());//车主
+			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getBrandName());//品牌
+			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getClassName());//车系
+			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getModelName());//车型
+			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getCarState());//车辆状态
+			    row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));//保存日期
+			    row.createCell(cellnum++).setCellValue(mainContract.getServiceType());//服务类型
+			    row.createCell(cellnum++).setCellValue(mainContract.getSettleAmount()+"");//结算金额
+			    row.createCell(cellnum++).setCellValue(mainContract.getServiceDate());//服务期限
+			    row.createCell(cellnum++).setCellValue(mainContract.getPartyA().getOrgName());//经销商名称
+			    row.createCell(cellnum++).setCellValue(mainContract.getInsertTime());//
+			    row.createCell(cellnum++).setCellValue(mainContract.getOperateTime());
+			    row.createCell(cellnum++).setCellValue(mainContract.getSaleUser());
+			}
+			
+		    OutputStream os = null;
+		    try {
+				os = response.getOutputStream();
+				SimpleDateFormat datetemp = new SimpleDateFormat("yyyyMMdd");
+				String fileName = datetemp.format(new Date()) + ".xls";
+				response.setHeader("Content-disposition", "attachment; filename="+ fileName + "");// 设定输出文件头
+				// ZC:WANGXYE111001 导出excel名称修改 mod wangxiaoye 20151110 end
+				response.setContentType("application/msexcel");// 定义输出类型
+				wb.write(os);
+			} catch (IOException e) {
+			}finally{
+				try {
+					os.close();
+				} catch (IOException e) {
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

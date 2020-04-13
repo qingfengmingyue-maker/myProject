@@ -66,5 +66,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jackson-databind-2.9.7.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/fastjson-1.2.7.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/poi-3.8-20120326.jar"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>

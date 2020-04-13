@@ -166,3 +166,18 @@ $(function() {
 	});
 });
 
+
+
+/**
+ * 下载导出报表
+ */
+$(function() {
+$("#export").click(function(){
+	debugger;
+	var policyNo=$("#policyNo").val();
+	var contractNo=$("#contractNo").val();
+	var ownerName=$("#ownerName").val();
+	var vinNo=$("#vinNo").val();
+	window.location.href=contextRootPath + "/contract/loadContractExcel.do?policyNo="+policyNo+"&contractNo="+contractNo+"&ownerName="+ownerName+"&vinNo="+vinNo;
+ })
+});
