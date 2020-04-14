@@ -17,7 +17,7 @@
 					type="button"   onclick="preview(1)" >打印</button>
     <!--startprint1-->
 <h3 style="text-align: center;font-weight: bold;">机动车置换服务合同</h3>
-<font style="color: red;font-weight: bold;">————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</font>
+<font style="color: red;font-weight: bold;">————————————————————————————————————————————————————————————————————————————————————————————————————————————————</font><br/>
 尊敬的客户：<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;感谢您选择青岛黑马网络技术有限公司（下称:“我司”）的车辆过保全服务，我司向您提供更贴心的服务和更全面的保障，我司推出的车辆保全服务（下称:“服务”），帮助您免除车辆价值折旧的损失，无压力更换新车，生活更轻松，服务细则如下：<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<font style="font-weight: bold;">一、服务承诺:</font></br>

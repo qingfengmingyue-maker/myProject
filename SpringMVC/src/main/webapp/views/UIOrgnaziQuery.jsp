@@ -8,7 +8,7 @@ white-space: nowrap;
 }
 </style>
 <script type="text/javascript"	src="${ctx}/views/js/UIOrgnaziQuery.js"></script>
-<title>机构管理</title>
+<title>经销商管理</title>
 </head>
 <body>
 	<div class="row">
@@ -28,7 +28,7 @@ white-space: nowrap;
 									<div class="col-lg-4 col-md-4 col-xs-12">
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
-												<label class="control-label">机构名称</label>
+												<label class="control-label">经销商名称</label>
 											</div>
 											<div class="col-xs-8">
 												<input id="orgName"

@@ -62,9 +62,9 @@
 						<li><a href='${ctx}/organiz/prepareQuery.do'><i
 								class='fa fa-sitemap fa-fw'></i>机构管理<i class='fa fa-fw'></i><span
 								class='fa'></span></a></li>
-						<li><a href='${ctx}/user/prepareQuery.do'><i
+						<%-- <li><a href='${ctx}/user/prepareQuery.do'><i
 								class='fa fa-sitemap fa-fw'></i>用户管理Demo<i class='fa fa-fw'></i><span
-								class='fa'></span></a></li>
+								class='fa'></span></a></li> --%>
 						<li><a href='${ctx}/userMsg/userMsgList.do'><i
 								class='fa fa-sitemap fa-fw'></i>用户管理<i class='fa fa-fw'></i><span
 								class='fa'></span></a></li>

@@ -5,6 +5,7 @@ import java.util.List;
 import com.platform.common.schema.vo.Page;
 import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
+import com.platform.user.schema.vo.UserMsgVo;
 
 public interface ContractService {
 	/**

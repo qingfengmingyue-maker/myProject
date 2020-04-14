@@ -46,6 +46,12 @@ public class UserMsgServiceSpringImpl extends IBaseDaoServiceSpringImpl<UserMsg,
 			hql_count.append(param);
 			map.put("telPhone", userMsgVo.getTelPhone());
 		}
+		if(StringUtils.isNotBlank(userMsgVo.getOrgCode())) {
+			String param = " and orgCode = :orgCode";
+			hql.append(param);
+			hql_count.append(param);
+			map.put("orgCode", userMsgVo.getOrgCode());
+		}
 		int total = super.getCountByHqlCondition(hql_count.toString(), map);
 		List<UserMsg> userMsgs =  super.listByHQL(hql.toString(),map,(page.getPageNo()-1)*page.getPageSize(), page.getPageSize());
 		return new Page(page.getPageNo(), page.getPageSize(), total,userMsgs);

@@ -30,6 +30,7 @@ import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
 import com.platform.contract.schema.vo.ContractReturnVo;
 import com.platform.contract.service.facade.ContractService;
+import com.platform.user.schema.vo.UserMsgVo;
 @Controller
 @RequestMapping("/contract")
 public class ContractController {
@@ -250,8 +251,8 @@ public class ContractController {
 			    row.createCell(cellnum++).setCellValue(mainContract.getSettleAmount()+"");//结算金额
 			    row.createCell(cellnum++).setCellValue(mainContract.getServiceDate());//服务期限
 			    row.createCell(cellnum++).setCellValue(mainContract.getPartyA().getOrgName());//经销商名称
-			    row.createCell(cellnum++).setCellValue(mainContract.getInsertTime());//
-			    row.createCell(cellnum++).setCellValue(mainContract.getOperateTime());
+			    row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));//
+			    row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getOperateTime()));
 			    row.createCell(cellnum++).setCellValue(mainContract.getSaleUser());
 			}
 			
@@ -276,4 +277,16 @@ public class ContractController {
 		}
 	}
 	
+	 /**
+	  * @describe:根据经销商名称查询业务联系人
+	  * @param orgCode
+	  * @return
+	  */
+	 @RequestMapping("/prepareUserMsg")
+	 public ModelAndView prepareUserMsg(String orgCode,String businessName) {
+	       ModelAndView mv = new ModelAndView("/UIPrepareUserMsg");
+		   mv.addObject("businessName", businessName);
+		   mv.addObject("orgCode", orgCode);
+		   return mv;
+	 }
 }

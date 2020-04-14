@@ -46,10 +46,15 @@ $(function() {
 		result = result+'';
 		if(result != null){
 			 let obj = result.split(",");
-			 $("#orgCode").val(obj[0]);
-		     $("#orgName").val(obj[1]);
+			 if( $("#orgCode").length > 0){
+				 $("#orgCode").val(obj[0]);
+			     $("#orgName").val(obj[1]);
+			 }
+			 if( $("#PartyA\\.orgCode").length > 0){
+				  $("#PartyA\\.orgCode").val(obj[0]);
+				  $("#PartyA\\.orgName").val(obj[1]);
+			 }
 		     $("#closeDialog").click();
-		     
 		}
     });
 });

@@ -1,5 +1,5 @@
 Date.prototype.Format = function(fmt) 
-{ //author: meizz 
+{ 
 var o = { 
  "M+" : this.getMonth()+1,                 //月份 
  "d+" : this.getDate(),                    //日 
@@ -152,14 +152,14 @@ window.onload=function(){
  * @describe:校验联系电话
  * 
  */
-function checkMobile(field){
+function checkMobile(field,msg){
 	let Fieldvalue = field.value;
 	let tel =  /^0\d{2,3}-\d{5,9}$/;
 	let tel1 =  /^(1(3|4|5|6|7|8|9)\d{9})$/;
 	if(Fieldvalue!=null&&Fieldvalue!="")
 	{
 		if(!(tel.test(Fieldvalue)||tel1.test(Fieldvalue))){
-			alert("请输入正确的联系电话");
+			alert("请输入正确的"+msg);
 			field.value="";
 		}
 	}
@@ -239,3 +239,58 @@ function checkMoney(field,msg){
 	}
 }
 
+
+
+
+
+/**
+ * @describe:点击经销商查询按钮
+ * @returns
+ */
+$(function(){
+	$("#searchComPany").click(
+			function(){
+				var orgName = $('#PartyA\\.orgName').val();
+				var url = contextRootPath + "/userMsg/prepareOrganization.do?orgName="+orgName;
+				var $modal = $('#comPanyModal');
+				$modal.load(url, '',
+				function() {
+					$modal.modal();
+				});
+				
+	})
+});
+
+
+/**
+ * @describe:点击业务联系人的查询方法
+ * @returns
+ */
+$(function(){
+	$("#searchBussinessLinker").click(
+		 function(){
+				var orgCode = $('#PartyA\\.orgCode').val();
+				var orgName = $('#PartyA\\.orgName').val();
+				var businessName = $('#PartyA\\.businessName').val();
+				if(orgName  == ""){
+					alert("请先选择经销商名称");
+				}else if(orgName  != "" && orgCode ==""){
+					alert("该经销商的经销商代码是空的，请重新选择经销商！");
+				}else{
+					var url = contextRootPath + "/contract/prepareUserMsg.do?orgCode="+orgCode+"&businessName="+businessName;
+					var $modal = $('#userMsgModal');
+					$modal.load(url, '',
+					function() {
+						$modal.modal();
+					});
+			  }
+	 })
+});
+
+/**
+ * @describe；手动录入经销商进行重置
+ * @returns
+ */
+function resetOrgCode(){
+	 $('#PartyA\\.orgCode').val('');
+}

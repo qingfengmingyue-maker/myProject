@@ -4,7 +4,7 @@
 <%@ include file="/static/common/meta_css.jsp"%>
 <%@ include file="/static/common/meta_js.jsp"%>
 <script type="text/javascript"	src="${ctx}/static/common/js/common.js"></script>
-<script type="text/javascript"	src="${ctx}/views/js/UIPrepareOrganization.js"></script>
+<script type="text/javascript"	src="${ctx}/views/js/UIPrepareUserMsg.js"></script>
 <style>
 th {
 white-space: nowrap; 
@@ -16,12 +16,12 @@ white-space: nowrap;
   <div class="modal-content">
       <div class="modal-header">
 			<button type="button" class="close glyphicon glyphicon-remove-circle"
-				data-dismiss="modal" aria-hidden="true" id="closeDialog"></button>
-			<h4 class="modal-title" id="myModalLabel" class="panel panel-primary">经销商信息查询</h4>
+				data-dismiss="modal" aria-hidden="true" id="closeUserDialog"></button>
+			<h4 class="modal-title" id="myModalLabel" class="panel panel-primary">业务联系人信息查询</h4>
       </div>
      <div class="modal-body">
 	<br />
-		<form name="fm" id="fm" class="form-horizontal" role="form">
+		<form name="userFm" id="userFm" class="form-horizontal" role="form">
 			<div class="panel-group" id="accordion">
 					<div id="collapseOne" class="panel-collapse collapse in">
 						<div class="panel-body">
@@ -29,11 +29,13 @@ white-space: nowrap;
 								<div class="col-lg-6 col-md-6 col-xs-6">
 									<div class="row form-group">
 										<div class="col-xs-3">
-											<label for=orgName class="control-label">经销商名称</label>
+											<label for=orgName class="control-label">业务联系人</label>
 										</div>
 										<div class="col-xs-8">
-											<input id="orgNameVo" name="orgName"
-												class="form-control" value="${orgName }"/>
+											<input id="userName" name="userName"
+												class="form-control" value="${businessName }"/>
+											<input id="orgCode" name="orgCode"  type="hidden"
+												class="form-control" value="${orgCode }"/>
 										</div>
 									</div>
 								</div>
@@ -41,8 +43,8 @@ white-space: nowrap;
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-xs-12">
 									<div  style="text-align: center;">
-										<button class="btn btn-primary btn-outline btn-search" id='search' type="button">查询</button>
-										<button class="btn btn-primary btn-outline btn-reset" id="clearOrganization" type="button">重置</button>
+										<button class="btn btn-primary btn-outline btn-search" id='searchBusinessName' type="button">查询</button>
+										<button class="btn btn-primary btn-outline btn-reset" id="clearBusinessName" type="button">重置</button>
 									</div>
 								</div>
 							</div>
@@ -53,18 +55,18 @@ white-space: nowrap;
 			<div div class="panel panel-info" id="showTitle">
 					<div class="panel-heading" style="text-align: left;">
 						<h4 class="panel-title">
-							<button type="button" class="btn btn-primary btn-sm btn-create" id="sureCheck">确定</button>
+							<button type="button" class="btn btn-primary btn-sm btn-create" id="userSureCheck">确定</button>
 						</h4>
 					</div>
 					<div class="panel-collapse">
 						<div class="panel-body">
 							<div class="table-responsive">
-								<table align="left" class="table table-striped table-bordered table-sort" id="information">
+								<table align="left" class="table table-striped table-bordered table-sort" id="userInformation">
 									<thead>
 										<tr>
 											<th><input id="checkAll"  type="checkbox" ></th>
-											<th>经销商代码</th>
-											<th>经销商名称</th>
+											<th>业务联系人代码</th>
+											<th>业务联系人名称</th>
 										</tr>
 									</thead>
 								</table>

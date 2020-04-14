@@ -19,6 +19,7 @@ import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
 import com.platform.contract.schema.vo.ContractReturnVo;
 import com.platform.contract.service.facade.ContractService;
+import com.platform.user.schema.vo.UserMsgVo;
 @Service(value="contractservice")
 public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainContract,String> implements ContractService {
 	@Autowired
@@ -92,16 +93,12 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		String ownerName = contractQueryVo.getOwnerName();//车主
 		String vinNo = contractQueryVo.getVinNo();//车架号
 		//以下是复杂查询的查询条件
-		String  policyNoComplex = contractQueryVo.getPolicyNoComplex();   //保单号
-		String  orgNameComplex = contractQueryVo.getOrgNameComplex();   //经销商名称
-		Date insertTimeComplex  =contractQueryVo.getInsertTimeComplex();//保存日期起期
-		Date insertTime1Complex = contractQueryVo.getInsertTime1Complex();  //保存日期止期
-		String contractNoComplex = contractQueryVo.getContractNoComplex();//合同号
-		String vinNoComplex = contractQueryVo.getVinNoComplex();   //车架号
-		String ownerNameComplex = contractQueryVo.getOwnerNameComplex(); //车主
-		String carStateComplex = contractQueryVo.getCarStateComplex();  //车辆状态
-		String serviceTypeComplex = contractQueryVo.getServiceTypeComplex();   //服务类型
-		Character serviceDateComplex = contractQueryVo.getServiceDateComplex(); //服务期限
+		String  orgName = contractQueryVo.getOrgName();   //经销商名称
+		Date insertTime  =contractQueryVo.getInsertTime();//保存日期起期
+		Date insertTime1= contractQueryVo.getInsertTime1();  //保存日期止期
+		String carState = contractQueryVo.getCarState();  //车辆状态
+		String serviceType = contractQueryVo.getServiceType();   //服务类型
+		Character serviceDate= contractQueryVo.getServiceDate(); //服务期限
 		if(StringUtils.isNotBlank(policyNo)) {
 			hqlFilter.append(" and a.policyNo = :policyNo");
 			map.put("policyNo", policyNo);
@@ -118,49 +115,32 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 			hqlFilter.append(" and vm.vinNo = :vinNo ");
 			map.put("vinNo", vinNo);
 		}
-       if(StringUtils.isNotBlank(contractQueryVo.getQueryType())&& "complexQuery".equals(contractQueryVo.getQueryType())) {
-    	   if(StringUtils.isNotBlank(policyNoComplex)) {
-   			hqlFilter.append(" and a.policyNo = :policyNo");
-   			map.put("policyNo", policyNoComplex);
-   		}
-   		if(StringUtils.isNotBlank(contractNoComplex)) {
-   			hqlFilter.append(" and a.contractNo = :contractNo");
-   			map.put("contractNo", contractNoComplex);
-   		}
-   		if(StringUtils.isNotBlank(ownerNameComplex)) {
-   			hqlFilter.append(" and pb.ownerName like :ownerName");
-   			map.put("ownerName", ownerNameComplex+"%");
-   		}
-   		if(StringUtils.isNotBlank(vinNoComplex)){
-   			hqlFilter.append(" and vm.vinNo = :vinNo ");
-   			map.put("vinNo", vinNoComplex);
-   		}
-    	   
-    	   if(StringUtils.isNotBlank(orgNameComplex)) {
-    		 hqlFilter.append(" and pa.orgName like :orgName");
-   			 map.put("orgName", orgNameComplex+"%");
-   		   }
-    	   if(insertTimeComplex!=null) {
-    		   hqlFilter.append(" and a.insertTime >= :insertTime");
-      			map.put("insertTime", insertTimeComplex);
-      	   }
-    	   if(insertTime1Complex!=null) {
-    		   hqlFilter.append(" and a.insertTime <= :insertTime1");
-     			map.put("insertTime1", insertTime1Complex);
-     	   }
-    	   if(StringUtils.isNotBlank(carStateComplex)) {
-    		   hqlFilter.append(" and vm.carState = :carState");
-   			   map.put("carState", carStateComplex);
-   		   }
-    	   if(StringUtils.isNotBlank(serviceTypeComplex)) {
-    		    hqlFilter.append(" and a.serviceType = :serviceType");
-      			map.put("serviceType", serviceTypeComplex);
-      	   }
-    	   if(serviceDateComplex!=null) {
-    		    hqlFilter.append(" and a.serviceDate = :serviceDate");
-     			map.put("serviceDate", serviceDateComplex);
-     	   }
-		}
+      
+	   if(StringUtils.isNotBlank(orgName)) {
+		 hqlFilter.append(" and pa.orgName like :orgName");
+		 map.put("orgName", orgName+"%");
+	   }
+	   if(insertTime!=null) {
+		   hqlFilter.append(" and a.insertTime >= :insertTime");
+  			map.put("insertTime", insertTime);
+  	   }
+	   if(insertTime1!=null) {
+		   hqlFilter.append(" and a.insertTime <= :insertTime1");
+ 			map.put("insertTime1", insertTime1);
+ 	   }
+	   if(StringUtils.isNotBlank(carState)) {
+		   hqlFilter.append(" and vm.carState = :carState");
+		   map.put("carState", carState);
+	   }
+	   if(StringUtils.isNotBlank(serviceType)) {
+		    hqlFilter.append(" and a.serviceType = :serviceType");
+  			map.put("serviceType", serviceType);
+  	   }
+	   if(serviceDate!=null) {
+		    hqlFilter.append(" and a.serviceDate = :serviceDate");
+ 			map.put("serviceDate", serviceDate);
+ 	   }
+		
        if(StringUtils.isNotBlank(hqlFilter.toString())){
 			hql = hql.append(hqlFilter);
 			hql_count = hql_count.append(hqlFilter);
@@ -189,5 +169,6 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		}
 		return new Page(page.getPageNo(), page.getPageSize(), total,contractReturnVos);
 	}
+	
 
 }

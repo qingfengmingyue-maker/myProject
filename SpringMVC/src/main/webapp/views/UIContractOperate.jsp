@@ -93,7 +93,7 @@ body {
 									</div>
 									<div class="col-xs-6">
 									    <input class="form-control" type="hidden" id="PartyA.orgCode"  name="PartyA.orgCode"  value="${mainContract.partyA.orgCode }"/>
-										<input class="form-control  required" type="text" id="PartyA.orgName"  name="PartyA.orgName"  value="${mainContract.partyA.orgName }" />
+										<input class="form-control  required" type="text" id="PartyA.orgName"  name="PartyA.orgName"  value="${mainContract.partyA.orgName }"  onchange="resetOrgCode()" />
 										<input class="form-control" type="hidden" id="PartyA.contractNo" name="PartyA.contractNo" value="${mainContract.partyA.contractNo}"/>
 										<input class="form-control" type="hidden" id="editType" name="editType" value="${editType}"/>
 									</div>
@@ -121,7 +121,7 @@ body {
 										<label for="mobile" class="control-label"><span style="color: red">*</span>联系电话：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text"  id="PartyA.mobile"  name="PartyA.mobile" value="${mainContract.partyA.mobile }"  onchange="checkMobile(this)"/>
+										<input class="form-control  required" type="text"  id="PartyA.mobile"  name="PartyA.mobile" value="${mainContract.partyA.mobile }"  onchange="checkMobile(this,'联系电话')"  maxlength="11"/>
 									</div>
 									
 								</div>
@@ -161,7 +161,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>联系方式：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text" id="PartyB.ownerMobile" name="PartyB.ownerMobile" value="${mainContract.partyB.ownerMobile}"/>
+										<input class="form-control  required" type="text" id="PartyB.ownerMobile" name="PartyB.ownerMobile" value="${mainContract.partyB.ownerMobile}"  onchange="checkMobile(this,'联系方式')" maxlength="11"/>
 									</div>
 								</div>
 							</div>
@@ -241,7 +241,10 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车辆状态：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control required" type="text" id="VehicleMsg.carState" name="VehicleMsg.carState"  value="${mainContract.vehicleMsg.carState}" />
+									<%-- 	<input class="form-control required" type="text" id="VehicleMsg.carState" name="VehicleMsg.carState"  value="${mainContract.vehicleMsg.carState}" /> --%>
+										<ce:select list="#{'':'','1':'新车','2':'一年以内次新车','3':'1年至2年在用车','4':'2年至3年在用车','5':'3年至4年在用车','6':'5年至6年在用车'}"
+													id="VehicleMsg.carState" name="VehicleMsg.carState"
+													cssClass="form-control required"  value="${mainContract.vehicleMsg.carState}" ></ce:select>
 									</div>
 								</div>
 							</div>
@@ -314,9 +317,9 @@ body {
 									</div>
 									<div class="col-xs-6">
 										<select class="form-control" name="VehicleMsg.className" id="VehicleMsg.className" required="required"
-											value="${VehicleMsg.className}" >
+											value="${mainContract.vehicleMsg.className}" >
 											<c:if test="${busiType != null}">
-												<option value="${mainContract.VehicleMsg.className}">${mainContract.VehicleMsg.className}</option>
+												<option value="${mainContract.vehicleMsg.className}">${mainContract.vehicleMsg.className}</option>
 											</c:if>
 											<c:set var="vehicleIndex" value="0"/>
 											<c:forEach items="${vehicleClasslist}" var="vehicleClass" >
@@ -596,6 +599,9 @@ body {
 		</div>
 	</div>
 	<br/>
+		<!-- 模态框（Modal） -->
+  <div id="comPanyModal"  class="modal fade" role="dialog"  tabindex="-1" data-backdrop="false" style="display:none;"></div>
+  <div id="userMsgModal"  class="modal fade" role="dialog"  tabindex="-1" data-backdrop="false" style="display:none;"></div>
 </body>
 </html>
 

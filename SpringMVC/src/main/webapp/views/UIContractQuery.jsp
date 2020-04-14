@@ -44,19 +44,6 @@ white-space: nowrap;
 							<div class="col-lg-3 col-md-3 col-xs-3">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
-										<label for="userName" class="control-label">保单号:</label>
-									</div>
-									<div class="col-xs-8">
-										<input id="policyNo"
-											name="policyNo" class="form-control" />
-										<input id="queryType"  type="hidden" 
-											name="queryType" class="form-control" />
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-3 col-xs-3">
-								<div class="row form-group">
-									<div class="col-xs-4" align="left">
 										<label for="userCode" class="control-label">合同号:</label>
 									</div>
 									<div class="col-xs-8">
@@ -87,21 +74,103 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
+							<div class="col-lg-3 col-md-3 col-xs-3">
+								<div class="row form-group">
+									<div class="col-xs-4" align="left">
+										<label for="orgName" class="control-label">经销商名称:</label>
+									</div>
+									<div class="col-xs-8">
+										<input id="orgName"
+											name="orgName" class="form-control" />
+									</div>
+								</div>
+							</div>
 						</div>
+						<div class="row">
+							<div class="col-lg-3 col-md-3 col-xs-3">
+								<div class="row form-group">
+									<div class="col-xs-4" align="left">
+										<label for="userCode" class="control-label">保存日期起期:</label>
+									</div>
+									<div class="col-xs-8">
+									<div class="input-group input-append date form_date">
+									  <input  id="insertTime" name="insertTime" readonly="readonly"  
+										class="form-control"   
+										type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
+										<i class="glyphicon glyphicon-th"> </i>
+										</span>
+								    </div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-xs-3">
+								<div class="row form-group">
+									<div class="col-xs-4" align="left">
+										<label for="insertTime1" class="control-label">保存日期止期:</label>
+									</div>
+									<div class="col-xs-8">
+									<div class="input-group input-append date form_date">
+									  <input  id="insertTime1" name="insertTime1" readonly="readonly"  
+										class="form-control"   
+										type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
+										<i class="glyphicon glyphicon-th"> </i>
+										</span>
+								    </div>
+									</div>
+								</div>
+							</div>
+								<div class="col-lg-3 col-md-3 col-xs-3">
+								<div class="row form-group">
+									<div class="col-xs-4" align="left">
+										<label for="vinNo" class="control-label">车辆状态:</label>
+									</div>
+									<div class="col-xs-8">
+										<ce:select list="#{'':'','1':'新车','2':'一年以内次新车','3':'1年至2年在用车','4':'2年至3年在用车','5':'3年至4年在用车','6':'5年至6年在用车'}"
+													id="carState" name="carState"
+													cssClass="form-control"  ></ce:select>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-xs-3">
+								<div class="row form-group">
+									<div class="col-xs-4" align="left">
+										<label for="userName" class="control-label">服务类型:</label>
+									</div>
+									<div class="col-xs-8">
+										 <ce:select list="#{'':'','1':'赔付包含购置税'}"
+													id="serviceType" name="serviceType"
+													cssClass="form-control"  ></ce:select>
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-xs-3">
+								<div class="row form-group">
+									<div class="col-xs-4" align="left">
+										<label for="userName" class="control-label">服务期限：</label>
+									</div>
+									<div class="col-xs-8">
+										 <ce:select list="#{'':'','1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
+													id="serviceDate" name="serviceDate"
+													cssClass="form-control"  ></ce:select>
+									</div>
+								</div>
+							</div>
+				     </div>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-6">
 								<div class="row form-group">
-									<div class="col-xs-3" align="left"></div>
-									<div class="col-xs-8">
+									<div class="col-xs-10" align="left"></div>
+									<div class="col-xs-2">
 										<button class="btn btn-primary btn-outline btn-search" id="search" type="button" >查询</button>
 									</div>
 								</div>
 							</div>	
 							<div class="col-lg-6 col-md-6 col-xs-6">
 								<div class="row form-group">
-									<div class="col-xs-3" align="left"></div>
-									<div class="col-xs-8">
-										<button class="btn btn-primary btn-outline btn-search"  type="button"   data-toggle="modal" data-target="#moreSearchModal">更多查询</button>
+									<div class="col-xs-12">
+										<button class="btn btn-primary btn-outline btn-search"  type="button"  id="resetContract" >重置</button>
 									</div>
 								</div>
 							</div>	
@@ -135,7 +204,7 @@ white-space: nowrap;
 							</table>
 						</div>
 					  </div>
-					  <input  type = "hidden" id="policyNoComplex"  name="policyNoComplex"/>
+					<!--   <input  type = "hidden" id="policyNoComplex"  name="policyNoComplex"/>
 					  <input  type = "hidden" id="orgNameComplex"   name="orgNameComplex"/>
 					  <input  type = "hidden" id="insertTimeComplex"  name="insertTimeComplex"/>
 					  <input  type = "hidden" id="insertTime1Complex"  name="insertTime1Complex"/>
@@ -144,13 +213,13 @@ white-space: nowrap;
 					  <input  type = "hidden" id="ownerNameComplex"  name="ownerNameComplex"/>
 					  <input  type = "hidden" id="carStateComplex"  name="carStateComplex"/>
 					  <input  type = "hidden" id="serviceTypeComplex"  name="serviceTypeComplex"/>
-					  <input  type = "hidden" id="serviceDateComplex"  name="serviceDateComplex"/>
+					  <input  type = "hidden" id="serviceDateComplex"  name="serviceDateComplex"/> -->
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="moreSearchModal"  class="modal fade" role="dialog"  data-backdrop="false" tabindex="-1" style="display:none;">
+	<%--<div id="moreSearchModal"  class="modal fade" role="dialog"  data-backdrop="false" tabindex="-1" style="display:none;">
 	<div class="modal-dialog modal-lg">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -338,6 +407,6 @@ white-space: nowrap;
 		</div>
 	</div>
 </div>
-	</div>
+	</div> --%>
 </body>
 </html>

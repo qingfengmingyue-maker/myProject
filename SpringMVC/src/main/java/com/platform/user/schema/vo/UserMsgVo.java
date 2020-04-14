@@ -11,4 +11,6 @@ public class UserMsgVo extends PageVo {
 	private String userName;
 	
 	private String telPhone;
+	
+	private String orgCode;
 }
