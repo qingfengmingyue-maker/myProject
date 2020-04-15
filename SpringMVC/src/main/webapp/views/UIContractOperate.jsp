@@ -239,7 +239,7 @@ body {
 									</div>
 									<div class="col-xs-6">
 									<%-- 	<input class="form-control required" type="text" id="VehicleMsg.carState" name="VehicleMsg.carState"  value="${mainContract.vehicleMsg.carState}" /> --%>
-										<ce:select list="#{'':'','1':'新车','2':'一年以内次新车','3':'1年至2年在用车','4':'2年至3年在用车','5':'3年至4年在用车','6':'5年至6年在用车'}"
+										<ce:select list="#{'1':'新车','2':'一年以内次新车','3':'1年至2年在用车','4':'2年至3年在用车','5':'3年至4年在用车','6':'5年至6年在用车'}"
 													id="VehicleMsg.carState" name="VehicleMsg.carState"
 													cssClass="form-control required"  value="${mainContract.vehicleMsg.carState}" ></ce:select>
 									</div>
