@@ -315,3 +315,38 @@ $(function(){
 			  window.location.href=contextRootPath + "/contract/contractList.do";
 	})
 });
+
+
+
+/**
+ * @describe:增加年
+ * @returns
+ */
+function AddYears(date, value) {
+    date.setYear(date.getFullYear() + value);
+    return date;
+}
+
+/**
+ * @describe:增加天
+ * @returns
+ */
+function AddDays(date, value) {
+    date.setDate(date.getDate() + value);
+    return date;
+}
+
+/**
+ * @describe:服务起始日期和期限变动自动带出服务终止日期
+ * @returns
+ */
+function changeDate(){
+	var serviceDate = $('#serviceDate').val();
+	var startDate =  $('#startDate').val();
+	if(startDate!=''){
+		 var tempDate = startDate.replace(/-/g,"/");
+		 var date = new Date(tempDate);
+	     var endDate_ = AddDays(AddYears(date,parseFloat(serviceDate)),-1).Format("yyyy-MM-dd");
+	     $('#endDate').val(endDate_);
+	}
+}

@@ -453,7 +453,7 @@ body {
 									</div>
 									<div class="col-xs-6">
 												<ce:select list="#{'1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
-													id="serviceDate" name="serviceDate"
+													id="serviceDate" name="serviceDate"  onchange="changeDate();"
 													cssClass="form-control  required"  value="${mainContract.serviceDate}"></ce:select>
 									</div>
 								</div>
@@ -491,7 +491,7 @@ body {
 											<div class="input-group input-append date form_date">
 													<input  id="startDate" name="startDate" readonly="readonly"  
 														 class="form-control"   value="<fmt:formatDate value="${mainContract.startDate}" pattern="yyyy-MM-dd"/>"
-														type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
+														type="text" dateISO="dateISO"  onchange="changeDate();"/>  <span class="input-group-addon add-on">
 														<i class="glyphicon glyphicon-th"> </i>
 													</span>
 											</div>
@@ -504,13 +504,9 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>服务终止日期：</label>
 									</div>
 									<div class="col-xs-6">
-											<div class="input-group input-append date form_date">
 													<input  id="endDate" name="endDate" readonly="readonly"
 														 class="form-control"    value="<fmt:formatDate value="${mainContract.endDate}" pattern="yyyy-MM-dd"/>"
-														type="text" dateISO="dateISO"/>  <span class="input-group-addon add-on">
-														<i class="glyphicon glyphicon-th"> </i>
-													</span>
-											</div>
+														type="text" dateISO="dateISO"/>  
 									</div>
 								</div>
 							</div>

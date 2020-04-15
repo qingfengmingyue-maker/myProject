@@ -22,7 +22,9 @@
 &nbsp;&nbsp;&nbsp;&nbsp;感谢您选择青岛黑马网络技术有限公司（下称:“我司”）的车辆过保全服务，我司向您提供更贴心的服务和更全面的保障，我司推出的车辆保全服务（下称:“服务”），帮助您免除车辆价值折旧的损失，无压力更换新车，生活更轻松，服务细则如下：<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<font style="font-weight: bold;">一、服务承诺:</font></br>
 &nbsp;&nbsp;&nbsp;&nbsp;鉴于在车辆发生全损或推定全损的情况下，虽然客户从保险公司获得了全额赔偿，但仍需承担由于车辆价值折旧所带来的损失：我司为了保障客户的利益，承诺按照下述规则，对客户提供车辆保全服务：<br>
-&nbsp;&nbsp;&nbsp;&nbsp;车辆保全服务补偿=车辆购置发票价格×0.6%×折旧时间<font style="font-weight: bold;">(自本服务合同有效期起始日起算，不足一个月的部分，不计折旧)</font>
+&nbsp;&nbsp;&nbsp;&nbsp;车辆保全服务补偿=车辆购置发票价格×0.6%×折旧时间<font style="font-weight: bold;">(自本服务合同有效期起始日起算，不足一个月的部分，不计折旧)</font><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-weight: bold;">二、服务有效期:</font>自<input style="border:0px;"  value="<fmt:formatDate value="${mainContract.startDate}" pattern="yyyy年MM月dd日"/>">至<input style="border:0px;"  value="<fmt:formatDate value="${mainContract.endDate}" pattern="yyyy年MM月dd日"/>"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-weight: bold;">三、注意事项:</font></br>
 
 </div>
 </div>
