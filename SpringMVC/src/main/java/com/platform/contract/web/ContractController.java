@@ -83,6 +83,14 @@ public class ContractController {
     		 mv.addObject("message", "浏览合同");
     		 mv.addObject("editType", "view");
     	 }else {
+    		List<VehicleClass> vehicleClasslist = null;
+ 			try {
+ 				vehicleClasslist = vehicleClassService.findVehicleClassList("");
+ 			} catch (Exception e) {
+ 				System.out.println(e);
+ 				e.printStackTrace();
+ 			}
+ 			mv.addObject("vehicleClasslist", vehicleClasslist);
     		 mv.addObject("message", "更改合同");
     		 mv.addObject("editType", "edit");
     	 }
@@ -102,7 +110,15 @@ public class ContractController {
 			e.printStackTrace();
 		}
 		if(StringUtils.isNotBlank(mainContract.getSaveType()) && "0".equals(mainContract.getSaveType())) {
+			List<VehicleClass> vehicleClasslist = null;
+			try {
+				vehicleClasslist = vehicleClassService.findVehicleClassList("");
+			} catch (Exception e) {
+				System.out.println(e);
+				e.printStackTrace();
+			}
 			 ModelAndView mv = new ModelAndView("/UIContractOperate");
+			 mv.addObject("vehicleClasslist", vehicleClasslist);
 			 mv.addObject("mainContract",mainContract);
 			 return mv;
 		}else {
