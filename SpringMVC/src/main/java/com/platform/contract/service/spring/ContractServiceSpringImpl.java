@@ -109,7 +109,9 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 			throws Exception {
 		StringBuffer hql = new StringBuffer("select a.contractNo, pb.ownerName, vm.brandName, vm.className,vm.modelName,vm.carState,a.insertTime, "
 				+"a.servicetype,a.settleamount,a.servicedate,pa.orgName,a.operateTime,pa.businessName  "
-				+ "from MainContract a,partya pa,partyb pb,vehiclemsg vm  where 1=1 and a.contractno=pa.contractno and a.contractno=pb.contractno and a.contractno=vm.contractno ");
+				+ "from MainContract a left join partya pa on a.contractNo=pa.contractNo "
+				+ "left join partyb pb on a.contractNo=pb.contractNo "
+				+ "left join vehiclemsg vm on a.contractNo=vm.contractNo where 1=1 ");
 		StringBuffer hql_count = new StringBuffer("select count(*)   from MainContract a,partya pa,partyb pb,vehiclemsg vm  where 1=1 and a.contractno=pa.contractno and a.contractno=pb.contractno and a.contractno=vm.contractno ");
 		StringBuffer hqlFilter = new StringBuffer();
 		Map<String,Object> map = new HashMap<String,Object>();

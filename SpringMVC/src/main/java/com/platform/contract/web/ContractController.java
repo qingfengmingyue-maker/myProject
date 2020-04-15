@@ -225,7 +225,8 @@ public class ContractController {
 		List<MainContract> mainContractList = null;
 	   	try {
 			mainContractList=contractService.findContractList(contractQueryVo);
-			String [] columnName={"合同号","车主","品牌","车系",	"车型","车辆状态","保存日期","服务类型","结算金额（元）","服务期限","经销商名称","创建日期","更新日期","操作者"};
+			String [] columnName={"合同号","车主","品牌","车系",	"车型","车辆状态","保存日期","服务类型","结算金额（元）","服务期限",
+					"经销商名称","创建日期","更新日期","操作者"};
 			HSSFWorkbook wb = new HSSFWorkbook();
 			HSSFSheet sheet = wb.createSheet("合同报表");
 			HSSFRow rowTitle = sheet.createRow(0);
@@ -256,7 +257,11 @@ public class ContractController {
 			    	row.createCell(cellnum++).setCellValue("");
 			    }
 			    row.createCell(cellnum++).setCellValue(mainContract.getServiceType());//服务类型
-			    row.createCell(cellnum++).setCellValue(mainContract.getSettleAmount()+"");//结算金额
+			    if(mainContract.getSettleAmount() != null){
+			    	row.createCell(cellnum++).setCellValue(mainContract.getSettleAmount()+"");//结算金额
+			    }else{
+			    	row.createCell(cellnum++).setCellValue("");
+			    }
 			    row.createCell(cellnum++).setCellValue(mainContract.getServiceDate());//服务期限
 			    if(mainContract.getPartyA() != null){
 			    	row.createCell(cellnum++).setCellValue(mainContract.getPartyA().getOrgName());//经销商名称
@@ -273,7 +278,11 @@ public class ContractController {
 			    }else{
 			    	row.createCell(cellnum++).setCellValue("");
 			    }
-			    row.createCell(cellnum++).setCellValue(mainContract.getSaleUser());
+			    if(mainContract.getPartyA() != null){
+			    	row.createCell(cellnum++).setCellValue(mainContract.getPartyA().getBusinessName());
+			    }else{
+			    	row.createCell(cellnum++).setCellValue("");
+			    }
 			}
 			
 		    OutputStream os = null;
