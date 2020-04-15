@@ -240,7 +240,7 @@ public class ContractController {
 		List<MainContract> mainContractList = null;
 	   	try {
 			mainContractList=contractService.findContractList(contractQueryVo);
-			String [] columnName={"合同号","车主","品牌","车系",	"车型","车辆状态","保存日期","服务类型","结算金额（元）","服务期限",
+			String [] columnName={"合同号","车主","品牌","车系",	"车型","车辆状态","保存日期","服务类型","结算金额（元）","服务期限（年）",
 					"经销商名称","创建日期","更新日期","操作者"};
 			HSSFWorkbook wb = new HSSFWorkbook();
 			HSSFSheet sheet = wb.createSheet("合同报表");
@@ -265,13 +265,35 @@ public class ContractController {
 			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getBrandName());//品牌
 			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getClassName());//车系
 			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getModelName());//车型
-			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getCarState());//车辆状态
+			    String carState = mainContract.getVehicleMsg().getCarState();
+			    if("1".equals(carState)){
+			    	carState = "新车";
+			    }else if("2".equals(carState)){
+			    	carState = "一年以内次新车";
+			    }else if("3".equals(carState)){
+			    	carState = "1年至2年在用车";
+			    }else if("4".equals(carState)){
+			    	carState = "2年至3年在用车";
+			    }else if("5".equals(carState)){
+			    	carState = "3年至4年在用车";
+			    }else if("6".equals(carState)){
+			    	carState = "5年至6年在用车";
+			    }else{
+			    	carState = "其他";
+			    }
+			    row.createCell(cellnum++).setCellValue(carState);//车辆状态
 			    if(mainContract.getInsertTime() != null){
 			    	row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));//保存日期
 			    }else{
 			    	row.createCell(cellnum++).setCellValue("");
 			    }
-			    row.createCell(cellnum++).setCellValue(mainContract.getServiceType());//服务类型
+			    String serviceType = mainContract.getServiceType();
+			    if("1".equals(serviceType)){
+			    	row.createCell(cellnum++).setCellValue("赔付包含购置税");//服务类型
+			    }else{
+			    	row.createCell(cellnum++).setCellValue("");//服务类型
+			    }
+			    
 			    if(mainContract.getSettleAmount() != null){
 			    	row.createCell(cellnum++).setCellValue(mainContract.getSettleAmount()+"");//结算金额
 			    }else{
@@ -306,7 +328,6 @@ public class ContractController {
 				SimpleDateFormat datetemp = new SimpleDateFormat("yyyyMMdd");
 				String fileName = datetemp.format(new Date()) + ".xls";
 				response.setHeader("Content-disposition", "attachment; filename="+ fileName + "");// 设定输出文件头
-				// ZC:WANGXYE111001 导出excel名称修改 mod wangxiaoye 20151110 end
 				response.setContentType("application/msexcel");// 定义输出类型
 				wb.write(os);
 			} catch (IOException e) {
