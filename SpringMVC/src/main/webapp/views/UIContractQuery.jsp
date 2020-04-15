@@ -127,7 +127,7 @@ white-space: nowrap;
 										<label for="vinNo" class="control-label">车辆状态:</label>
 									</div>
 									<div class="col-xs-8">
-										<ce:select list="#{'':'','1':'新车','2':'一年以内次新车','3':'1年至2年在用车','4':'2年至3年在用车','5':'3年至4年在用车','6':'5年至6年在用车'}"
+										<ce:select list="#{'':'--请选择--','1':'新车','2':'一年以内次新车','3':'1年至2年在用车','4':'2年至3年在用车','5':'3年至4年在用车','6':'5年至6年在用车'}"
 													id="carState" name="carState"
 													cssClass="form-control"  ></ce:select>
 									</div>
@@ -139,7 +139,7 @@ white-space: nowrap;
 										<label for="userName" class="control-label">服务类型:</label>
 									</div>
 									<div class="col-xs-8">
-										 <ce:select list="#{'':'','1':'赔付包含购置税'}"
+										 <ce:select list="#{'':'--请选择--','1':'赔付包含购置税'}"
 													id="serviceType" name="serviceType"
 													cssClass="form-control"  ></ce:select>
 									</div>
@@ -151,7 +151,7 @@ white-space: nowrap;
 										<label for="userName" class="control-label">服务期限：</label>
 									</div>
 									<div class="col-xs-8">
-										 <ce:select list="#{'':'','1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
+										 <ce:select list="#{'':'--请选择--','1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
 													id="serviceDate" name="serviceDate"
 													cssClass="form-control"  ></ce:select>
 									</div>

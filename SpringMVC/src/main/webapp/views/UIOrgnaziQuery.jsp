@@ -39,7 +39,7 @@ white-space: nowrap;
 									<div class="col-lg-4 col-md-4 col-xs-12">
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
-												<label for="" class="control-label">机构代码</label>
+												<label for="" class="control-label">经销商代码</label>
 											</div>
 											<div class="col-xs-8">
 												<input id="orgCode"
@@ -94,9 +94,9 @@ white-space: nowrap;
 								<thead>
 									<tr>
 										<!-- <th width="12px"><input id="checkAll"  type="checkbox" >选择</th> -->
-										<th>机构名称</th>
+										<th>经销商名称</th>
 										<th>统一社会信用代码</th>
-										<th>机构代码</th>
+										<th>经销商代码</th>
 										<th>操作</th>
 									</tr>
 								</thead>
