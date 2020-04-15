@@ -47,11 +47,11 @@
                </div>
 				<div class="form-group has-feedback lg left-feedback no-label">
 				  <input type="text" class="form-control no-border input-lg rounded" name="userName" maxlength="10" placeholder="用户名" autofocus  value="admin">
-				  <span class="fa fa-user form-control-feedback"></span>
+				   <span class="glyphicon  glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
 				  <input type="password" class="form-control no-border input-lg rounded" name="userPwd" placeholder="密&nbsp;&nbsp;&nbsp;码"  value="admin">
-				  <span class="fa fa-unlock-alt form-control-feedback"></span>
+				   <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
 				  <div class="row form-group">
