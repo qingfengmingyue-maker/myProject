@@ -17,14 +17,12 @@
 					<div class="col-lg-6 col-md-6 col-xs-12">
 						<div class="row form-group">
 							<div class="col-xs-3" style="text-align:right;">
-								<label for="" class="control-label">经销商全称</label>
+								<label for="" class="control-label">
+								<span style="color: red">*</span>经销商全称</label>
 							</div>
 							<div class="col-xs-8">
 								<input id="orgName" name="orgName" class="form-control" required="required"
 								value="${organization.orgName}" />
-							</div>
-							<div class="col-xs-1" style="text-align:right;">
-								<span style="color: red">*</span>
 							</div>
 						</div>
 					</div>
@@ -44,7 +42,8 @@
 					<div class="col-lg-6 col-md-6 col-xs-12">
 						<div class="row form-group">
 							<div class="col-xs-3" style="text-align:right;">
-								<label for="" class="control-label">所属地区</label>
+								<label for="" class="control-label">
+									<span style="color: red">*</span>所属地区</label>
 							</div>
 							<div class="col-xs-3">
 								<select class="form-control" name="upperBaseOrg" id="upperBaseOrg" required="required"
@@ -77,23 +76,18 @@
 							<div class="col-xs-1">
 								<label for="" class="control-label">市</label>
 							</div>
-							<div class="col-xs-1" style="text-align:right;">
-								<span style="color: red">*</span>
-							</div>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-xs-12">
 						<div class="row form-group">
 							<div class="col-xs-3">
-								<label for="" class="control-label">统一社会信用代码</label>
+								<label for="" class="control-label">
+									<span style="color: red">*</span>统一社会信用代码</label>
 							</div>
 							<div class="col-xs-8">
 								<input id="creditCode" name="creditCode" class="form-control" required="required"
 									type="text" value="${organization.creditCode}" maxlength="18"
 									onChange="isChinaUnifiedSocialCreditCode(this)" />
-							</div>
-							<div class="col-xs-1" style="text-align:right;">
-								<span style="color: red">*</span>
 							</div>
 						</div>
 					</div>
