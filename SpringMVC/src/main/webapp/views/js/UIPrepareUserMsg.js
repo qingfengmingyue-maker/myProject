@@ -11,8 +11,11 @@ jQuery(function($) {
           {"data": "userCode","class" : "center","bSortable": false},
           {"data": "userName","class" : "center","bSortable": false}
         
-      ];
-       $(dataTableInit(contextRootPath+"/userMsg/queryUserMsg.do", colModel,'',10));
+          ];
+//    	var userName=$("#userName").val();
+    	var orgCode=$("#orgCode").val();
+//    	alert(userName+"--"+orgCode)
+       $(dataTableInit(contextRootPath+"/userMsg/queryUserMsg.do?orgCode="+orgCode, colModel,'',10));
 });
 
 
@@ -21,9 +24,9 @@ jQuery(function($) {
  */
 $(function() {
 	$("#searchBusinessName").click(function() {
-	jsonCondition=$("#userFm").serializeObject();
-	var table = $('.table-sort').DataTable();
-	table.ajax.reload();
+		jsonCondition=$("#userFm").serializeObject();
+		var table = $('.table-sort').DataTable();
+		table.ajax.reload();
     });
 });
 

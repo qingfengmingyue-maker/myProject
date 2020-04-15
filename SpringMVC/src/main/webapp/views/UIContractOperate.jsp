@@ -330,13 +330,12 @@ body {
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车型：</label>
+										<label class="control-label"><span style="color: red">*</span>车型：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text"  id="VehicleMsg.modelName" name="VehicleMsg.modelName" value="${mainContract.vehicleMsg.modelName}"/>
-									</div>
-									<div class="col-xs-2" align="left" style="padding-left: 0px">
-										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >选择</button>
+										<input class="form-control required" type="text"  
+										id="VehicleMsg.modelName" name="VehicleMsg.modelName" 
+										value="${mainContract.vehicleMsg.modelName}"/>
 									</div>
 								</div>
 							</div>

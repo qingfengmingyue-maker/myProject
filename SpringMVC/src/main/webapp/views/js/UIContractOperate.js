@@ -39,7 +39,10 @@ $(function(){
 			}
 			$('#VehicleMsg\\.insuranceType').val(insuranceType);
 			$("#contractfm").submit();
-     })
+     });
+	$("#VehicleMsg\\.className").click(function(){
+		$("#VehicleMsg\\.modelName").val($("#VehicleMsg\\.className").val())
+	})
 });
 
 
@@ -114,6 +117,9 @@ $('form').validate({
 
 window.onload=function(){ 
 	var editType = $('#editType').val();
+	if(editType == ''){
+		$("#VehicleMsg\\.modelName").val($("#VehicleMsg\\.className").val())
+	}
 	if('view' == editType){
 		$(":input").attr("disabled", true);
 	}else{
@@ -127,6 +133,7 @@ window.onload=function(){
 			minView : "month",
 			pickerPosition : "bottom-left"
 		});
+		
 	}
 	$('#dropdownMenu2').attr("disabled", false);
 	
