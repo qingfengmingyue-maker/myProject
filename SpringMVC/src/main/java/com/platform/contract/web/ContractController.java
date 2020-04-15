@@ -241,18 +241,38 @@ public class ContractController {
 				int cellnum = 0;
 				HSSFCell cell = row.createCell(cellnum++);
 			    cell.setCellValue(mainContract.getContractNo());//合同号
-			    row.createCell(cellnum++).setCellValue(mainContract.getPartyB().getOwnerName());//车主
+			    if(mainContract.getPartyB() != null){
+			    	row.createCell(cellnum++).setCellValue(mainContract.getPartyB().getOwnerName());//车主
+			    }else{
+			    	row.createCell(cellnum++).setCellValue("");
+			    }
 			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getBrandName());//品牌
 			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getClassName());//车系
 			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getModelName());//车型
 			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getCarState());//车辆状态
-			    row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));//保存日期
+			    if(mainContract.getInsertTime() != null){
+			    	row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));//保存日期
+			    }else{
+			    	row.createCell(cellnum++).setCellValue("");
+			    }
 			    row.createCell(cellnum++).setCellValue(mainContract.getServiceType());//服务类型
 			    row.createCell(cellnum++).setCellValue(mainContract.getSettleAmount()+"");//结算金额
 			    row.createCell(cellnum++).setCellValue(mainContract.getServiceDate());//服务期限
-			    row.createCell(cellnum++).setCellValue(mainContract.getPartyA().getOrgName());//经销商名称
-			    row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));//
-			    row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getOperateTime()));
+			    if(mainContract.getPartyA() != null){
+			    	row.createCell(cellnum++).setCellValue(mainContract.getPartyA().getOrgName());//经销商名称
+			    }else{
+			    	row.createCell(cellnum++).setCellValue("");
+			    }
+			    if(mainContract.getInsertTime() != null){
+			    	row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));
+			    }else{
+			    	row.createCell(cellnum++).setCellValue("");
+			    }
+			    if(mainContract.getOperateTime() != null){
+			    	row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getOperateTime()));
+			    }else{
+			    	row.createCell(cellnum++).setCellValue("");
+			    }
 			    row.createCell(cellnum++).setCellValue(mainContract.getSaleUser());
 			}
 			

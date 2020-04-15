@@ -55,18 +55,35 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 	public List<MainContract> findContractList(ContractQueryVo contractQueryVo)
 			throws Exception {
 		StringBuffer hql = new StringBuffer(" from MainContract a where 1=1 ");
-		Map<String,String> map = new HashMap<String,String>();
-		String policyNo = contractQueryVo.getPolicyNo();//保单号
+		Map<String,Object> map = new HashMap<String,Object>(0);
 		String contractNo = contractQueryVo.getContractNo();//合同号
 		String ownerName = contractQueryVo.getOwnerName();//车主
 		String vinNo = contractQueryVo.getVinNo();//车架号
-		if(StringUtils.isNotBlank(policyNo)) {
-			hql.append(" and a.policyNo like :policyNo");
-			map.put("policyNo", policyNo);
-		}
+		String orgName = contractQueryVo.getOrgName();   //经销商名称
+		Date insertTime = contractQueryVo.getInsertTime();   //保存日期起期
+		Date insertTime1 = contractQueryVo.getInsertTime1();  //保存日期止期
+		String carState = contractQueryVo.getCarState();    //车辆状态
+		String serviceType = contractQueryVo.getServiceType();  //服务类型
+		Character serviceDate = contractQueryVo.getServiceDate();  //服务期限
 		if(StringUtils.isNotBlank(contractNo)) {
 			hql.append(" and a.contractNo = :contractNo");
 			map.put("contractNo", contractNo);
+		}
+		if(StringUtils.isNotBlank(serviceType)) {
+			hql.append(" and a.serviceType = :serviceType");
+			map.put("serviceType", serviceType);
+		}
+		if(insertTime!=null) {
+			hql.append(" and a.insertTime >= :insertTime");
+	  		map.put("insertTime", insertTime);
+	  	}
+		if(insertTime1!=null) {
+			hql.append(" and a.insertTime <= :insertTime1");
+			map.put("insertTime1", insertTime1);
+		}
+		if(serviceDate != null) {
+			hql.append(" and a.serviceDate = :serviceDate");
+			map.put("serviceDate", serviceDate);
 		}
 		if(StringUtils.isNotBlank(ownerName)) {
 			hql.append(" and a.partyB.ownerName = :ownerName");
@@ -75,6 +92,14 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		if(StringUtils.isNotBlank(vinNo)){
 			hql.append(" and a.vehicleMsg.vinNo = :vinNo ");
 			map.put("vinNo", vinNo);
+		}
+		if(StringUtils.isNotBlank(carState)){
+			hql.append(" and a.vehicleMsg.carState = :carState ");
+			map.put("carState", carState);
+		}
+		if(StringUtils.isNotBlank(orgName)){
+			hql.append(" and a.partyA.orgName = :orgName");
+			map.put("orgName", orgName);
 		}
 		return super.listByHQL(hql.toString(),map);
 	}
