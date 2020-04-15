@@ -52,8 +52,9 @@ public class UserMsgController {
 	    	String msg = "alert( '修改成功' );location.href='userMsgList.do'";
 	    	try {
 	    	  if(StringUtils.isBlank(userMsg.getUserCode())) {
-	    		  String userCode = regulationService.getOrgCode("110000", "userCode");
-	    		   userMsg.setUserCode(userCode);
+	    		  String orgCode = userMsg.getOrgCode();
+	    		  String userCode = regulationService.getOrgCode(orgCode, "userCode");
+	    		  userMsg.setUserCode(userCode);
 	    		  msg ="alert( '保存成功' );location.href='userMsgList.do'";
 	    	    }
 	    	    userMsgService.saveUserMsg(userMsg);
@@ -103,15 +104,18 @@ public class UserMsgController {
 	   
 	    @RequestMapping("/queryUserMsg")
 	    @ResponseBody
-		public Pager<UserMsgVo> getData(@RequestBody UserMsgVo userMsgVo) {
+		public Pager<UserMsgVo> getData(@RequestBody UserMsgVo userMsgVo,String orgCode) {
 		       //适合dataTable的分页信息转换成标准的分页信息
 		Page<UserMsgVo> page=new Page<UserMsgVo>(userMsgVo.getCurrentPageNum(), userMsgVo.getiDisplayLength());
-		 try {
-		   	   page=userMsgService.findListByPage(page,userMsgVo);
-		   		return new Pager<UserMsgVo>().wrapPager(page);
-		   	} catch (Exception e) {
-		   		e.printStackTrace();
-		   	}
+			try {
+				if(StringUtils.isNotBlank(orgCode)){
+					userMsgVo.setOrgCode(orgCode);
+				}
+				page=userMsgService.findListByPage(page,userMsgVo);
+				return new Pager<UserMsgVo>().wrapPager(page);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		   	return null;
 		 }
 	    
