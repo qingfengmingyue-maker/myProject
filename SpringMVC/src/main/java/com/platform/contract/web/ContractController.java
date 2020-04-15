@@ -97,7 +97,6 @@ public class ContractController {
 	@RequestMapping("/saveContract")
 	public ModelAndView saveContract(MainContract mainContract,HttpServletResponse response){
 		try {
-			mainContract.setContractNo("H1300002020040003");
 			mainContract = contractService.saveContract(mainContract);
 		} catch (Exception e) {
 			e.printStackTrace();
