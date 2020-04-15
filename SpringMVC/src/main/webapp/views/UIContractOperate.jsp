@@ -60,7 +60,8 @@ body {
 						<ul class="nav navbar-nav" >
                             <li style="left:100%;float: right;text-align: right;" >
                             	<button type="button" style="width:80px;height:50px" class="btn btn-primary btn-outline btn-lg btn-save" id="temptSaveButton" >暂存</button>
-                            	<button type="submit" style="width:80px;height:50px;margin-right: 700px" class="btn btn-primary btn-outline btn-lg btn-save" id="saveButton">保存</button>
+                            	<button type="submit" style="width:80px;height:50px;" class="btn btn-primary btn-outline btn-lg btn-save" id="saveButton">保存</button>
+                            	<button type="button" style="width:80px;height:50px;margin-right: 520px" class="btn btn-primary btn-outline btn-lg btn-save" id="goBackButton" >返回</button>
                             </li>
 						</ul>
 					</div>

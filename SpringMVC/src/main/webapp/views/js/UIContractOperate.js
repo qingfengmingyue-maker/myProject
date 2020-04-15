@@ -136,7 +136,7 @@ window.onload=function(){
 		
 	}
 	$('#dropdownMenu2').attr("disabled", false);
-	
+	$('#goBackButton').attr("disabled", false);
 	 var checkeds = $("#VehicleMsg\\.insuranceType").val();
 	  //拆分为字符串数组
 	  var checkArray =checkeds.split(",");
@@ -302,3 +302,16 @@ $(function(){
 function resetOrgCode(){
 	 $('#PartyA\\.orgCode').val('');
 }
+
+
+
+/**
+ * @describe:返回按钮功能返回到列表页面
+ * @returns
+ */
+$(function(){
+	$("#goBackButton").click(
+			function(){
+			  window.location.href=contextRootPath + "/contract/contractList.do";
+	})
+});
