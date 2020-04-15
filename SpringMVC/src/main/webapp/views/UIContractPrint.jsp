@@ -25,6 +25,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;车辆保全服务补偿=车辆购置发票价格×0.6%×折旧时间<font style="font-weight: bold;">(自本服务合同有效期起始日起算，不足一个月的部分，不计折旧)</font><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<font style="font-weight: bold;">二、服务有效期:</font>自<input style="border:0px;"  value="<fmt:formatDate value="${mainContract.startDate}" pattern="yyyy年MM月dd日"/>">至<input style="border:0px;"  value="<fmt:formatDate value="${mainContract.endDate}" pattern="yyyy年MM月dd日"/>"><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<font style="font-weight: bold;">三、注意事项:</font></br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.车辆需确保手续齐全,合法有效,且为家庭自用车(非营业性运输用途);
+&nbsp;&nbsp;&nbsp;&nbsp;2.提供车辆安全服务和保险保障的区域仅限中华人民共和国境内（不含港、澳、台地区）；
+&nbsp;&nbsp;&nbsp;&nbsp;3.车辆发生转让的，车辆保全服务立即中止;
+&nbsp;&nbsp;&nbsp;&nbsp;4.发生车辆全损、推定全损事故后，客户应在第一时间致电我司24小时客户服务中心电话：400-708-5577。
+&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-weight: bold;">四、服务的前提条件:</font></br>
+
 
 </div>
 </div>

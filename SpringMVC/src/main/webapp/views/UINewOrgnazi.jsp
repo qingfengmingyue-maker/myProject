@@ -82,7 +82,7 @@
 						<div class="row form-group">
 							<div class="col-xs-3">
 								<label for="" class="control-label">
-									<span style="color: red">*</span>统一社会信用代码</label>
+									<span style="color: red">*</span>  统一社会信用代码</label>
 							</div>
 							<div class="col-xs-8">
 								<input id="creditCode" name="creditCode" class="form-control" required="required"

@@ -26,9 +26,9 @@ white-space: nowrap;
 					type="button">删除</button>
 			    <button class="btn btn-primary glyphicon glyphicon-eye-open" id="view"
 					type="button">浏览</button>
-				<c:if test="${USER_SESSION.postFlag == 0}">
 				 <button class="btn btn-primary glyphicon glyphicon glyphicon-file" id="print"
 					type="button">打印</button>
+				<c:if test="${USER_SESSION.postFlag == 0}">
 				 <button class="btn btn-primary glyphicon glyphicon glyphicon-download-alt" id="export"
 					type="button">导出</button>
 				</c:if>

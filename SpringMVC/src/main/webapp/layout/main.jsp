@@ -58,6 +58,7 @@
 					<ul class="sidebar-menu" id="side-menu">
 						<li><a href='${ctx}/contract/contractList.do'><i class='fa fa-sitemap fa-fw'></i>订单管理<i
 								class='fa fa-fw'></i><span class='fa'></span></a></li>
+						<c:if test="${USER_SESSION.postFlag == 0}">
 						<li><a href='${ctx}/organiz/prepareQuery.do'><i
 								class='fa fa-sitemap fa-fw'></i>经销商管理<i class='fa fa-fw'></i><span
 								class='fa'></span></a></li>
@@ -67,6 +68,7 @@
 						<li><a href='${ctx}/userMsg/userMsgList.do'><i
 								class='fa fa-sitemap fa-fw'></i>用户管理<i class='fa fa-fw'></i><span
 								class='fa'></span></a></li>
+						</c:if>
 					</ul>
 				</div>
 				<div class="btn-collapse-sidebar-left hiddenleft iconleft"
