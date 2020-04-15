@@ -158,12 +158,18 @@ $(function() {
  */
 $(function() {
 $("#export").click(function(){
-	debugger;
-	var policyNo=$("#policyNo").val();
 	var contractNo=$("#contractNo").val();
 	var ownerName=$("#ownerName").val();
 	var vinNo=$("#vinNo").val();
-	window.location.href=contextRootPath + "/contract/loadContractExcel.do?policyNo="+policyNo+"&contractNo="+contractNo+"&ownerName="+ownerName+"&vinNo="+vinNo;
+	var orgName=$("#orgName").val();
+	var insertTime=$("#insertTime").val();
+	var insertTime1=$("#insertTime1").val();
+	var carState=$("#carState").val();
+	var serviceType=$("#serviceType").val();
+	var serviceDate=$("#serviceDate").val();
+	var urlparam = "?contractNo="+contractNo+"&ownerName="+ownerName+"&vinNo="+vinNo+"&orgName="+orgName;
+	urlparam = urlparam +"&carState="+carState+"&serviceType="+serviceType+"&serviceDate="+serviceDate+"&insertTime="+insertTime+"&insertTime1="+insertTime1;
+	window.location.href=contextRootPath + "/contract/loadContractExcel.do"+urlparam;
  })
 });
 
