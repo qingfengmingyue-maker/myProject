@@ -52,7 +52,8 @@ $(function(){
 		function(){
 			 $("#contractfm").validate({
 				  rules: {
-					  
+					  appendMsg:'required',
+					  reMark:'required'
 				  },
 
 				   messages: {
@@ -79,10 +80,10 @@ $(function(){
 
 
 function validateFormDate(){
-	let flag = false;
-	let purchaseDate =  $("#VehicleMsg\\.purchaseDate").val();
-	let startDate =  $("#startDate").val();
-	let endDate =  $("#endDate").val();
+	var flag = false;
+	var purchaseDate =  $("#VehicleMsg\\.purchaseDate").val();
+	var startDate =  $("#startDate").val();
+	var endDate =  $("#endDate").val();
 	if(purchaseDate == ""){
 		alert("请录入首次购车日期");
 	}else if(startDate == ""){
@@ -153,12 +154,12 @@ window.onload=function(){
  * 
  */
 function checkMobile(field,msg){
-	let Fieldvalue = field.value;
-	let tel =  /^0\d{2,3}-\d{5,9}$/;
-	let tel1 =  /^(1(3|4|5|6|7|8|9)\d{9})$/;
-	if(Fieldvalue!=null&&Fieldvalue!="")
+	var mobilevalue = field.value;
+	var tel =  /^0\d{2,3}-\d{5,9}$/;
+	var tel1 =  /^(1(3|4|5|6|7|8|9)\d{9})$/;
+	if(mobilevalue!=null&&mobilevalue!="")
 	{
-		if(!(tel.test(Fieldvalue)||tel1.test(Fieldvalue))){
+		if(!(tel.test(mobilevalue)||tel1.test(mobilevalue))){
 			alert("请输入正确的"+msg);
 			field.value="";
 		}
@@ -205,10 +206,10 @@ function checkDocumentNo(field){
  * @returns
  */
 function checkVINNO(field){
-	let fieldValue = field.value;
-	let tel =  /^[A-HJ-NPR-Za-hj-npr-z0-9]{17}$/;
-	    if(fieldValue!=null&&fieldValue!=""){
-	    	if(!tel.test(fieldValue)){
+	var VINNOValue = field.value;
+	var tel =  /^[A-HJ-NPR-Za-hj-npr-z0-9]{17}$/;
+	    if(VINNOValue!=null&&VINNOValue!=""){
+	    	if(!tel.test(VINNOValue)){
 	    		alert("车架号(VIN码)必须录齐17位数字或字母（不应包含“I”、“O”、“Q”字母），请重新输入");
 	    		field.value ='';
 	    	}
@@ -216,10 +217,10 @@ function checkVINNO(field){
 }
 
 function checkLicenseNo(field){
-	let fieldValue = field.value;
-	let  tel = /^[\u4e00-\u9fa5]{1}[\u4e00-\u9fa5a-zA-Z0-9]{0,}$|^[A-Za-z]{2}[\u4e00-\u9fa5a-zA-Z0-9]{0,}$/;
-	if(fieldValue!=null&&fieldValue!=""){
-		if(!tel.test(fieldValue)){
+	var licenseNoValue = field.value;
+	var  tel = /^[\u4e00-\u9fa5]{1}[\u4e00-\u9fa5a-zA-Z0-9]{0,}$|^[A-Za-z]{2}[\u4e00-\u9fa5a-zA-Z0-9]{0,}$/;
+	if(licenseNoValue!=null&&licenseNoValue!=""){
+		if(!tel.test(licenseNoValue)){
 			alert("请输入以汉字或2位英文字母开头的号牌号码 (不应包含特殊字符)");
 			 field.value = "";
 		}
@@ -229,10 +230,10 @@ function checkLicenseNo(field){
 
 
 function checkMoney(field,msg){
-	let fieldValue = field.value;
-    let reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
-	if(fieldValue!=null&&fieldValue!=""){
-		if(!reg.test(fieldValue)){
+	var moneyValue = field.value;
+    var reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+	if(moneyValue!=null&&moneyValue!=""){
+		if(!reg.test(moneyValue)){
 			alert(msg+"只能输入正数,请重新输入！");
 			 field.value = "";
 		}
@@ -251,7 +252,7 @@ $(function(){
 	$("#searchComPany").click(
 			function(){
 				var orgName = $('#PartyA\\.orgName').val();
-				var url = contextRootPath + "/userMsg/prepareOrganization.do?orgName="+orgName;
+				var url = contextRootPath + "/userMsg/prepareOrganization.do?orgName="+encodeURI(orgName);
 				var $modal = $('#comPanyModal');
 				$modal.load(url, '',
 				function() {
@@ -277,14 +278,14 @@ $(function(){
 				}else if(orgName  != "" && orgCode ==""){
 					alert("该经销商的经销商代码是空的，请重新选择经销商！");
 				}else{
-					var url = contextRootPath + "/contract/prepareUserMsg.do?orgCode="+orgCode+"&businessName="+businessName;
+					var url = contextRootPath + "/contract/prepareUserMsg.do?orgCode="+orgCode+"&businessName="+encodeURI(businessName);
 					var $modal = $('#userMsgModal');
 					$modal.load(url, '',
 					function() {
 						$modal.modal();
 					});
 			  }
-	 })
+	 });
 });
 
 /**

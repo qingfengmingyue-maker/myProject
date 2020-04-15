@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/static/common/taglibs.jsp"%>
-<link href='${ctx}/static/common/css/custom.css' rel="stylesheet"
-	type="text/css" />
-<%-- <%@ include file="/static/common/meta_js.jsp"%> --%>
+<link href="${ctx}/static/common/css/custom.css" rel="stylesheet" type="text/css" />
 <html>
 <head>
 <title>${message }</title>

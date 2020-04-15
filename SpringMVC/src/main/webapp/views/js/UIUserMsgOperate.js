@@ -54,13 +54,12 @@ $(function(){
 	$("#searchComPany").click(
 			function(){
 				var orgName = $('#orgName').val();
-				var url = contextRootPath + "/userMsg/prepareOrganization.do?orgName="+orgName;
+				var url = contextRootPath + "/userMsg/prepareOrganization.do?orgName="+encodeURI(orgName);
 				var $modal = $('#myModal');
 				$modal.load(url, '',
 				function() {
 					$modal.modal();
 				});
-				
 	})
 });
 

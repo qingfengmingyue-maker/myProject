@@ -2,6 +2,8 @@ package com.platform.user.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -135,7 +137,7 @@ public class UserMsgController {
 	    
 	    
 	    @RequestMapping("/prepareOrganization")
-	    public ModelAndView prepareOrganization(String orgName) {
+	    public ModelAndView prepareOrganization(String orgName) throws UnsupportedEncodingException {
 	       ModelAndView mv = new ModelAndView("/UIPrepareOrganization");
 		   mv.addObject("orgName", orgName);
 		   return mv;

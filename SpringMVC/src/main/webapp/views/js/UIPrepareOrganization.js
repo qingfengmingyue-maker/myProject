@@ -45,7 +45,7 @@ $(function() {
 		var result = selectOne();
 		result = result+'';
 		if(result != null){
-			 let obj = result.split(",");
+			 var obj = result.split(",");
 			 if( $("#orgCode").length > 0){
 				 $("#orgCode").val(obj[0]);
 			     $("#orgName").val(obj[1]);

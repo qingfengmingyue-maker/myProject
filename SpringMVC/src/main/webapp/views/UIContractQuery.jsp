@@ -9,7 +9,7 @@ white-space: nowrap;
 .table>thead>tr>th { text-align: center;}
 .center { text-align: center;}
 </style>
-<title>用户信息展示页面</title>
+<title>订单信息展示页面</title>
 <script type="text/javascript"	src="${ctx}/static/common/js/common.js"></script>
 <script type="text/javascript"	src="${ctx}/views/js/UIContractQuery.js"></script>
 </head>
@@ -41,7 +41,7 @@ white-space: nowrap;
 				  <form id="fm" class="form-horizontal" role="form">
 					<div class="panel-body" >
 					 	<div class="row">
-							<div class="col-lg-3 col-md-3 col-xs-3">
+							<div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="userCode" class="control-label">合同号:</label>
@@ -52,7 +52,7 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-3 col-xs-3">
+							<div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="ownerName" class="control-label">车主:</label>
@@ -63,7 +63,7 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
-								<div class="col-lg-3 col-md-3 col-xs-3">
+								<div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="vinNo" class="control-label">车架号:</label>
@@ -74,7 +74,9 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-3 col-xs-3">
+						</div>
+						<div class="row">
+						    <div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="orgName" class="control-label">经销商名称:</label>
@@ -85,9 +87,7 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-3 col-md-3 col-xs-3">
+							<div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="userCode" class="control-label">保存日期起期:</label>
@@ -103,7 +103,7 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-3 col-xs-3">
+							<div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="insertTime1" class="control-label">保存日期止期:</label>
@@ -119,7 +119,9 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
-								<div class="col-lg-3 col-md-3 col-xs-3">
+						</div>
+					<div class="row">
+					    <div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="vinNo" class="control-label">车辆状态:</label>
@@ -131,7 +133,7 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-3 col-xs-3">
+							<div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="userName" class="control-label">服务类型:</label>
@@ -143,9 +145,7 @@ white-space: nowrap;
 									</div>
 								</div>
 							</div>
-						</div>
-					<div class="row">
-						<div class="col-lg-3 col-md-3 col-xs-3">
+						<div class="col-lg-4 col-md-4 col-xs-4">
 								<div class="row form-group">
 									<div class="col-xs-4" align="left">
 										<label for="userName" class="control-label">服务期限：</label>

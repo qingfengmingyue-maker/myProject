@@ -15,7 +15,7 @@ jQuery(function($) {
           {"data": "modelName","class" : "center","bSortable": false},
           {"data": "carState","class" : "center",
         	  "render" : function(data, type, row) {
-       		    let carStateName ='';
+       		    var carStateName ='';
        		    if(data == '1'){
        		    	carStateName = '新车'
        		    }else if(data == '2'){
@@ -35,7 +35,7 @@ jQuery(function($) {
           {"data": "insertTime","class" : "center","bSortable": false},
           {"data": "serviceType","class" : "center",
         	  "render" : function(data, type, row) {
-         		    let serviceTypeName ='';
+         		    var serviceTypeName ='';
          		    if(data == '1'){
          		    	serviceTypeName = '赔付包含购置税'
          		    }
@@ -127,39 +127,6 @@ $(function(){
 
 
 
-/**
- * 更多查询搜索按钮的方法
- */
-$(function() {
-	$("#submitQuery").click(function() {
-		let showPolicyNo = $('#showPolicyNo').val();
-		let showOrgName = $('#showOrgName').val();
-		let showInsertTime = $('#showInsertTime').val();
-		let showInsertTime1 = $('#showInsertTime1').val();
-		let showContractNo = $('#showContractNo').val();
-		let showVinNo = $('#showVinNo').val();
-		let showoOwnerName = $('#showoOwnerName').val();
-		let showCarState = $('#showCarState').val();
-		let showServiceType = $('#showServiceType').val();
-		let showServiceDate = $('#showServiceDate').val();
-	   $('#policyNoComplex').val(showPolicyNo);
-	   $('#orgNameComplex').val(showOrgName);
-	   $('#insertTimeComplex').val(showInsertTime);
-	   $('#insertTime1Complex').val(showInsertTime1);
-	   $('#contractNoComplex').val(showContractNo);
-	   $('#vinNoComplex').val(showVinNo);
-	   $('#ownerNameComplex').val(showoOwnerName);
-	   $('#carStateComplex').val(showCarState);
-	   $('#serviceTypeComplex').val(showServiceType);
-	   $('#serviceDateComplex').val(showServiceDate);
-	   $('#queryType').val('complexQuery');
-	   $("#moreSearchModal input").val("");
-	   $("#closeDialog").click();
-	   jsonCondition=$("#fm").serializeObject();
-	   var table = $('.table-sort').DataTable();
-	   table.ajax.reload();
-	});
-});
 
 
 /**

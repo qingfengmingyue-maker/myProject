@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/static/common/taglibs.jsp"%>
 <html>
 <head>
@@ -73,10 +72,8 @@ body {
 	<div class="row">
 		<div class="col-lg-12">
 			<form id="contractfm" name="fm" action="${ctx}/contract/saveContract.do" method="post">
-			  <!-- 保存状态，暂存为0，保存为1 -->
 			 <input type="hidden"  id="saveType" name="saveType" value="1" >
-			    <!-- 甲方信息开始 -->
-			<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
+			 <div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
 					<h4 class="panel-title" id="jfxx"
 						style="padding-top: 160px; margin-top: -160px;">
@@ -130,10 +127,10 @@ body {
 			        </div>
 			   </div>
 			   </div>
-			    <!-- 甲方信息结束 -->
+			   
 			    
 			    
-			  <!-- 乙方信息开始 -->
+			
 			<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
 					<h4 class="panel-title" id="jfxx"
@@ -205,9 +202,9 @@ body {
 			        </div>
 			   </div>
 			   </div>
-			     <!-- 乙方信息结束 -->
+			   
 			     
-			     <!-- 车辆信息开始 -->
+			    
 			 <div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
 					<h4 class="panel-title" id="jfxx"
@@ -355,16 +352,6 @@ body {
 									</div>
 								</div>
 							</div>
-							<!-- <div class="col-lg-4 col-md-4 col-xs-12">
-								<div class="row form-group">
-									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label">发票金额大写：</label>
-									</div>
-									<div class="col-xs-6">
-										<input class="form-control" type="text" />
-									</div>
-								</div>
-							</div> -->
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
@@ -433,10 +420,10 @@ body {
 			        </div>
 			   </div>
 			   </div> 
-			    <!-- 车辆信息结束 -->
+			 
 			    
 			    
-			  <!-- 服务信息开始 -->
+			
 	 		<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
 					<h4 class="panel-title" id="jfxx"
@@ -554,9 +541,9 @@ body {
 			        </div>
 			   </div>
 			   </div> 
-			    <!-- 服务信息结束 -->
+			   
 			    
-			 <!-- 其他信息开始 -->
+			 
 			<div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
 					<h4 class="panel-title" id="jfxx"
@@ -573,7 +560,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>附加服务：</label>
 									</div>
 									<div class="col-xs-8">
-										<textarea class="form-control  required" rows="2" cols="100" id="appendMsg" name="appendMsg"  >${mainContract.appendMsg == null? '无':mainContract.appendMsg } </textarea>
+										<textarea class="form-control" rows="2" cols="100" id="appendMsg" name="appendMsg"  >${mainContract.appendMsg == null? '无':mainContract.appendMsg } </textarea>
 									</div>
 								</div>
 							</div>
@@ -586,7 +573,7 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>备注：</label>
 									</div>
 									<div class="col-xs-8">
-										<textarea class="form-control  required" rows="2" cols="100"  id="reMark" name="reMark" >${mainContract.reMark ==null ? '无备注。':mainContract.reMark }</textarea>
+										<textarea class="form-control" rows="2" cols="100"  id="reMark" name="reMark" >${mainContract.reMark ==null ? '无备注。':mainContract.reMark }</textarea>
 									</div>
 								</div>
 							</div>
@@ -594,14 +581,15 @@ body {
 			        </div>
 			   </div>
 			   </div>
-			    <!-- 其他信息结束 -->
+			   
 			</form>
 		</div>
 	</div>
 	<br/>
 		<!-- 模态框（Modal） -->
-  <div id="comPanyModal"  class="modal fade" role="dialog"  tabindex="-1" data-backdrop="false" style="display:none;"></div>
   <div id="userMsgModal"  class="modal fade" role="dialog"  tabindex="-1" data-backdrop="false" style="display:none;"></div>
+  <div id="comPanyModal"  class="modal fade" role="dialog"  tabindex="-1" data-backdrop="false" style="display:none;"></div>
+
 </body>
 </html>
 
