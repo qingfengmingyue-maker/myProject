@@ -11,7 +11,7 @@
 <body>
 	<div class="row">
 		<div class="col-lg-12">
-			<form id="userfm" name="fm" action="${ctx}/userMsg/saveUserMsg.do"
+			<form id="userfm" name="fm" class="form-horizontal"  action="${ctx}/userMsg/saveUserMsg.do"
 				method="post">
 				<div class="panel-group" id="accordion">
 					<div class="panel panel-primary">
