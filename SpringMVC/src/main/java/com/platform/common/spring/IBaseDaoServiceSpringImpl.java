@@ -3,6 +3,7 @@ package com.platform.common.spring;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +73,7 @@ public   class IBaseDaoServiceSpringImpl <T, ID extends Serializable>  implement
 	}
 	@Override
 	public int getCountBySqlCondition(String sqlString,Map<String, ?> params) {
-		return this.setParameterToQuery(this.getSession().createNativeQuery(sqlString), params).list().size();
+		return ((BigInteger)this.setParameterToQuery(this.getSession().createNativeQuery(sqlString), params).list().get(0)).intValue();
 	}
    
 	 
