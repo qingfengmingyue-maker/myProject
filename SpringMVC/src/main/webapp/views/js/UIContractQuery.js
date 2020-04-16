@@ -32,7 +32,6 @@ jQuery(function($) {
        		    return carStateName;
        		   }
           },
-          {"data": "insertTime","class" : "center","bSortable": false},
           {"data": "serviceType","class" : "center",
         	  "render" : function(data, type, row) {
          		    var serviceTypeName ='';
@@ -49,9 +48,20 @@ jQuery(function($) {
        		}
           },
           {"data": "orgName","class" : "center","bSortable": false},
-          {"data": "insertTimeVo","class" : "center","bSortable": false},
+          {"data": "insertTime","class" : "center","bSortable": false},
           {"data": "operateTime","class" : "center","bSortable": false},
           {"data": "businessName","class" : "center","bSortable": false},
+          {"data": "saveType","class" : "center",
+        	  "render" : function(data, type, row) {
+       		    var saveTypeName ='';
+       		    if(data == '0'){
+       		    	saveTypeName = '暂存'
+       		    }else if(data == '1'){
+       		    	saveTypeName = '保存'
+       		    }
+       		    return saveTypeName;
+       		}
+          }
      ];
        $(dataTableInit(contextRootPath+"/contract/quryContractPageList.do", colModel,'',10));
 });
@@ -104,24 +114,46 @@ $(function(){
 			function(){
 				var result = selectOne();
 				if(result != null){
-					if(confirm("确定要删除此合同信息？")){
-						$.ajax({
-							type : "POST",
-							url : contextRootPath + '/contract/deleteContractByContractNo.do',
-							data :"contractNo="+result,
-							async : false,
-							success : function(obj) {
-								if(obj=='删除成功'){
-									alert(obj);
+					$.ajax({
+						type : "POST",
+						url : contextRootPath + '/contract/getSaveTypeByContractNo.do',
+						data :"contractNo="+result,
+						async : false,
+						success : function(obj) {
+							if(obj==0){
+								if(confirm("确定要删除此合同信息？")){
+									$.ajax({
+										type : "POST",
+										url : contextRootPath + '/contract/deleteContractByContractNo.do',
+										data :"contractNo="+result,
+										async : false,
+										success : function(obj) {
+											if(obj=='删除成功'){
+												alert(obj);
+											}
+											window.location.reload();
+										},
+										error : function(XMLHttpRequest, textStatus, errorThrown) {
+											alert(textStatus + errorThrown);
+										}
+									});
 								}
-								window.location.reload();
-							},
-							error : function(XMLHttpRequest, textStatus, errorThrown) {
-								alert(textStatus + errorThrown);
-							}
-						});
-					}
-			   }
+							}else{
+								alert("订单状态只有暂存状态才可以删除");
+							}										
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							alert("系统异常，请联系系统管理员");
+						}
+					});
+					
+					
+					
+					
+					
+					
+					
+			 }
 	 })
 });
 

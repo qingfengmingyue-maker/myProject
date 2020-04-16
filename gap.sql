@@ -47,6 +47,7 @@ CREATE TABLE partya
 contractno	varchar(17),
 orgname	varchar(100),
 orgcode	varchar(10) not null,
+businesscode	varchar(10),
 businessname	varchar(100),
 mobile	varchar(20),
 PRIMARY KEY (contractno) 

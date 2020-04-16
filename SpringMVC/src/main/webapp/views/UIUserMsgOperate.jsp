@@ -34,6 +34,7 @@
 												<input class="form-control " id="userCode" name="userCode"
 													placeholder="自动生成" readonly="readonly"
 													value="${userMsg.userCode }">
+												<input class="form-control " type="hidden" id="postFlag" name="postFlag" value="1">
 											</div>
 										</div>
 									</div>

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -30,6 +31,7 @@ import com.platform.contract.schema.model.MainContract;
 import com.platform.contract.schema.vo.ContractQueryVo;
 import com.platform.contract.schema.vo.ContractReturnVo;
 import com.platform.contract.service.facade.ContractService;
+import com.platform.user.schema.model.UserMsg;
 import com.platform.user.schema.vo.UserMsgVo;
 @Controller
 @RequestMapping("/contract")
@@ -173,16 +175,39 @@ public class ContractController {
 	 */
 	@RequestMapping("/quryContractPageList")
 	@ResponseBody
-	public Pager<ContractReturnVo> quryContractPageList(@RequestBody ContractQueryVo contractQueryVo){
+	public Pager<ContractReturnVo> quryContractPageList(@RequestBody ContractQueryVo contractQueryVo,HttpSession session){
+		UserMsg userMsg = (UserMsg) session.getAttribute("USER_SESSION");
 		Page page=new Page<ContractQueryVo>(contractQueryVo.getCurrentPageNum(), contractQueryVo.getiDisplayLength());
 	   	try {
-			page=contractService.findContractPageList(page, contractQueryVo);
+			page=contractService.findContractPageList(page, contractQueryVo,userMsg);
 			return new Pager<ContractReturnVo>().wrapPager(page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	   	return null;
 	}
+
+    /**
+     * @deprecated:删除合同信息之前校验，这个单子是暂存状态还是保存状态
+     */
+    @RequestMapping("/getSaveTypeByContractNo")
+    public void getSaveTypeByContractNo(String contractNo,HttpServletResponse response) {
+    	String saveType ="1";
+    	MainContract  mainContract = null;
+    	try {
+    		 mainContract = contractService.findContractVo(contractNo);
+    		 if(mainContract!=null) {
+    	    		saveType = mainContract.getSaveType();
+    	     }
+    		 PrintWriter writer = response.getWriter();
+ 			 writer.print(saveType);
+ 			 writer.flush();
+ 			 writer.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   }
 	
 	
     /**

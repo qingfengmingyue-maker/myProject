@@ -160,6 +160,20 @@ white-space: nowrap;
 								</div>
 							</div>
 				     </div>
+				     <div class="row">
+				       <div class="col-lg-4 col-md-4 col-xs-4">
+								<div class="row form-group">
+									<div class="col-xs-4" align="left">
+										<label for="vinNo" class="control-label">订单状态:</label>
+									</div>
+									<div class="col-xs-8">
+										<ce:select list="#{'':'--请选择--','0':'暂存','1':'保存'}"
+													id="saveType" name="saveType"
+													cssClass="form-control"  ></ce:select>
+									</div>
+								</div>
+							</div>
+					  </div>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-6">
 								<div class="row form-group">
@@ -191,7 +205,6 @@ white-space: nowrap;
 										<th>车系</th>
 										<th>车型</th>
 										<th>车辆状态</th>
-										<th>保存日期</th>
 										<th>服务类型</th>
 										<th>结算金额(元)</th>
 										<th>服务期限</th>
@@ -199,6 +212,7 @@ white-space: nowrap;
 										<th>创建日期</th>
 										<th>更新日期</th>
 										<th>操作者</th>
+										<th>订单状态</th>
 									</tr>
 								 </thead>
 								<tbody>									

@@ -7,7 +7,7 @@
     <title>顶管管理系统</title>
     <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <script src="${ctx}/static/widgets/jquery/jquery.min.js"></script>
+    <script  type="text/javascript" src="${ctx}/static/widgets/jquery/jquery-1.11.1.js"></script>
     <script src="${ctx}/static/widgets/nicescroll/jquery.nicescroll.js"></script>
 	<script src="${ctx}/static/widgets/slimscroll/jquery.slimscroll.min.js"></script>
     <script type="text/javascript"	src="${ctx}/static/common/js/frame.js"></script>

@@ -23,6 +23,8 @@ public class PartyA {
 	String orgCode;
 	@Column(name="orgname")
 	String orgName;
+	@Column(name="businesscode")
+	String businessCode;
 	@Column(name="businessname")
 	String businessName;
 	@Column(name="mobile")

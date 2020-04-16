@@ -28,6 +28,16 @@ $(function(){
 	$("#temptSaveButton").click(
 		function(){
 			 $(".error").remove();//清除验证标签
+			 var orgName = $("#PartyA\\.orgName").val();
+			 if(orgName == ''){
+				 alert("请录入经销商名称");
+				 return  false;
+			 }
+			 var businessName = $("#PartyA\\.businessName").val();
+			 if(businessName == ''){
+				 alert("请录入业务联系人");
+				 return  false;
+			 }
 			 $('#saveType').val('0');
 			 //获取文本框的值并进行赋值
 			var insuranceType = '';
@@ -77,6 +87,7 @@ $(function(){
 			if(!validateFormDate()){
 				return false;
 			}
+			$('#saveType').val('1');
 		    $("#contractfm").submit();
      })
 });

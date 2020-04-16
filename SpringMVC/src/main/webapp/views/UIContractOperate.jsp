@@ -91,7 +91,7 @@ body {
 									</div>
 									<div class="col-xs-6">
 									    <input class="form-control" type="hidden" id="PartyA.orgCode"  name="PartyA.orgCode"  value="${mainContract.partyA.orgCode }"/>
-										<input class="form-control  required" type="text" id="PartyA.orgName"  name="PartyA.orgName"  value="${mainContract.partyA.orgName }"  onchange="resetOrgCode()" />
+										<input class="form-control  required" type="text" id="PartyA.orgName"  name="PartyA.orgName"  value="${mainContract.partyA.orgName }"  onchange="resetOrgCode()" readonly="readonly"/>
 										<input class="form-control" type="hidden" id="PartyA.contractNo" name="PartyA.contractNo" value="${mainContract.partyA.contractNo}"/>
 										<input class="form-control" type="hidden" id="editType" name="editType" value="${editType}"/>
 									</div>
@@ -106,7 +106,8 @@ body {
 										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>业务联系人：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control  required" type="text" id="PartyA.businessName"  name="PartyA.businessName"   value="${mainContract.partyA.businessName }"/>
+									    <input class="form-control" type="hidden" id="PartyA.businessCode"  name="PartyA.businessCode"   value="${mainContract.partyA.businessCode }"  readonly="readonly"/>
+										<input class="form-control  required" type="text" id="PartyA.businessName"  name="PartyA.businessName"   value="${mainContract.partyA.businessName }"  readonly="readonly"/>
 									</div>
 									<div class="col-xs-2" align="left" style="padding-left: 0px">
 										<button type="button" id="searchBussinessLinker" class="btn btn-primary"  >查询</button>

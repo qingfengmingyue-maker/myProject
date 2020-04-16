@@ -9,22 +9,22 @@ import lombok.Data;
 @Data
 public class ContractReturnVo {
 
-	String policyNo;//保单号
-	String contractNo;//合同号
-	String ownerName;//车主
+   private String policyNo;//保单号
+   private String contractNo;//合同号
+   private String ownerName;//车主
    private String brandName;
    private String className;
    private String modelName;
    private String carState;
-   @JsonFormat(pattern="yyyy-MM-dd")
-   private Date insertTime;
    private String serviceType;
    private BigDecimal settleAmount;
    private Character serviceDate;
    private String orgName;
    @JsonFormat(pattern="yyyy-MM-dd")
-   private Date insertTimeVo;
+   private Date insertTime;
    @JsonFormat(pattern="yyyy-MM-dd")
    private Date operateTime;
    private String businessName;
+   //"0"代表暂存  "1"代表保存
+   private Character saveType;
 }
