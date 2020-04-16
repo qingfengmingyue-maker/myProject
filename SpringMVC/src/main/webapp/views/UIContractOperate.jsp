@@ -72,7 +72,7 @@ body {
 
 	<div class="row">
 		<div class="col-lg-12">
-			<form id="contractfm" name="fm" action="${ctx}/contract/saveContract.do" method="post">
+			<form id="contractfm" name="fm" class="form-horizontal"  action="${ctx}/contract/saveContract.do" method="post">
 			 <input type="hidden"  id="saveType" name="saveType" value="1" >
 			 <div class="panel panel-primary"   style="width:96.8%;" id="projectBasicInfoDiv">
 				<div class="panel-heading">
@@ -87,7 +87,7 @@ body {
 					    	<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="partyA.orgName" class="control-label"><span style="color: red">*</span>经销商全称：</label>
+										<label for="partyA.orgName" class="control-label"  align="left"><span style="color: red">*</span>经销商全称：</label>
 									</div>
 									<div class="col-xs-6">
 									    <input class="form-control" type="hidden" id="PartyA.orgCode"  name="PartyA.orgCode"  value="${mainContract.partyA.orgCode }"/>
