@@ -55,7 +55,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 	@Override
 	public List<MainContract> findContractList(ContractQueryVo contractQueryVo)
 			throws Exception {
-		StringBuffer hql = new StringBuffer(" from MainContract a where 1=1 ");
+		StringBuffer hql = new StringBuffer(" from MainContract a where savetype ='1' ");
 		Map<String,Object> map = new HashMap<String,Object>(0);
 		String contractNo = contractQueryVo.getContractNo();//合同号
 		String ownerName = contractQueryVo.getOwnerName();//车主
