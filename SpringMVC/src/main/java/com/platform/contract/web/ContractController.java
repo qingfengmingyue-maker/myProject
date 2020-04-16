@@ -1,5 +1,6 @@
 package com.platform.contract.web;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -28,11 +30,12 @@ import com.platform.common.schema.vo.Pager;
 import com.platform.common.service.RegulationService;
 import com.platform.common.service.VehicleClassService;
 import com.platform.contract.schema.model.MainContract;
+import com.platform.contract.schema.model.PartyB;
+import com.platform.contract.schema.model.VehicleMsg;
 import com.platform.contract.schema.vo.ContractQueryVo;
 import com.platform.contract.schema.vo.ContractReturnVo;
 import com.platform.contract.service.facade.ContractService;
 import com.platform.user.schema.model.UserMsg;
-import com.platform.user.schema.vo.UserMsgVo;
 @Controller
 @RequestMapping("/contract")
 public class ContractController {
@@ -262,88 +265,93 @@ public class ContractController {
 	 */
 	@RequestMapping("/loadContractExcel")
 	public void loadContractExcel(ContractQueryVo contractQueryVo,HttpServletResponse response){
+		String basePathTemp=Thread.currentThread().getContextClassLoader().getResource("/").getPath();
+		if(basePathTemp.indexOf("WEB-INF/classes") > -1){
+			basePathTemp = basePathTemp.substring(0,basePathTemp.indexOf("WEB-INF/classes"));
+		}
+		String modelPath= basePathTemp+"/model/model.xls";
 		List<MainContract> mainContractList = null;
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 	   	try {
 			mainContractList=contractService.findContractList(contractQueryVo);
-			String [] columnName={"合同号","车主","品牌","车系",	"车型","车辆状态","保存日期","服务类型","结算金额（元）","服务期限（年）",
-					"经销商名称","创建日期","更新日期","操作者"};
-			HSSFWorkbook wb = new HSSFWorkbook();
-			HSSFSheet sheet = wb.createSheet("合同报表");
-			HSSFRow rowTitle = sheet.createRow(0);
-			int columnNameLength = columnName.length;
-			for(int i=0;i<columnNameLength;i++){
-				HSSFCell cell = rowTitle.createCell(i);
-		    	cell.setCellValue(columnName[i]);
-		    }
-			int rownum = 1;
-			SimpleDateFormat datetemp1 = new SimpleDateFormat("yyyy-MM-dd");
+			FileInputStream in = new FileInputStream(modelPath);
+			HSSFWorkbook wb = new HSSFWorkbook(in);;
+			HSSFSheet sheet = wb.getSheetAt(0);//wb.createSheet("合同报表");
+			HSSFCellStyle style = wb.createCellStyle();
+			style.setAlignment(HSSFCellStyle.ALIGN_CENTER);// 居中
+			style.setBorderBottom(HSSFCellStyle.BORDER_THIN); // 下边框  
+			style.setBorderLeft(HSSFCellStyle.BORDER_THIN);// 左边框  
+			style.setBorderTop(HSSFCellStyle.BORDER_THIN);// 上边框  
+			style.setBorderRight(HSSFCellStyle.BORDER_THIN);// 右边框  
+			int rownum = 4;
+			int count = 1;
 			for(MainContract mainContract:mainContractList){
 				HSSFRow row = sheet.createRow(rownum++);
 				int cellnum = 0;
-				HSSFCell cell = row.createCell(cellnum++);
-			    cell.setCellValue(mainContract.getContractNo());//合同号
-			    if(mainContract.getPartyB() != null){
-			    	row.createCell(cellnum++).setCellValue(mainContract.getPartyB().getOwnerName());//车主
+				creatCell(row,style,cellnum++,count+++"");
+			    PartyB partyB = mainContract.getPartyB();
+			    if(partyB != null){
+			    	creatCell(row,style,cellnum++,partyB.getOwnerName());//客户证件姓名
+			    	String documentType = partyB.getDocumentType();
+			    	String documentName = "";
+			    	if("01".equals(documentType)){ //车主证件类型
+			    		documentName ="身份证";
+			    	}else if("02".equals(documentType)){
+			    		documentName ="护照";
+			    	}else if("03".equals(documentType)){
+			    		documentName ="军官证";
+			    	}else if("04".equals(documentType)){
+			    		documentName ="组织机构代码";
+			    	}else if("05".equals(documentType)){
+			    		documentName ="统一社会信用代码";
+			    	}else if("99".equals(documentType)){
+			    		documentName ="其他";
+			    	}
+			    	creatCell(row,style,cellnum++,documentName);//车主证件类型
+			    	creatCell(row,style,cellnum++,partyB.getDocumentNo());//车主证件号码
+			    	creatCell(row,style,cellnum++,partyB.getOwnerMobile());//车主联系方式
 			    }else{
-			    	row.createCell(cellnum++).setCellValue("");
+			    	creatCell(row,style,cellnum++,"");
+			    	creatCell(row,style,cellnum++,"");
+			    	creatCell(row,style,cellnum++,"");
 			    }
-			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getBrandName());//品牌
-			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getClassName());//车系
-			    row.createCell(cellnum++).setCellValue(mainContract.getVehicleMsg().getModelName());//车型
-			    String carState = mainContract.getVehicleMsg().getCarState();
-			    if("1".equals(carState)){
-			    	carState = "新车";
-			    }else if("2".equals(carState)){
-			    	carState = "一年以内次新车";
-			    }else if("3".equals(carState)){
-			    	carState = "1年至2年在用车";
-			    }else if("4".equals(carState)){
-			    	carState = "2年至3年在用车";
-			    }else if("5".equals(carState)){
-			    	carState = "3年至4年在用车";
-			    }else if("6".equals(carState)){
-			    	carState = "5年至6年在用车";
+			    VehicleMsg vehicleMsg = mainContract.getVehicleMsg();
+			    if(vehicleMsg != null){
+			    	String insuranceName = vehicleMsg.getInsuranceName();
+			    	String insurancevlaue = "";
+			    	if("1".equals(insuranceName)){
+			    		insurancevlaue ="人保";
+			    	}else if("2".equals(insuranceName)){
+			    		insurancevlaue ="平安";
+			    	}else if("3".equals(insuranceName)){
+			    		insurancevlaue="太保";
+			    	}else if("4".equals(insuranceName)){
+			    		insurancevlaue ="鑫安";
+			    	}else if("5".equals(insuranceName)){
+			    		insurancevlaue ="其他";
+			    	}
+			    	creatCell(row,style,cellnum++,insurancevlaue);
+			    	creatCell(row,style,cellnum++,vehicleMsg.getVinNo());
+			    	if(vehicleMsg.getInvoiceAmount() != null){
+			    		creatCell(row,style,cellnum++,vehicleMsg.getInvoiceAmount()+"");
+			    	}else{
+			    		creatCell(row,style,cellnum++,"");
+			    	}
 			    }else{
-			    	carState = "其他";
+			    	creatCell(row,style,cellnum++,"");
+			    	creatCell(row,style,cellnum++,"");
+			    	creatCell(row,style,cellnum++,"");
 			    }
-			    row.createCell(cellnum++).setCellValue(carState);//车辆状态
-			    if(mainContract.getInsertTime() != null){
-			    	row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));//保存日期
+			    creatCell(row,style,cellnum++,mainContract.getServiceDate());//服务期限
+			    if(mainContract.getStartDate() != null){
+			    	creatCell(row,style,cellnum++,dateformat.format(mainContract.getStartDate()));
 			    }else{
-			    	row.createCell(cellnum++).setCellValue("");
+			    	creatCell(row,style,cellnum++,"");
 			    }
-			    String serviceType = mainContract.getServiceType();
-			    if("1".equals(serviceType)){
-			    	row.createCell(cellnum++).setCellValue("赔付包含购置税");//服务类型
+			    if(mainContract.getEndDate() != null){
+			    	creatCell(row,style,cellnum++,dateformat.format(mainContract.getEndDate()));
 			    }else{
-			    	row.createCell(cellnum++).setCellValue("");//服务类型
-			    }
-			    
-			    if(mainContract.getSettleAmount() != null){
-			    	row.createCell(cellnum++).setCellValue(mainContract.getSettleAmount()+"");//结算金额
-			    }else{
-			    	row.createCell(cellnum++).setCellValue("");
-			    }
-			    row.createCell(cellnum++).setCellValue(mainContract.getServiceDate());//服务期限
-			    if(mainContract.getPartyA() != null){
-			    	row.createCell(cellnum++).setCellValue(mainContract.getPartyA().getOrgName());//经销商名称
-			    }else{
-			    	row.createCell(cellnum++).setCellValue("");
-			    }
-			    if(mainContract.getInsertTime() != null){
-			    	row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getInsertTime()));
-			    }else{
-			    	row.createCell(cellnum++).setCellValue("");
-			    }
-			    if(mainContract.getOperateTime() != null){
-			    	row.createCell(cellnum++).setCellValue(datetemp1.format(mainContract.getOperateTime()));
-			    }else{
-			    	row.createCell(cellnum++).setCellValue("");
-			    }
-			    if(mainContract.getPartyA() != null){
-			    	row.createCell(cellnum++).setCellValue(mainContract.getPartyA().getBusinessName());
-			    }else{
-			    	row.createCell(cellnum++).setCellValue("");
+			    	creatCell(row,style,cellnum++,"");
 			    }
 			}
 			
@@ -365,6 +373,12 @@ public class ContractController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public HSSFCell creatCell(HSSFRow row,HSSFCellStyle cellstyle,int cellNum,String value){
+		HSSFCell cell = row.createCell(cellNum);
+		cell.setCellStyle(cellstyle);
+		cell.setCellValue(value);
+		return cell;
 	}
 	
 	 /**
