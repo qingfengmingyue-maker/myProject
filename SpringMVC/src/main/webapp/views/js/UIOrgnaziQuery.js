@@ -45,4 +45,7 @@ $(function() {
 		var table = $('.table-sort').DataTable();
 		table.ajax.reload();
 	});
+	$("#reset").click(function(){
+		$("#fm").find(":input").val("");
+	})
 });
