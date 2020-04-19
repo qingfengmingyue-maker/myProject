@@ -41,6 +41,10 @@ public class MainContract {
 	Date endDate;
 	@Column(name="saleuser")
 	String saleUser;
+	@Column(name="operatecode")
+	String operateCode;
+	@Column(name="operatename")
+	String operateName;
 	@Column(name="appendmsg")
 	String appendMsg;
 	@Column(name="remark")

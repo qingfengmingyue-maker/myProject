@@ -26,11 +26,13 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 	@Autowired
 	RegulationService regulationService;
 	@Override
-	public MainContract saveContract(MainContract mainContract) throws Exception {
+	public MainContract saveContract(MainContract mainContract,UserMsg userMsg) throws Exception {
 		String contractNo = mainContract.getContractNo();
 		if(StringUtils.isBlank(contractNo)){
 			String orgCode = mainContract.getPartyA().getOrgCode();//归属机构
 			contractNo = regulationService.getOrgCode(orgCode, "contractNo");
+			mainContract.setOperateCode(userMsg.getUserCode());
+			mainContract.setOperateName(userMsg.getUserName());
 		}
 		mainContract.setContractNo(contractNo);
 		mainContract.getPartyA().setContractNo(contractNo);
@@ -109,7 +111,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 	public Page findContractPageList(Page page, ContractQueryVo contractQueryVo,UserMsg userMsg)
 			throws Exception {
 		StringBuffer hql = new StringBuffer("select a.contractNo, pb.ownerName, vm.brandName, vm.className,vm.modelName,vm.carState,a.insertTime, "
-				+"a.servicetype,a.settleamount,a.servicedate,pa.orgName,a.operateTime,pa.businessName,a.saveType  "
+				+"a.servicetype,a.settleamount,a.servicedate,pa.orgName,a.operateTime,a.operateName,a.saveType  "
 				+ "from MainContract a left join partya pa on a.contractNo=pa.contractNo "
 				+ "left join partyb pb on a.contractNo=pb.contractNo "
 				+ "left join vehiclemsg vm on a.contractNo=vm.contractNo where 1=1 ");
@@ -132,8 +134,8 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		String postFlag = userMsg.getPostFlag();
 		String userCode = userMsg.getUserCode();
 		if(!"0".equals(postFlag)) {
-			hqlFilter.append(" and pa.businessCode = :businessCode");
-			map.put("businessCode", userCode);
+			hqlFilter.append(" and a.operateCode = :operateCode");
+			map.put("operateCode", userCode);
 		}
 		if(StringUtils.isNotBlank(policyNo)) {
 			hqlFilter.append(" and a.policyNo = :policyNo");
@@ -203,7 +205,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 			contractReturnVo.setServiceDate((Character)obj[9]);
 			contractReturnVo.setOrgName((String)obj[10]);
 			contractReturnVo.setOperateTime(obj[11]!=null?(Date)obj[11] : null );
-			contractReturnVo.setBusinessName((String)obj[12]);
+			contractReturnVo.setOperateName((String)obj[12]);
 			contractReturnVo.setSaveType((Character)obj[13]);
 			contractReturnVos.add(contractReturnVo);
 		}

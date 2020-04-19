@@ -531,6 +531,8 @@ body {
 									</div>
 									<div class="col-xs-6">
 										<input class="form-control" type="text" placeholder="系统唯一生成，无需填写"  readonly="readonly"  id="contractNo" name="contractNo"  value="${mainContract.contractNo}"/>
+										<input class="form-control" type="hidden" id="operateCode" name="operateCode"  value="${mainContract.operateCode}"/>
+										<input class="form-control" type="hidden" id="operateName" name="operateName"  value="${mainContract.operateName}"/>
 									</div>
 								</div>
 							</div>

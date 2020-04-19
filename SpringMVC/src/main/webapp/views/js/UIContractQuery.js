@@ -50,7 +50,7 @@ jQuery(function($) {
           {"data": "orgName","class" : "center","bSortable": false},
           {"data": "insertTime","class" : "center","bSortable": false},
           {"data": "operateTime","class" : "center","bSortable": false},
-          {"data": "businessName","class" : "center","bSortable": false},
+          {"data": "operateName","class" : "center","bSortable": false},
           {"data": "saveType","class" : "center",
         	  "render" : function(data, type, row) {
        		    var saveTypeName ='';

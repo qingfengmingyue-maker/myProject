@@ -15,7 +15,7 @@ public interface ContractService {
 	 * @return
 	 * @throws Exception
 	 */
-	MainContract saveContract(MainContract mainContract) throws Exception;
+	MainContract saveContract(MainContract mainContract,UserMsg userMsg) throws Exception;
 	Boolean delContract(String contractNo)throws Exception;
 	MainContract findContractVo(String contractNo) throws Exception;
 	/**

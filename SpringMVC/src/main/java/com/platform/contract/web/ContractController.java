@@ -108,9 +108,10 @@ public class ContractController {
 	 * @return
 	 */
 	@RequestMapping("/saveContract")
-	public ModelAndView saveContract(MainContract mainContract,HttpServletResponse response){
+	public ModelAndView saveContract(MainContract mainContract,HttpServletResponse response,HttpSession session){
 		try {
-			mainContract = contractService.saveContract(mainContract);
+			UserMsg userMsg = (UserMsg) session.getAttribute("USER_SESSION");
+			mainContract = contractService.saveContract(mainContract,userMsg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

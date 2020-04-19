@@ -99,6 +99,7 @@ appendmsg	varchar(2000),
 remark	varchar(2000),
 policyno varchar(22),
 savetype char(1),
+operatecode varchar(10),
 inserttime	timestamp,
 operatetime	timestamp,
 PRIMARY KEY (contractno) 
