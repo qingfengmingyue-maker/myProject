@@ -60,5 +60,14 @@
  
  window.onload=function(){ 
 	 var serviceDateHidden = $('#serviceDateHidden').val();
-	 $('#serviceDateShow').val(intToChinese(serviceDateHidden)+"年");
+	 $('#serviceDateShow').val(serviceDateHidden*12+"月");
+ }
+ 
+ 
+ /**
+  * @describe:返回按钮功能返回到列表页面
+  * @returns
+  */
+ function goBack(){
+	 window.location.href=contextRootPath + "/contract/contractList.do";
  }
