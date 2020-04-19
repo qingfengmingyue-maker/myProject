@@ -4,6 +4,7 @@
 <html>
 <head>
 <title>${title }</title>
+<script type="text/javascript"	src="${ctx}/static/common/js/common.js"></script>
 <script type="text/javascript" src="${ctx}/views/js/UIContractOperate.js"></script>
 <style type="text/css">
 body {

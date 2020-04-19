@@ -215,7 +215,12 @@ function checkDocumentNo(field){
 		if (!isValidEntpCode(documentNo)) {
 			field.value = "";
 		}
+	} else if (trim(documentType) == "05") {
+		if (!isChinaUnifiedSocialCreditCode(field)) {
+			field.value = "";
+		}
 	}
+	
 	$("#PartyB\\.documentNo").val(field.value);
 }
 /**
