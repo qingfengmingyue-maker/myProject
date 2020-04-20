@@ -21,7 +21,7 @@ public class SaaUserPowerController {
 	  private SaaUserService saaUserService;
 	    
 	  @RequestMapping(value = "/login", method = RequestMethod.POST,produces="text/html;charset=utf-8")
-	  public String login(HttpServletRequest request,  Model model,String userName, String userPwd, String validateCode,HttpSession session) {
+	  public String login(HttpServletRequest request,  Model model,String userCode, String userPwd, String validateCode,HttpSession session) {
 	    String currentValidateCode = String.valueOf(request.getSession().getAttribute(Utils.VALIDATE_CODE));
 	    if(StringUtils.isNotBlank(currentValidateCode) && "null".equals(currentValidateCode)) {
 			 return "/login";
@@ -34,7 +34,7 @@ public class SaaUserPowerController {
 	    	  model.addAttribute("message", "验证码错误");
 	    	  return "/login";
 	      }
-	     UserMsg userMsg =  saaUserService.checkLogin(userName, userPwd);
+	     UserMsg userMsg =  saaUserService.checkLogin(userCode, userPwd);
 	     if(userMsg !=null) {
 	    	session.setAttribute("USER_SESSION",userMsg);
 	    	return "redirect: main.do";

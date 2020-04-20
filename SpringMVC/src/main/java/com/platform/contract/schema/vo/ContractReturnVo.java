@@ -24,9 +24,9 @@ public class ContractReturnVo {
    private Date insertTime;
    @JsonFormat(pattern="yyyy-MM-dd")
    private Date operateTime;
-   //private String businessName;
-   //private String operateCode;
-   private String operateName;
+   private String businessName;
    //"0"代表暂存  "1"代表保存
    private Character saveType;
+   //注销状态：0 为已注销，1为未注销
+   private Character cancelType;
 }

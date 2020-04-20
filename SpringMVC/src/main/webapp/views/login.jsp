@@ -18,7 +18,7 @@
 	<link href='${ctx}/static/common/css/frame-responsive.css' rel="stylesheet" type="text/css" />
 	<script language="javascript">
 	 function submitForm() {
-		if (fm.userName.value == "") {
+		if (fm.userCode.value == "") {
 			alert("用户名不能为空!");
 		}else if (fm.userPwd.value == "") {
 			alert("密码不能为空!");
@@ -29,8 +29,8 @@
 		}
 	}
 	function init() {
-		fm.userName.focus();
-		fm.userName.select();
+		fm.userCode.focus();
+		fm.userCode.select();
 	} 
 	function reloadValidateCode(){
        $("#validateCodeImg").attr("src", contextRootPath+'/validate/validateCode.do?'+Math.random());
@@ -46,7 +46,7 @@
                   <p>${message }</p>  <%--这里显示上边的controller里边用户或者密码错误的信息--%>
                </div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="text" class="form-control no-border input-lg rounded" name="userName" maxlength="10" placeholder="用户名" autofocus  value="admin">
+				  <input type="text" class="form-control no-border input-lg rounded" name="userCode" maxlength="10" placeholder="用户名" autofocus  value="admin">
 				   <span class="glyphicon  glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">

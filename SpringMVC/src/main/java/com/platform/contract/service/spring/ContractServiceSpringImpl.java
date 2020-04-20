@@ -31,8 +31,6 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		if(StringUtils.isBlank(contractNo)){
 			String orgCode = mainContract.getPartyA().getOrgCode();//归属机构
 			contractNo = regulationService.getOrgCode(orgCode, "contractNo");
-			mainContract.setOperateCode(userMsg.getUserCode());
-			mainContract.setOperateName(userMsg.getUserName());
 		}
 		mainContract.setContractNo(contractNo);
 		mainContract.getPartyA().setContractNo(contractNo);
@@ -111,7 +109,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 	public Page findContractPageList(Page page, ContractQueryVo contractQueryVo,UserMsg userMsg)
 			throws Exception {
 		StringBuffer hql = new StringBuffer("select a.contractNo, pb.ownerName, vm.brandName, vm.className,vm.modelName,vm.carState,a.insertTime, "
-				+"a.servicetype,a.settleamount,a.servicedate,pa.orgName,a.operateTime,a.operateName,a.saveType  "
+				+"a.servicetype,a.settleamount,a.servicedate,pa.orgName,a.operateTime,pa.businessName,a.saveType,a.cancelType  "
 				+ "from MainContract a left join partya pa on a.contractNo=pa.contractNo "
 				+ "left join partyb pb on a.contractNo=pb.contractNo "
 				+ "left join vehiclemsg vm on a.contractNo=vm.contractNo where 1=1 ");
@@ -130,12 +128,13 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		String serviceType = contractQueryVo.getServiceType();   //服务类型
 		Character serviceDate= contractQueryVo.getServiceDate(); //服务期限
 		String saveType = contractQueryVo.getSaveType();   //代表订单状态"0"代表暂存"1"代表保存
-		//添加权限管理，如果是系统管理员，可以查看全部的订单信息，如果是普通用户只能查看自己录入的订单信息
+		//添加权限管理，如果是系统管理员，可以查看全部的订单信息，如果是普通用户只能查看自己录入的订单信息，普通用户查询不出注销订单
 		String postFlag = userMsg.getPostFlag();
-		String userCode = userMsg.getUserCode();
 		if(!"0".equals(postFlag)) {
-			hqlFilter.append(" and a.operateCode = :operateCode");
-			map.put("operateCode", userCode);
+			hqlFilter.append(" and pa.orgCode = :orgCode");
+			map.put("orgCode", userMsg.getOrgCode());
+			hqlFilter.append(" and a.cancelType = :cancelType");
+			map.put("cancelType", "1");
 		}
 		if(StringUtils.isNotBlank(policyNo)) {
 			hqlFilter.append(" and a.policyNo = :policyNo");
@@ -205,11 +204,27 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 			contractReturnVo.setServiceDate((Character)obj[9]);
 			contractReturnVo.setOrgName((String)obj[10]);
 			contractReturnVo.setOperateTime(obj[11]!=null?(Date)obj[11] : null );
-			contractReturnVo.setOperateName((String)obj[12]);
+			contractReturnVo.setBusinessName((String)obj[12]);
 			contractReturnVo.setSaveType((Character)obj[13]);
+			contractReturnVo.setCancelType((Character)obj[14]);
 			contractReturnVos.add(contractReturnVo);
 		}
 		return new Page(page.getPageNo(), page.getPageSize(), total,contractReturnVos);
+	}
+
+	/**
+	 * 注销订单
+	 * @param contractNo
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public int cancelContractByContractNo(String contractNo) {
+		 String hql ="update  MainContract set cancelType = :cancelType where contractNo = :contractNo";
+		 Map<String,String> map = new HashMap<String,String>();
+		 map.put("cancelType", "0");
+		 map.put("contractNo", contractNo);
+	     return super.excuteHql(hql, map);
 	}
 	
 

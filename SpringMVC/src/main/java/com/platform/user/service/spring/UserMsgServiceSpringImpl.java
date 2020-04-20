@@ -87,4 +87,13 @@ public class UserMsgServiceSpringImpl extends IBaseDaoServiceSpringImpl<UserMsg,
 		List<Organization> organizations =  super.listByHQLOtherCondition(hql.toString(),map,(page.getPageNo()-1)*page.getPageSize(), page.getPageSize());
 		return new Page(page.getPageNo(), page.getPageSize(), total,organizations);
 	}
+	
+	@Override
+	public int updateUserMsgPassWd(String passWord,UserMsg userMsg) {
+	    String hql ="update  UserMsg set userPwd = :userPwd where userCode = :userCode";
+	    Map<String,String> map = new HashMap<String,String>();
+	    map.put("userPwd", passWord);
+	    map.put("userCode", userMsg.getUserCode());
+		return super.excuteHql(hql, map);
+	}
 }

@@ -177,9 +177,9 @@ public class ContractController {
 	 * @param contractQueryVo
 	 * @return
 	 */
-	@RequestMapping("/quryContractPageList")
+	@RequestMapping("/queryContractPageList")
 	@ResponseBody
-	public Pager<ContractReturnVo> quryContractPageList(@RequestBody ContractQueryVo contractQueryVo,HttpSession session){
+	public Pager<ContractReturnVo> queryContractPageList(@RequestBody ContractQueryVo contractQueryVo,HttpSession session){
 		UserMsg userMsg = (UserMsg) session.getAttribute("USER_SESSION");
 		Page page=new Page<ContractQueryVo>(contractQueryVo.getCurrentPageNum(), contractQueryVo.getiDisplayLength());
 	   	try {
@@ -191,28 +191,6 @@ public class ContractController {
 	   	return null;
 	}
 
-    /**
-     * @deprecated:删除合同信息之前校验，这个单子是暂存状态还是保存状态
-     */
-    @RequestMapping("/getSaveTypeByContractNo")
-    public void getSaveTypeByContractNo(String contractNo,HttpServletResponse response) {
-    	String saveType ="1";
-    	MainContract  mainContract = null;
-    	try {
-    		 mainContract = contractService.findContractVo(contractNo);
-    		 if(mainContract!=null) {
-    	    		saveType = mainContract.getSaveType();
-    	     }
-    		 PrintWriter writer = response.getWriter();
- 			 writer.print(saveType);
- 			 writer.flush();
- 			 writer.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-   }
-	
 	
     /**
      * @deprecated:删除合同信息
@@ -240,6 +218,75 @@ public class ContractController {
 			e.printStackTrace();
 		}
    }
+    
+    /**
+     * @deprecated:注销订单
+     * @param userCode
+     * @param response
+     */
+    @RequestMapping("/cancelContractByContractNo")
+    public void cancelContractByContractNo(String contractNo,HttpServletResponse response) {
+		try {
+			int x = contractService.cancelContractByContractNo(contractNo);
+			response.setHeader("Content-Type", "text/html;charset=UTF-8");//这句话是解决乱码的
+			PrintWriter writer = response.getWriter();
+			writer.print(x);
+			writer.flush();
+			writer.close();
+		}  catch (IOException e1) {
+			e1.printStackTrace();
+		}  catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   }
+    
+    /**
+     * @deprecated:查询保存状态是暂存还是保存
+     */
+    @RequestMapping("/getSaveTypeByContractNo")
+    public void getSaveTypeByContractNo(String contractNo,HttpServletResponse response) {
+    	//暂存还是保存标识 0为暂存，1为保存
+    	String saveType ="0";
+    	try {
+    		MainContract mainContract = contractService.findContractVo(contractNo);
+    		saveType = mainContract.getSaveType();
+    		PrintWriter writer = response.getWriter();
+    		writer.print(saveType);
+    		writer.flush();
+    		writer.close();
+    	}  catch (IOException e1) {
+			e1.printStackTrace();
+		}  catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    
+    /**
+     * @deprecated:查询保存状态是暂存还是保存
+     */
+    @RequestMapping("/getStartDateByContractNo")
+    public void getStartDateByContractNo(String contractNo,HttpServletResponse response) {
+    	//暂存还是保存标识 0为暂存，1为保存
+    	Date startDate = null;
+    	try {
+    		MainContract mainContract = contractService.findContractVo(contractNo);
+    		startDate = mainContract.getStartDate();
+    		PrintWriter writer = response.getWriter();
+    		writer.print(startDate);
+    		writer.flush();
+    		writer.close();
+    	}  catch (IOException e1) {
+			e1.printStackTrace();
+		}  catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    
     
     
     /**

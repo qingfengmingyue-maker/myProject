@@ -33,5 +33,12 @@ public interface ContractService {
 	 * @throws Exception
 	 */
 	Page findContractPageList(Page page, ContractQueryVo contractQueryVo,UserMsg userMsg)throws Exception;
+	/**
+	 * 注销订单
+	 * @param contractNo
+	 * @return
+	 * @throws Exception
+	 */
+	int cancelContractByContractNo(String contractNo);
 	
 }

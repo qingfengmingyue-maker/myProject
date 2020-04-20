@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,5 +148,34 @@ public class UserMsgController {
 	       ModelAndView mv = new ModelAndView("/UIPrepareOrganization");
 		   mv.addObject("orgName", orgName);
 		   return mv;
+	    }
+	    
+	    @RequestMapping("/modifyPwd")
+	    public ModelAndView modifyPwd(String passWord,HttpSession session) throws UnsupportedEncodingException {
+	       UserMsg userMsg = (UserMsg) session.getAttribute("USER_SESSION");
+	       ModelAndView mv = new ModelAndView("/UIUserMsgPassWdChange");
+		   mv.addObject("userMsg", userMsg);
+		   return mv;
+	    }
+	    
+	    
+	    
+	    @RequestMapping("/updateUserMsgPassWd")
+	    public void updateUserMsgPassWd(String userPwd,HttpSession session,HttpServletResponse response) throws UnsupportedEncodingException {
+	       UserMsg userMsg = (UserMsg) session.getAttribute("USER_SESSION");
+	       int count = userMsgService.updateUserMsgPassWd(userPwd,userMsg);
+	       response.setHeader("Content-Type", "text/html;charset=UTF-8");//这句话是解决乱码的
+	    	String msg = "更新密码失败";
+	    	if(count>0) {
+	    		 msg = "更新密码成功";
+	    	}
+	    	try {
+				PrintWriter writer = response.getWriter();
+				writer.print(msg);
+				writer.flush();
+				writer.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 	    }
 }

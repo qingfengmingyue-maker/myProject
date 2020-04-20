@@ -1,6 +1,6 @@
 /**----------------------------------------------LOGIN, FORGOT PASS, REGISTER AND LOCK SCREEN----------------------------------------------**/
 body.login {
-	background-image: url("../../images/login_back.png");
+	background-image: url("../../images/login.png");
 /* 	background: #37BC9B; */
 	padding: 0;
 }
@@ -16,7 +16,7 @@ body.login {
 
 .login-modal-content {
 	
-	background-image: url("../../images/login_back.png");
+	background-image: url("../../images/login.png");
 /* 	background: #37BC9B; */
 	top:0px;
 	left:0px;

@@ -1,4 +1,6 @@
 package com.platform.user.service.facade;
+import java.util.Map;
+
 import com.platform.common.schema.vo.Page;
 import com.platform.user.schema.model.UserMsg;
 import com.platform.user.schema.vo.OrganizationVo;
@@ -11,4 +13,5 @@ public interface UserMsgService {
 	UserMsg findUserMsgByUserCode(String userCode);
 	boolean deleteUserMsgByUserCode(String userCode);
 	Page findOrganizationListByPage(Page page, OrganizationVo organizationVo);
+    int updateUserMsgPassWd(String passWord,UserMsg userMsg) ;
 }

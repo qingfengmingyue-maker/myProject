@@ -13,11 +13,11 @@ import com.platform.user.service.facade.SaaUserService;
 public class SaaUserServiceSpringImpl extends IBaseDaoServiceSpringImpl<UserMsg,String> implements SaaUserService {
 
 	@Override
-	public UserMsg checkLogin(String userName, String passWord) {
+	public UserMsg checkLogin(String userCode, String passWord) {
 		UserMsg userMsg = null;
-		String hql = "from UserMsg where userName = :userName and userPwd = :userPwd";
+		String hql = "from UserMsg where userCode = :userCode and userPwd = :userPwd";
 		Map<String, String> map = new HashMap<String,String>();
-		map.put("userName", userName);
+		map.put("userCode", userCode);
 		map.put("userPwd", passWord);
 		userMsg = super.getByHQL(hql, map);
 		return userMsg;

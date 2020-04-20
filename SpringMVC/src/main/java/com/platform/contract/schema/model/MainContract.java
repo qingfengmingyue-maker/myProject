@@ -41,10 +41,6 @@ public class MainContract {
 	Date endDate;
 	@Column(name="saleuser")
 	String saleUser;
-	@Column(name="operatecode")
-	String operateCode;
-	@Column(name="operatename")
-	String operateName;
 	@Column(name="appendmsg")
 	String appendMsg;
 	@Column(name="remark")
@@ -54,6 +50,9 @@ public class MainContract {
 	//暂存还是保存标识 0为暂存，1为保存
 	@Column(name="savetype")
 	String saveType;
+	//注销状态：0 为已注销，1为未注销
+	@Column(name="canceltype")
+	String cancelType;
 	@Column(name="inserttime" ,insertable = false, updatable = false)
 	Date insertTime;
 	@Column(name="operatetime")

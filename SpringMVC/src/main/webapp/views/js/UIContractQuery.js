@@ -1,5 +1,10 @@
 //列表页js
 jQuery(function($) {
+	var hiddenClass ="center";
+	var postFlag = $("#postFlag").val();
+	if(postFlag == '1'){
+		hiddenClass="hiddenCol";
+	}
     //列值定义,clientIP和count都是对应的返回对象的字段
     colModel = [
                
@@ -13,25 +18,7 @@ jQuery(function($) {
           {"data": "brandName","class" : "center","bSortable": false},
           {"data": "className","class" : "center","bSortable": false},
           {"data": "modelName","class" : "center","bSortable": false},
-          {"data": "carState","class" : "center",
-        	  "render" : function(data, type, row) {
-       		    var carStateName ='';
-       		    if(data == '1'){
-       		    	carStateName = '新车'
-       		    }else if(data == '2'){
-       		    	carStateName = '一年以内次新车'
-       		    }else if(data == '3'){
-       		    	carStateName = '1年至2年在用车'
-       		    }else if(data == '4'){
-       		    	carStateName = '2年至3年在用车'
-       		    }else if(data == '5'){
-       		    	carStateName = '3年至4年在用车'
-       		    }else if(data == '6'){
-       		    	carStateName = '5年至6年在用车'
-       		    }
-       		    return carStateName;
-       		   }
-          },
+          {"data": "carState","class" : "center", "bSortable": false},
           {"data": "serviceType","class" : "center",
         	  "render" : function(data, type, row) {
          		    var serviceTypeName ='';
@@ -41,7 +28,6 @@ jQuery(function($) {
          		    return serviceTypeName;
          		}
           },
-          {"data": "settleAmount","class" : "center","bSortable": false},
           {"data": "serviceDate","class" : "center",
         	  "render" : function(data, type, row) {
        		   return data+'年';
@@ -50,7 +36,7 @@ jQuery(function($) {
           {"data": "orgName","class" : "center","bSortable": false},
           {"data": "insertTime","class" : "center","bSortable": false},
           {"data": "operateTime","class" : "center","bSortable": false},
-          {"data": "operateName","class" : "center","bSortable": false},
+          {"data": "businessName","class" : "center","bSortable": false},
           {"data": "saveType","class" : "center",
         	  "render" : function(data, type, row) {
        		    var saveTypeName ='';
@@ -61,12 +47,21 @@ jQuery(function($) {
        		    }
        		    return saveTypeName;
        		}
+          },
+          {"data": "cancelType","class" :hiddenClass,
+        	  "render" : function(data, type, row) {
+       		    var cancelTypeName ='';
+       		    if(data == '0'){
+       		    	cancelTypeName = '已注销'
+       		    }else if(data == '1'){
+       		    	cancelTypeName = '未注销'
+       		    }
+       		    return cancelTypeName;
+       		}
           }
      ];
-       $(dataTableInit(contextRootPath+"/contract/quryContractPageList.do", colModel,'',10));
+       $(dataTableInit(contextRootPath+"/contract/queryContractPageList.do", colModel,'',10));
 });
-
-
 /**
  * 搜索按钮的方法
  */
@@ -86,7 +81,28 @@ $(function(){
 			function(){
 				var result = selectOne();
 				if(result != null){
-					window.location.href=contextRootPath + "/contract/findContractByContractNo.do?contractNo="+result+"&editType=edit";
+					$.ajax({
+						type : "POST",
+						url : contextRootPath + '/contract/getStartDateByContractNo.do',
+						data :"contractNo="+result,
+						async : false,
+						success : function(obj) {
+							debugger;
+							if(obj !=''){
+								var tempDate = obj.replace(/-/g,"/");
+								var startdatenew = new Date(Date.parse(tempDate));
+								var currentTime = new Date();
+								if(startdatenew > currentTime){
+									window.location.href=contextRootPath + "/contract/findContractByContractNo.do?contractNo="+result+"&editType=edit";
+								}else{
+									alert("该订单已生效，不允许修改订单信息");
+								}
+							}
+						},
+						error : function(XMLHttpRequest, textStatus, errorThrown) {
+							alert(textStatus + errorThrown);
+						}
+					});
 			   }
 	 })
 });
@@ -146,13 +162,6 @@ $(function(){
 							alert("系统异常，请联系系统管理员");
 						}
 					});
-					
-					
-					
-					
-					
-					
-					
 			 }
 	 })
 });
@@ -178,7 +187,23 @@ $(function() {
 	$("#print").click(function() {
 		var result = selectOne();
 		if(result != null){
-			window.location.href=contextRootPath + "/contract/print.do?contractNo="+result;
+			$.ajax({
+				type : "POST",
+				url : contextRootPath + '/contract/getSaveTypeByContractNo.do',
+				data :"contractNo="+result,
+				async : false,
+				success : function(obj) {
+					if(obj=='0'){
+						alert("暂存状态不允许打印");
+					}else{
+						window.location.href=contextRootPath + "/contract/print.do?contractNo="+result;
+					}
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(textStatus + errorThrown);
+				}
+			});
+			
 		}
 	});
 });
@@ -204,7 +229,33 @@ $("#export").click(function(){
 	window.location.href=contextRootPath + "/contract/loadContractExcel.do"+urlparam;
  })
 });
-
+/**
+ * 注销订单
+ */
+$(function() {
+	$("#cancel").click(function(){
+		var result = selectOne();
+		if(result != null){
+			if(confirm("确定注销该订单？")){
+				$.ajax({
+					type : "POST",
+					url : contextRootPath + '/contract/cancelContractByContractNo.do',
+					data :"contractNo="+result,
+					async : false,
+					success : function(obj) {
+						if(obj=='注销成功'){
+							alert(obj);
+						}
+						window.location.reload();
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(textStatus + errorThrown);
+					}
+				});
+			}
+		}
+	})
+});
 
 
 

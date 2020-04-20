@@ -36,7 +36,7 @@
 								<button class="btn btn-default dropdown-toggle" type="button"
 									id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">
-									${USER_SESSION.userName} <span class="caret"></span>
+									${USER_SESSION.userCode} <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 									<li><a
@@ -58,6 +58,10 @@
 					<ul class="sidebar-menu" id="side-menu">
 						<li><a href='${ctx}/contract/contractList.do'><i class='fa fa-sitemap fa-fw'></i>订单管理<i
 								class='fa fa-fw'></i><span class='fa'></span></a></li>
+						<c:if test="${USER_SESSION.postFlag == 1}">
+						<li><a href='${ctx}/userMsg/modifyPwd.do'><i class='fa fa-sitemap fa-fw'></i>修改密码<i
+								class='fa fa-fw'></i><span class='fa'></span></a></li>
+						</c:if>
 						<c:if test="${USER_SESSION.postFlag == 0}">
 						<li><a href='${ctx}/organiz/prepareQuery.do'><i
 								class='fa fa-sitemap fa-fw'></i>经销商管理<i class='fa fa-fw'></i><span

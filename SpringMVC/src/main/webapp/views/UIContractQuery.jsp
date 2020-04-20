@@ -8,6 +8,10 @@ white-space: nowrap;
 }
 .table>thead>tr>th { text-align: center;}
 .center { text-align: center;}
+.hiddenCol
+{
+   display:none;
+}
 </style>
 <title>订单信息展示页面</title>
 <script type="text/javascript"	src="${ctx}/static/common/js/common.js"></script>
@@ -18,6 +22,7 @@ white-space: nowrap;
 		   <div class="col-lg-12">
 		    <div class="panel-body">
 			<div style="text-align: left;">
+			    <input type="hidden" id="postFlag" name="postFlag"  value="${USER_SESSION.postFlag }">
 				<button class="btn btn-primary  glyphicon glyphicon-plus"
 					id="add" type="button"  onclick="window.location.href='${ctx}/contract/createNewContract.do'">新增</button>
 				<button class="btn btn-primary glyphicon glyphicon-pencil"
@@ -31,6 +36,8 @@ white-space: nowrap;
 				<c:if test="${USER_SESSION.postFlag == 0}">
 				 <button class="btn btn-primary glyphicon glyphicon glyphicon-download-alt" id="export"
 					type="button">导出</button>
+				 <button class="btn btn-primary glyphicon glyphicon glyphicon-arrow-left" id="cancel"
+					type="button">注销</button>
 				</c:if>
 			  </div>
 			</div>
@@ -129,7 +136,7 @@ white-space: nowrap;
 										<label for="vinNo" class="control-label">车辆状态:</label>
 									</div>
 									<div class="col-xs-8">
-										<ce:select list="#{'':'--请选择--','1':'新车','2':'一年以内次新车','3':'1年至2年在用车','4':'2年至3年在用车','5':'3年至4年在用车','6':'5年至6年在用车'}"
+										<ce:select list="#{'':'--请选择--','新车':'新车','一年以内次新车':'一年以内次新车','1年至2年在用车':'1年至2年在用车','2年至3年在用车':'2年至3年在用车','3年至4年在用车':'3年至4年在用车','4年至5年在用车':'4年至5年在用车','5年至6年在用车':'5年至6年在用车'}"
 													id="carState" name="carState"
 													cssClass="form-control"  ></ce:select>
 									</div>
@@ -172,7 +179,21 @@ white-space: nowrap;
 													cssClass="form-control"  ></ce:select>
 									</div>
 								</div>
-							</div>
+						</div>
+						<c:if test="${USER_SESSION.postFlag == 0}">
+						 <div class="col-lg-4 col-md-4 col-xs-4">
+								<div class="row form-group">
+									<div class="col-xs-4" align="left">
+										<label for="vinNo" class="control-label">注销状态:</label>
+									</div>
+									<div class="col-xs-8">
+										<ce:select list="#{'':'--请选择--','0':'已注销','1':'未注销'}"
+													id="cancelType" name="cancelType"
+													cssClass="form-control"  ></ce:select>
+									</div>
+								</div>
+						</div>
+						</c:if>
 					  </div>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-xs-6">
@@ -198,21 +219,19 @@ white-space: nowrap;
 									<tr align="center">
 										<th><input id="checkAll"  type="checkbox" ></th>
 										<th>合同号</th>
-										<!-- <th>保单号</th> -->
-									<!-- 	<th>主数据状态</th> -->
 										<th>车主</th>
 										<th>品牌</th>
 										<th>车系</th>
 										<th>车型</th>
 										<th>车辆状态</th>
 										<th>服务类型</th>
-										<th>结算金额(元)</th>
 										<th>服务期限</th>
 										<th>经销商简称</th>
 										<th>创建日期</th>
 										<th>更新日期</th>
 										<th>操作者</th>
 										<th>订单状态</th>
+										<th>注销状态</th>
 									</tr>
 								 </thead>
 								<tbody>									

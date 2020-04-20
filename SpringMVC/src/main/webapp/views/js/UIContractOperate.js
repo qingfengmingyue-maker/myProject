@@ -28,16 +28,6 @@ $(function(){
 	$("#temptSaveButton").click(
 		function(){
 			 $(".error").remove();//清除验证标签
-			 var orgName = $("#PartyA\\.orgName").val();
-			 if(orgName == ''){
-				 alert("请录入经销商名称");
-				 return  false;
-			 }
-			 var businessName = $("#PartyA\\.businessName").val();
-			 if(businessName == ''){
-				 alert("请录入业务联系人");
-				 return  false;
-			 }
 			 $('#saveType').val('0');
 			 //获取文本框的值并进行赋值
 			var insuranceType = '';
@@ -50,9 +40,6 @@ $(function(){
 			$('#VehicleMsg\\.insuranceType').val(insuranceType);
 			$("#contractfm").submit();
      });
-	$("#VehicleMsg\\.className").click(function(){
-		$("#VehicleMsg\\.modelName").val($("#VehicleMsg\\.className").val())
-	})
 });
 
 
@@ -128,9 +115,6 @@ $('form').validate({
 
 window.onload=function(){ 
 	var editType = $('#editType').val();
-	if(editType == ''){
-		$("#VehicleMsg\\.modelName").val($("#VehicleMsg\\.className").val())
-	}
 	if('view' == editType){
 		$(":input").attr("disabled", true);
 	}else{
@@ -146,6 +130,17 @@ window.onload=function(){
 		});
 		
 	}
+	//服务起始日期默认带出当前日期第二天begin
+	var startDate = $('#startDate').val();
+	if(startDate ==''){
+		$('#startDate').val(AddDays(new Date(),1).Format("yyyy-MM-dd"));
+		$('#startDate').change();
+	}
+	if('edit' == editType){
+		$('#startDate').val(AddDays(new Date(),1).Format("yyyy-MM-dd"));
+		$('#startDate').change();
+	}
+	//服务起始日期默认带出当前日期第二天end
 	$('#dropdownMenu2').attr("disabled", false);
 	$('#goBackButton').attr("disabled", false);
 	 var checkeds = $("#VehicleMsg\\.insuranceType").val();
@@ -364,5 +359,53 @@ function changeDate(){
 		 var date = new Date(tempDate);
 	     var endDate_ = AddDays(AddYears(date,parseFloat(serviceDate)),-1).Format("yyyy-MM-dd");
 	     $('#endDate').val(endDate_);
+	}
+}
+
+
+/**
+ * @describe:首次购车日期的校验
+ * @returns
+ */
+function changePurchaseDate(field){
+	var purchaseDate =  field.value;
+	if(purchaseDate !=''){
+		 var purchaseDateTemp = purchaseDate.replace(/-/g,"/");
+		 var purchaseDateDate = new Date(purchaseDateTemp);
+		 var currentDate = new Date();
+		 if(purchaseDateDate > currentDate){
+			 alert("首次购车日期不能大于今天,请重新选择！");
+			 field.value ='';
+		 }else if(AddDays(AddYears(purchaseDateDate,parseFloat(6)),-1) < currentDate){
+			 alert("首次购车日期不能选择当前日期的6年前的日期,请重新选择！");
+			 field.value ='';
+		 }else if(AddDays(new Date(purchaseDate.replace(/-/g,"/")),89) >= currentDate){
+			 $('#VehicleMsg\\.carState').val('新车');
+		 }else if( AddDays(AddYears(new Date(purchaseDate.replace(/-/g,"/")),1),-1) >= currentDate){
+			 $('#VehicleMsg\\.carState').val('一年以内次新车');
+		 }else if( AddDays(AddYears(new Date(purchaseDate.replace(/-/g,"/")),2),-1) >= currentDate){
+			 $('#VehicleMsg\\.carState').val('1年至2年在用车');
+		 }else if( AddDays(AddYears(new Date(purchaseDate.replace(/-/g,"/")),3),-1) >= currentDate){
+			 $('#VehicleMsg\\.carState').val('2年至3年在用车');
+		 }else if( AddDays(AddYears(new Date(purchaseDate.replace(/-/g,"/")),4),-1) >= currentDate){
+			 $('#VehicleMsg\\.carState').val('3年至4年在用车');
+		 }else if( AddDays(AddYears(new Date(purchaseDate.replace(/-/g,"/")),5),-1) >= currentDate){
+			 $('#VehicleMsg\\.carState').val('4年至5年在用车');
+		 }else if( AddDays(AddYears(new Date(purchaseDate.replace(/-/g,"/")),6),-1) >= currentDate){
+			 $('#VehicleMsg\\.carState').val('5年至6年在用车');
+		 }
+	}
+}
+
+
+/**
+ * @describe:车辆发票金额（元)自动带出购置税
+ * @returns
+ */
+function changeInvoiceAmount(field){
+	var invoiceAmount = field.value;
+	if(invoiceAmount != ''){
+		 $('#VehicleMsg\\.purchaseAmount').val((field.value/1.13*0.1).toFixed(2));
+		
 	}
 }
