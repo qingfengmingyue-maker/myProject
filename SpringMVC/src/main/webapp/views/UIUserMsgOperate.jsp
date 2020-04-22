@@ -116,10 +116,11 @@
 									<div class="col-lg-6 col-md-6 col-xs-6">
 										<div class="row form-group">
 											<div class="col-xs-3" align="right">
-												<label for="userMsgVo.telphone" class="control-label">手机号</label>
+												<label for="userMsgVo.telphone" class="control-label"><span
+													style="color: red">*</span>手机号</label>
 											</div>
 											<div class="col-xs-8">
-												<input class="form-control" id="telPhone" name="telPhone"
+												<input class="form-control required" id="telPhone" name="telPhone"
 													maxlength="11" value="${userMsg.telPhone }"  
 													${editType == 'view' ? 'readonly' : ''}>
 											</div>

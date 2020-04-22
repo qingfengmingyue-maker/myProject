@@ -409,3 +409,29 @@ function changeInvoiceAmount(field){
 		
 	}
 }
+
+
+/**
+ * @describe:改变排量自动带出车船税
+ * @returns
+ */
+function changeDisplacement(field){
+	var displacementField = field.value;
+	if(displacementField !=''){
+		if(displacementField == "01"){
+			$("#VehicleMsg\\.taxAmount").val(240);
+		}else if(displacementField == "02"){
+			$("#VehicleMsg\\.taxAmount").val(420);
+		}else if(displacementField == "03"){
+			$("#VehicleMsg\\.taxAmount").val(480);
+		}else if(displacementField == "04"){
+			$("#VehicleMsg\\.taxAmount").val(900);
+		}else if(displacementField == "05"){
+			$("#VehicleMsg\\.taxAmount").val(1800);
+		}else if(displacementField == "06"){
+			$("#VehicleMsg\\.taxAmount").val(3000);
+		}else if(displacementField == "07"){
+			$("#VehicleMsg\\.taxAmount").val(4500);
+		}
+	}
+}

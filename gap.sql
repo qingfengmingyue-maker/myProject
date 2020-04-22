@@ -81,6 +81,7 @@ purchaseamount	DECIMAL(14,2),
 insurancetype	varchar(20),
 insurancename	varchar(50),
 licensefee	DECIMAL(14,2),
+displacement  varchar(2),
 taxamount	DECIMAL(14,2),
 PRIMARY KEY (contractno) 
 );

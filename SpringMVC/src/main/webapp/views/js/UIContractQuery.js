@@ -87,15 +87,20 @@ $(function(){
 						data :"contractNo="+result,
 						async : false,
 						success : function(obj) {
-							debugger;
 							if(obj !=''){
-								var tempDate = obj.replace(/-/g,"/");
+								var array =(obj+'').split(",");
+								var saveTypeTemp = array[0];
+								var tempDate = array[1].replace(/-/g,"/");
 								var startdatenew = new Date(Date.parse(tempDate));
 								var currentTime = new Date();
-								if(startdatenew > currentTime){
+								if(saveTypeTemp == '0'){
 									window.location.href=contextRootPath + "/contract/findContractByContractNo.do?contractNo="+result+"&editType=edit";
 								}else{
-									alert("该订单已生效，不允许修改订单信息");
+									if(startdatenew > currentTime){
+										window.location.href=contextRootPath + "/contract/findContractByContractNo.do?contractNo="+result+"&editType=edit";
+									}else{
+										alert("该订单已生效，不允许修改订单信息");
+									}
 								}
 							}
 						},

@@ -272,10 +272,12 @@ public class ContractController {
     	//暂存还是保存标识 0为暂存，1为保存
     	Date startDate = null;
     	try {
+    		SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
     		MainContract mainContract = contractService.findContractVo(contractNo);
+    		String saveType = mainContract.getSaveType();
     		startDate = mainContract.getStartDate();
     		PrintWriter writer = response.getWriter();
-    		writer.print(startDate);
+    		writer.print(saveType+","+sf.format(startDate));
     		writer.flush();
     		writer.close();
     	}  catch (IOException e1) {
@@ -285,9 +287,6 @@ public class ContractController {
 			e.printStackTrace();
 		}
     }
-    
-    
-    
     
     /**
      * @deprecated:打印

@@ -302,7 +302,7 @@ body {
 										<%-- <ce:select list="#{'一汽奥迪':'一汽奥迪'}"
 											id="VehicleMsg.brandName" name="VehicleMsg.brandName" 
 											cssClass="form-control  required" value="${mainContract.vehicleMsg.brandName}"></ce:select> --%>
-										<input id="VehicleMsg.brandName" name="VehicleMsg.brandName" class="form-control"  value="${mainContract.vehicleMsg.brandName}">
+										<input id="VehicleMsg.brandName" name="VehicleMsg.brandName" class="form-control"  value="${mainContract.vehicleMsg.brandName ==null? '一汽奥迪' : mainContract.vehicleMsg.brandName  }">
 									</div>
 								</div>
 							</div>
@@ -394,13 +394,27 @@ body {
 									
 								</div>
 							</div>
+							
+							<div class="col-lg-4 col-md-4 col-xs-12">
+								<div class="row form-group">
+									<div class="col-xs-4">
+										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>排量：</label>
+									</div>
+									<div class="col-xs-6">
+									  <ce:select list="#{'':'--请选择--','01':'1.0升以下','02':'1.0～1.6升(含)','03':'1.6～2.0升(含)','04':'2.0～2.5升(含)','05':'2.5～3.0升(含)','06':'3.0～4.0升(含)','07':'4.0升以上'}"
+													id="VehicleMsg.displacement" name="VehicleMsg.displacement"
+													cssClass="form-control  required"  value="${mainContract.vehicleMsg.displacement}"   onchange="changeDisplacement(this);"></ce:select>
+									</div>
+								</div>
+							</div>
+							
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
 										<label for="prpDproject.projectName" class="control-label">车船税：</label>
 									</div>
 									<div class="col-xs-6">
-										<input class="form-control" type="text" id="VehicleMsg.taxAmount" name="VehicleMsg.taxAmount"  value="${mainContract.vehicleMsg.taxAmount}"  onchange="checkMoney(this,'车船税')"   maxlength="14"/>
+										<input class="form-control" type="text" id="VehicleMsg.taxAmount" name="VehicleMsg.taxAmount"  value="${mainContract.vehicleMsg.taxAmount}"  readonly="readonly"  maxlength="14"/>
 									</div>
 								</div>
 							</div>

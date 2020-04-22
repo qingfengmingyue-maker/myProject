@@ -52,6 +52,8 @@ public class VehicleMsg {
 	String insuranceName;
 	@Column(name="licensefee")
 	BigDecimal licenseFee;
+	@Column(name="displacement")
+	String displacement;
 	@Column(name="taxamount")
 	BigDecimal taxAmount;
 	@OneToOne(fetch = FetchType.LAZY)	
