@@ -46,11 +46,11 @@
                   <p>${message }</p>  <%--这里显示上边的controller里边用户或者密码错误的信息--%>
                </div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="text" class="form-control no-border input-lg rounded" name="userCode" maxlength="10" placeholder="用户名" autofocus  value="admin">
+				  <input type="text" class="form-control no-border input-lg rounded" name="userCode" maxlength="10" placeholder="用户名" autofocus >
 				   <span class="glyphicon  glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="password" class="form-control no-border input-lg rounded" name="userPwd" placeholder="密&nbsp;&nbsp;&nbsp;码"  value="admin">
+				  <input type="password" class="form-control no-border input-lg rounded" name="userPwd" placeholder="密&nbsp;&nbsp;&nbsp;码" >
 				   <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
