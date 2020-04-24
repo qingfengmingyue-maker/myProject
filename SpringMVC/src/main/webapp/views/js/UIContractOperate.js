@@ -27,6 +27,11 @@ return fmt;
 $(function(){
 	$("#temptSaveButton").click(
 		function(){
+//			 var purchaseDateTemp = $("#VehicleMsg\\.purchaseDate").val();
+//			 if(purchaseDateTemp == ''){
+//				 alert("请录入首次购车日期");
+//				 return false;
+//			 }
 			 $(".error").remove();//清除验证标签
 			 $('#saveType').val('0');
 			 //获取文本框的值并进行赋值
@@ -83,14 +88,8 @@ $(function(){
 function validateFormDate(){
 	var flag = false;
 	var purchaseDate =  $("#VehicleMsg\\.purchaseDate").val();
-	var startDate =  $("#startDate").val();
-	var endDate =  $("#endDate").val();
 	if(purchaseDate == ""){
 		alert("请录入首次购车日期");
-	}else if(startDate == ""){
-		alert("请录入服务起始日期");
-	}else if(endDate == ""){
-		alert("服务终止日期");
 	}else{
 		 flag =  true;
 	}

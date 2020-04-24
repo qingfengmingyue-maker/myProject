@@ -42,21 +42,27 @@
 		</div>
 		<div class="login-wrapper">
 			<form role="form" name="fm" id="fm"	 action="${ctx}/saaUserPower/login.do" method="post">
-			    <div style="color: deeppink">
+				<DIV align="center" style="color:#2ac7ff;font-size:25px">
+					登录账号
+				</DIV>
+			    <div style="color: deeppink" align="center">
                   <p>${message }</p>  <%--这里显示上边的controller里边用户或者密码错误的信息--%>
                </div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="text" class="form-control no-border input-lg rounded" name="userCode" maxlength="10" placeholder="用户名" autofocus >
+				  <input type="text" class="form-control input-lg rounded" 
+				  	style=" border:0.5px solid #2ac7ff" name="userCode" maxlength="10" placeholder="用户名" autofocus  value="">
 				   <span class="glyphicon  glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
-				  <input type="password" class="form-control no-border input-lg rounded" name="userPwd" placeholder="密&nbsp;&nbsp;&nbsp;码" >
+				  <input type="password" class="form-control input-lg rounded" 
+				  	style=" border:0.5px solid #2ac7ff" name="userPwd" placeholder="密&nbsp;&nbsp;&nbsp;码"  value="">
 				   <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback lg left-feedback no-label">
 				  <div class="row form-group">
 						<div class="col-xs-7">
-							<input class="form-control no-border input-lg rounded" placeholder="验证码"
+							<input class="form-control no-border input-lg rounded" 
+							style=" border:0.5px solid #2ac7ff"placeholder="验证码"
 								name="validateCode" id="validateCode">
 						</div>
 						<div class="col-xs-3">
@@ -66,7 +72,8 @@
 					
 				</div>
 				<div class="form-group">
-					<button type="submit" class="btn btn-success btn-lg btn-perspective btn-block" onClick="submitForm()">登录</button>
+					<button type="submit" class="btn btn-success btn-lg  btn-block" 
+						style="background-color:'#2ac7ff'"onClick="submitForm()">登&nbsp;&nbsp;录</button>
 				</div>
 			</form>
 		</div>

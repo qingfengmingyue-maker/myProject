@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/static/common/taglibs.jsp"%>
-<%@ include file="/static/common/meta_css.jsp"%>
-<%@ include file="/static/common/meta_js.jsp"%>
 <script type="text/javascript"	src="${ctx}/static/common/js/common.js"></script>
 <script type="text/javascript"	src="${ctx}/views/js/UIPrepareOrganization.js"></script>
 <style>

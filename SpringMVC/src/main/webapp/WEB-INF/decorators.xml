@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/layout">
 	<excludes>
-	    <pattern>/index.jsp/*</pattern>
+	    <pattern>/index.jsp</pattern>
 		<pattern>/static/*</pattern>
 		<pattern>/webjars/*</pattern>
 		<pattern>/signup</pattern>

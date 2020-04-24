@@ -42,6 +42,7 @@ body {
 	color: #fff;
 	font-weight: 700;
 }
+
 </style>
 </head>
 <body   data-spy="scroll" data-offset="233" data-target=".navbar-wrapper">
@@ -309,7 +310,7 @@ body {
 							<div class="col-lg-4 col-md-4 col-xs-12">
 								<div class="row form-group">
 									<div class="col-xs-4">
-										<label for="prpDproject.projectName" class="control-label"><span style="color: red">*</span>车系：</label>
+										<label for="prpDproject.projectName" class="control-label">车系：</label>
 									</div>
 									<div class="col-xs-6">
 										<input id="VehicleMsg.className" name="VehicleMsg.className" class="form-control"  value="${mainContract.vehicleMsg.className}">
