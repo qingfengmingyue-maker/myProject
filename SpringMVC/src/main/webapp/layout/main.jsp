@@ -4,7 +4,7 @@
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <html>
 <head>
-<title><decorator:title default="" /> 订单管理系统</title>
+<title><decorator:title default="" />中保泰和订单管理系统</title>
 <%@ include file="/static/common/meta.jsp"%>
 <%@ include file="/static/common/taglibs.jsp"%>
 <%@ include file="/static/common/meta_css.jsp"%>

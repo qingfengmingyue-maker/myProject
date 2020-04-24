@@ -4,7 +4,7 @@
  <%@ include file="/static/common/taglibs.jsp"%>
 <html>
   <head>
-    <title>顶管管理系统</title>
+    <title>中保泰和订单管理系统</title>
     <meta http-equiv=”Content-Type” content=”text/html; charset=utf-8>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <script  type="text/javascript" src="${ctx}/static/widgets/jquery/jquery-1.11.1.js"></script>
