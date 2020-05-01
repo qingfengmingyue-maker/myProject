@@ -443,7 +443,7 @@ body {
 										<label for="serviceType" class="control-label"><span style="color: red">*</span>服务类型：</label>
 									</div>
 									<div class="col-xs-6">
-										 <ce:select list="#{'1':'赔付包含购置税'}"
+										 <ce:select list="#{'1':'赔付包含购置税','2':'赔付包含购置税及上牌费'}"
 													id="serviceType" name="serviceType"
 													cssClass="form-control  required"   value="${mainContract.serviceType}"></ce:select> 
 									</div>

@@ -148,7 +148,7 @@ white-space: nowrap;
 										<label for="userName" class="control-label">服务类型:</label>
 									</div>
 									<div class="col-xs-8">
-										 <ce:select list="#{'':'--请选择--','1':'赔付包含购置税'}"
+										 <ce:select list="#{'':'--请选择--','1':'赔付包含购置税','2':'赔付包含购置税及上牌费'}"
 													id="serviceType" name="serviceType"
 													cssClass="form-control"  ></ce:select>
 									</div>

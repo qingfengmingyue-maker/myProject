@@ -9,14 +9,12 @@
     <style type="text/css">
        .divcss5{width:250px; height:40px;overflow:hidden} 
        .divcss5 img{max-width:250px;_width:expression(this.width > 250 ? "250px" : this.width);}
-        @media print {
-        	body{
-       			 -webkit-print-color-adjust:exact;
-       			 -moz-print-color-adjust:exact;
-      			  -ms-print-color-adjust:exact;
-       			 print-color-adjust:exact;
-       			}
-       }
+       @media Print
+			{
+			.noPrint {
+			DISPLAY: none
+		    }
+		    
     </style>
     <script type="text/javascript"	src="${ctx}/views/js/UIContractPrint.js"></script>
 </head>
@@ -28,15 +26,15 @@
 	  	   <button type="button" id="goBackButton"   onclick="goBack();"  class="btn btn-primary glyphicon glyphicon-arrow-left noPrint"> 返回</button>       
 					
            <button class="btn btn-primary glyphicon glyphicon-print noPrint" id="printHT"
-					type="button"   onclick="isImgLoad()" >打印</button>
+					type="button"   onclick="preview(1)" >打印</button>
 					
 					
-     <!--startprint-->  
+    <!--startprint1-->
 <div class="divcss5"  style="margin-top: 10px" > 
-<img alt="" src="${ctx}/static/images/logo.jpg"  class="printImg">
+<img alt="" src="${ctx}/static/images/logo.jpg"  style="vertical-align: bottom">
 </div>
 <h3 style="text-align: center;font-weight: bold;">保值换新服务合同</h3>
-<font style="color: red;font-weight: bold;">———————————————————————————————————————————————————————————————————————————————————————</font><br/>
+<font style="color: red;font-weight: bold;">————————————————————————————————————————————————————————————————————————————————————————————————————————————————</font><br/>
 <font style="font-weight: bold;">尊敬的客户：</font><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢您购买保值换新服务，请您仔细阅读本合同，本合同将向您介绍更为具体的保值换新服务信息以及将来在您的车辆发生全损或者推定全损并申请更换新车服务时如何处理。<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果您的车辆在服务期限内发生了全损或者推定全损事故，请您与签订本服务合同的经销商（“经销商”）联系，经销商在核实并确认您车辆的机动车置换费用补偿服务后，会帮助您解决后续事宜。<br/>
@@ -95,9 +93,8 @@
 <thead><tr style="text-align: center "><td>车辆种类</td><td>月折旧率</td></tr></thead>
 <tbody><tr style="text-align: center "><td>9座及9座以下非营运客车（含越野车）</td><td>0.6%</td></tr></tbody>
 </table>
-<br/>
 <div class="divcss5" > 
-<img alt="" src="${ctx}/static/images/logo.jpg"  style="vertical-align: bottom">
+<img alt="" src="${ctx}/static/images/logo.png"  style="vertical-align: bottom">
 </div>
 <br/>
 <font style="font-weight: bold;text-decoration: underline;">您的义务</font><br/>
@@ -113,7 +110,7 @@
 （1）合同有效期内，非经双方协商一致，任何一方均不得擅自变更本合同；<br/>
 （2）如您在服务期限内要求取消合同，我们将按照（已生效月份/保障月份）*服务费计费，退还剩余服务费；<br/>
 （3）已享受保值换新服务的车辆，本合同自动终止，服务费不予退还；<br/>
-（4）服务有效期内，车辆所有权发生转移，本合同自车辆所有权转让之日（指过户之日）起自动终止。<br/>
+（3）服务有效期内，车辆所有权发生转移，本合同自车辆所有权转让之日（指过户之日）起自动终止。<br/>
 <br/>
 <font  style="font-style: italic;">客户须遵守本手册的约定条款方能享受机动车保值换新服务权益。</font><br/>
 <font  style="font-style: italic;">我已阅读并理解保值换新服务合同及合同条款，我理解手册相关约定及解释，<font style="font-weight: bold;">我理解保障内容以及不予保障内容，</font>完全同意并接受前述所有保障条款及相关记录。</font><br/>
@@ -146,13 +143,9 @@
 <td>${mainContract.settlePrice}</td>
 </tr>
 <tr>
-<td style="text-align: left" colspan="4" rowspan="6" width="50%">机动车置换服务提供商：北京中保泰和科技服务有限公司<br/><div   style="margin-top: 10px;text-align: center;" > 
-<img alt="" src="${ctx}/static/images/zhongbao.png"  class="printImg">
-</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td style="text-align: left" colspan="4" rowspan="6" width="50%">机动车置换服务提供商：北京中保泰和科技服务有限公司<br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(签章）<br/><br/>联系地址：北京市海淀区永澄北路2号院1号楼B座3层3008-139号</td>
-<td style="text-align: left" colspan="3" rowspan="6" width="50%">保险人：中国人民财产保险股份有限公司长春市分公司<br/><div   style="margin-top: 50px;text-align: center;vertical-align: center" > 
-<img alt="" src="${ctx}/static/images/renbao.png"  class="printImg">
-</div><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<td style="text-align: left" colspan="3" rowspan="6" width="50%">保险人：中国人民财产保险股份有限公司长春市分公司<br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(签章）<br/></br>联系地址：长春市朝阳区西安大路402号</td>
 </tr>
 </tbody>
@@ -179,7 +172,7 @@
 </div>
 </div>
 </div>
-<!--endprint-->  
+    <!--endprint1-->
 
     
 
