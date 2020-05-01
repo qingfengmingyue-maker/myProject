@@ -7,7 +7,6 @@ function  preview(oper) {
 	  var img_start = 0;
 	  var imgSrc =["http://"+window.location.host+""+contextRootPath+"/static/images/logo.jpg","http://"+window.location.host+""+contextRootPath+"/static/images/logo.jpg"] ;
 	     for (var i = 0; i < img_length; i++) {
-	    	    debugger;
                 imgs[i] = new Image();
                 imgs[i].src = imgSrc[i];
                 imgs[i].onload = function(){
@@ -162,9 +161,7 @@ function  preview(oper) {
  var t_img; 
  var isLoad = true; 
  function isImgLoad(){
-debugger;
 	     // 查找所有打印图，迭代处理
-
 	     $('.printImg').each(function(){
 
 	         // 找到为0就将isLoad设为false，并退出each

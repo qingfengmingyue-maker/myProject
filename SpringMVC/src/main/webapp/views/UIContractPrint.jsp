@@ -152,13 +152,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(签章）<br/><br/>联系地址：北京市海淀区永澄北路2号院1号楼B座3层3008-139号</td>
 <td style="text-align: left" colspan="3" rowspan="6" width="50%">保险人：中国人民财产保险股份有限公司长春市分公司<br/><div   style="margin-top: 50px;text-align: center;vertical-align: center" > 
 <img alt="" src="${ctx}/static/images/renbao.png"  class="printImg">
-</div><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(签章）<br/></br>联系地址：长春市朝阳区西安大路402号</td>
 </tr>
 </tbody>
 </table>
 <input type="hidden"  id="serviceDateHidden" value="${mainContract.serviceDate}">
-<br/><br/>
+<br/>
 <font style="text-align: center;font-weight: bold;">客户签章：_________________________ </font> 
 <span  style="margin-left: 40%"><font style="text-align: center;font-weight: bold;">生效日期：_______年______月______日 </font> </span>
 

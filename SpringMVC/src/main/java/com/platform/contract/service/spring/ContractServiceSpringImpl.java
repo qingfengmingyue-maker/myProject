@@ -82,7 +82,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 			hql.append(" and a.insertTime <= :insertTime1");
 			map.put("insertTime1", insertTime1);
 		}
-		if(serviceDate != null) {
+		if(StringUtils.isNotBlank(serviceDate)) {
 			hql.append(" and a.serviceDate = :serviceDate");
 			map.put("serviceDate", serviceDate);
 		}
@@ -173,7 +173,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		    hqlFilter.append(" and a.serviceType = :serviceType");
   			map.put("serviceType", serviceType);
   	   }
-	   if(serviceDate!=null) {
+	   if(StringUtils.isNotBlank(serviceDate)) {
 		    hqlFilter.append(" and a.serviceDate = :serviceDate");
  			map.put("serviceDate", serviceDate);
  	   }
