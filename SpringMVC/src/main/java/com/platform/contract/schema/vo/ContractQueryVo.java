@@ -22,7 +22,7 @@ public class ContractQueryVo extends PageVo {
 	Date insertTime1;  //保存日期止期
 	String carState;    //车辆状态
 	String serviceType;  //服务类型
-	Character serviceDate;  //服务期限
+	String serviceDate;  //服务期限
 	//"0"代表暂存  "1"代表保存
 	String saveType;   //订单状态
 }

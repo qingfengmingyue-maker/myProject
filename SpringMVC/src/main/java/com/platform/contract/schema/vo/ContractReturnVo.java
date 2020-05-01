@@ -18,7 +18,7 @@ public class ContractReturnVo {
    private String carState;
    private String serviceType;
    private BigDecimal settleAmount;
-   private Character serviceDate;
+   private String serviceDate;
    private String orgName;
    @JsonFormat(pattern="yyyy-MM-dd")
    private Date insertTime;

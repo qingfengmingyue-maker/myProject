@@ -455,7 +455,7 @@ body {
 										<label for="serviceDate" class="control-label"><span style="color: red">*</span>服务期限：</label>
 									</div>
 									<div class="col-xs-6">
-												<ce:select list="#{'1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
+												<ce:select list="#{'12':'12月','24':'24月','36':'36月','48':'48月','60':'60月'}"
 													id="serviceDate" name="serviceDate"  onchange="changeDate();"
 													cssClass="form-control  required"  value="${mainContract.serviceDate}"></ce:select>
 									</div>

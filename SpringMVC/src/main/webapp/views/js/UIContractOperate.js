@@ -356,7 +356,7 @@ function changeDate(){
 	if(startDate!=''){
 		 var tempDate = startDate.replace(/-/g,"/");
 		 var date = new Date(tempDate);
-	     var endDate_ = AddDays(AddYears(date,parseFloat(serviceDate)),-1).Format("yyyy-MM-dd");
+	     var endDate_ = AddDays(AddYears(date,parseFloat(serviceDate/12)),-1).Format("yyyy-MM-dd");
 	     $('#endDate').val(endDate_);
 	}
 }

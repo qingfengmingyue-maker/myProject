@@ -90,7 +90,7 @@ CREATE TABLE  maincontract
 (
 contractno	varchar(17) not null,
 servicetype	varchar(2),
-servicedate	char(1),
+servicedate		varchar(2),
 settleamount	DECIMAL(14,2),
 settleprice	DECIMAL(14,2),
 startdate	date,

@@ -141,7 +141,7 @@
 <td>车辆发票价</td>
 <td>${mainContract.vehicleMsg.invoiceAmount}</td>
 <td>服务期限(月)</td>
-<td><input id="serviceDateShow"   style="border:0px;text-align: center"></td>
+<td><input id="serviceDateShow" value="${mainContract.serviceDate}月"   style="border:0px;text-align: center"></td>
 <td>服务费用</td>
 <td>${mainContract.settlePrice}</td>
 </tr>

@@ -160,7 +160,7 @@ white-space: nowrap;
 										<label for="userName" class="control-label">服务期限：</label>
 									</div>
 									<div class="col-xs-8">
-										 <ce:select list="#{'':'--请选择--','1':'1年','2':'2年','3':'3年','4':'4年','5':'5年'}"
+										 <ce:select list="#{'':'--请选择--','12':'12月','24':'24月','36':'36月','48':'48月','60':'60月'}"
 													id="serviceDate" name="serviceDate"
 													cssClass="form-control"  ></ce:select>
 									</div>

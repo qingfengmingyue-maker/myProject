@@ -24,13 +24,15 @@ jQuery(function($) {
          		    var serviceTypeName ='';
          		    if(data == '1'){
          		    	serviceTypeName = '赔付包含购置税'
+         		    }else{
+         		    	serviceTypeName = '赔付包含购置税及上牌费'
          		    }
          		    return serviceTypeName;
          		}
           },
           {"data": "serviceDate","class" : "center",
         	  "render" : function(data, type, row) {
-       		   return data+'年';
+        		  return data+"月";
        		}
           },
           {"data": "orgName","class" : "center","bSortable": false},

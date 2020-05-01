@@ -89,12 +89,6 @@ function  preview(oper) {
 	 });
 	}
  
- window.onload=function(){ 
-	 debugger;
-	 var serviceDateHidden = $('#serviceDateHidden').val();
-	 $('#serviceDateShow').val(serviceDateHidden*12+"月");
- }
- 
  
  /**
   * @describe:返回按钮功能返回到列表页面

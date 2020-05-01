@@ -65,7 +65,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		Date insertTime1 = contractQueryVo.getInsertTime1();  //保存日期止期
 		String carState = contractQueryVo.getCarState();    //车辆状态
 		String serviceType = contractQueryVo.getServiceType();  //服务类型
-		Character serviceDate = contractQueryVo.getServiceDate();  //服务期限
+		String serviceDate = contractQueryVo.getServiceDate();  //服务期限
 		if(StringUtils.isNotBlank(contractNo)) {
 			hql.append(" and a.contractNo = :contractNo");
 			map.put("contractNo", contractNo);
@@ -126,7 +126,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 		Date insertTime1= contractQueryVo.getInsertTime1();  //保存日期止期
 		String carState = contractQueryVo.getCarState();  //车辆状态
 		String serviceType = contractQueryVo.getServiceType();   //服务类型
-		Character serviceDate= contractQueryVo.getServiceDate(); //服务期限
+		String serviceDate= contractQueryVo.getServiceDate(); //服务期限
 		String saveType = contractQueryVo.getSaveType();   //代表订单状态"0"代表暂存"1"代表保存
 		//添加权限管理，如果是系统管理员，可以查看全部的订单信息，如果是普通用户只能查看自己录入的订单信息，普通用户查询不出注销订单
 		String postFlag = userMsg.getPostFlag();
@@ -201,7 +201,7 @@ public class ContractServiceSpringImpl extends IBaseDaoServiceSpringImpl<MainCon
 			contractReturnVo.setInsertTime(obj[6]!=null?(Date)obj[6] : null );
 			contractReturnVo.setServiceType((String)obj[7]);
 			contractReturnVo.setSettleAmount(obj[8]!=null? (BigDecimal)obj[8] : null);
-			contractReturnVo.setServiceDate((Character)obj[9]);
+			contractReturnVo.setServiceDate((String)obj[9]);
 			contractReturnVo.setOrgName((String)obj[10]);
 			contractReturnVo.setOperateTime(obj[11]!=null?(Date)obj[11] : null );
 			contractReturnVo.setBusinessName((String)obj[12]);
